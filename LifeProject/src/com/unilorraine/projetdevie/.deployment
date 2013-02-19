@@ -1,0 +1,5 @@
+#Fri Feb 15 15:35:00 CET 2013
+war.name=ImageViewer.war
+compiler.style=OBFUSCATED
+server.path=
+compiler.memory.max=256m
