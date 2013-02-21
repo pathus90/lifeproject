@@ -26,6 +26,12 @@ public class LPActivityUnit extends AbstractInstanciatorLPEntity<TransitLPActivi
 	 */
 	@Persistent
 	private ArrayList<String> activityUnit;
+	
+	/**
+	 * The category the activity is in
+	 */
+	@Persistent
+	private String category;
 
 	
 	/**
@@ -44,6 +50,7 @@ public class LPActivityUnit extends AbstractInstanciatorLPEntity<TransitLPActivi
 	public LPActivityUnit(LPActivityUnit unit){
 		super(unit);
 		init(unit.activityUnit);
+		this.category = unit.getCategory();
 		
 	}
 
@@ -58,6 +65,7 @@ public class LPActivityUnit extends AbstractInstanciatorLPEntity<TransitLPActivi
 				addActivity(key);
 			}
 		}
+		this.category = category;
 	}
 
 	public boolean addActivity(String e) {
@@ -90,15 +98,33 @@ public class LPActivityUnit extends AbstractInstanciatorLPEntity<TransitLPActivi
 		return activityUnit.size();
 	}
 
+	public ArrayList<String> getActivityUnit() {
+		return activityUnit;
+	}
+
+	public void setActivityUnit(ArrayList<String> activityUnit) {
+		this.activityUnit = activityUnit;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	//TODO Changing the category of an ActivityUnit like that is quite dangerous for consistency, to be though over...
 	@Override
 	public boolean updateFromTransit(TransitLPActivityUnit transitEntity) {
+		setCategory(transitEntity.getCategory());
 		return true;
 	}
 
 	@Override
 	public TransitLPActivityUnit createTransit() {
 		
-		TransitLPActivityUnit transit = new TransitLPActivityUnit(getId(), null);
+		TransitLPActivityUnit transit = new TransitLPActivityUnit(getId(), null, getCategory());
 		ListIterator<String> it = activityIterator();
 		while(it.hasNext()){
 			transit.addActivity(it.next());

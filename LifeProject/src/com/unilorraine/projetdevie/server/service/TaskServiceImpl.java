@@ -19,23 +19,22 @@ import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractLPEntity;
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPTask;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
 
+/**
+ * Implementation du service rpc concernant les pojos LPTask. Toutes les fonctions nécéssaires à la communication avec le serveur se trouve ici.
+ * @author Christophe
+ *
+ */
 public class TaskServiceImpl extends CRUDRemoteService<TransitLPTask> implements TaskService {
 
 	@Override
 	protected AbstractLPEntity<TransitLPTask> getLPEntity() {
 		return new LPTask();
 	}
-
+	
 	@Override
-	public TransitLPTask deleteEntity(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	protected Class<LPTask> getLPEntityClass() {
+		return LPTask.class;
 	}
 
-	@Override
-	public TransitLPTask readEntity(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 }

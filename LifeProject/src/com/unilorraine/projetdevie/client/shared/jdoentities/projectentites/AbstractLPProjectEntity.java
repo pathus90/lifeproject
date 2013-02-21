@@ -1,12 +1,12 @@
 package com.unilorraine.projetdevie.client.shared.jdoentities.projectentites;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
-import com.ibm.icu.util.Calendar;
 import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractInstanciatorLPEntity;
 import com.unilorraine.projetdevie.client.shared.transitentities.AbstractTransitLPEntity;
 import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
