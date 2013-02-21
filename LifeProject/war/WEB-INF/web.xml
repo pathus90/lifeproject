@@ -13,5 +13,18 @@
     <servlet-name>SystemServiceServlet</servlet-name>
     <url-pattern>/_ah/spi/*</url-pattern>
   </servlet-mapping>
+  
+  <!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>ImageViewer.html</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>TaskService</servlet-name>
+		<servlet-class>com.unilorraine.projetdevie.server.service.TaskServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TaskService</servlet-name>
+		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/TaskService</url-pattern>
+	</servlet-mapping>
 
 </web-app>
