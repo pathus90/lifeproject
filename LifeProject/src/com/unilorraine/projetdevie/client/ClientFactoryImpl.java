@@ -14,6 +14,10 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.client;
 
+import org.apache.xml.dtm.Axis;
+
+import com.unilorraine.projetdevie.client.ui.ActorHolderView;
+import com.unilorraine.projetdevie.client.ui.ActorHolderViewImpl;
 import com.unilorraine.projetdevie.client.ui.SampleView;
 import com.unilorraine.projetdevie.client.ui.SampleViewImpl;
 import com.unilorraine.projetdevie.client.ui.TaskAdminView;
@@ -32,7 +36,8 @@ public class ClientFactoryImpl implements ClientFactory {
 	private static final PlaceController placeController = new PlaceController(eventBus);
 	private static final SampleView view = new SampleViewImpl();
 	private static final TaskAdminView taskAdminView = new TaskAdminViewImpl();
-
+	private static final ActorHolderView actorHolderView = new ActorHolderViewImpl();
+	
 	@Override
 	public EventBus getEventBus() {
 		return eventBus;
@@ -51,5 +56,10 @@ public class ClientFactoryImpl implements ClientFactory {
 	@Override
 	public TaskAdminView getTaskAdminView() {
 		return taskAdminView;
+	}
+
+	@Override
+	public ActorHolderView getActorHolderView() {
+		return actorHolderView;
 	}
 }

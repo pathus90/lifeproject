@@ -19,6 +19,7 @@ import com.unilorraine.projetdevie.client.ui.SampleView;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.unilorraine.projetdevie.client.ui.TaskAdminView;
+import com.unilorraine.projetdevie.client.ui.ActorHolderView;
 
 /**
  * ClientFactory helpful to use a factory or dependency injection framework like GIN to obtain 
@@ -32,4 +33,5 @@ public interface ClientFactory {
 	PlaceController getPlaceController();
 	public SampleView getSampleView();
 	public TaskAdminView getTaskAdminView();
+	public ActorHolderView getActorHolderView();
 }

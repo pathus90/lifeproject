@@ -14,6 +14,7 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.client.mvp;
 
+import com.unilorraine.projetdevie.client.place.ActorHolderPlace;
 import com.unilorraine.projetdevie.client.place.SamplePlace;
 
 import com.google.gwt.place.shared.PlaceHistoryMapper;
@@ -24,6 +25,6 @@ import com.google.gwt.place.shared.WithTokenizers;
  * be aware of. This is done via the @WithTokenizers annotation or by extending 
  * {@link PlaceHistoryMapperWithFactory} and creating a separate TokenizerFactory.
  */
-@WithTokenizers({ SamplePlace.Tokenizer.class })
+@WithTokenizers({ ActorHolderPlace.Tokenizer.class })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }
