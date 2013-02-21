@@ -8,6 +8,7 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.unilorraine.projetdevie.client.service.ICrudService;
 import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractLPEntity;
+import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
 
 /**
@@ -24,6 +25,13 @@ public abstract class CRUDRemoteService<T extends ITransitEntity> extends Remote
 	 * @return
 	 */
 	protected abstract AbstractLPEntity<T> getLPEntity();
+	
+	/**
+	 * This method returns the Class of the pojo to work with. 
+	 * This is to avoid having to create a new object every time we just need the class for the persistence 
+	 * @return
+	 */
+	protected abstract Class getLPEntityClass();
 
 	@Override
 	public T createEntity(T transitEntity) {
@@ -67,7 +75,7 @@ public abstract class CRUDRemoteService<T extends ITransitEntity> extends Remote
 		
 		try{
 			Key key = KeyFactory.stringToKey(transitEntity.getId());
-			lp = pm.getObjectById(getLPEntity().getClass(), key);
+			lp = pm.getObjectById(getLPEntityClass(), key);
 			
 			if(transitEntity != null)
 				lp.updateFromTransit(transitEntity);
@@ -100,7 +108,7 @@ public abstract class CRUDRemoteService<T extends ITransitEntity> extends Remote
 		
 		try{
 			Key key = KeyFactory.stringToKey(id);
-			lp = pm.getObjectById(getLPEntity().getClass(), key);
+			lp = pm.getObjectById(getLPEntityClass(), key);
 			
 			T transit = lp.createTransit();
 			
@@ -124,7 +132,7 @@ public abstract class CRUDRemoteService<T extends ITransitEntity> extends Remote
 		
 		try{
 			Key key = KeyFactory.stringToKey(id);
-			lp = pm.getObjectById(getLPEntity().getClass(), key);
+			lp = pm.getObjectById(getLPEntityClass(), key);
 			
 		}catch(JDOObjectNotFoundException notFound) {
 			return null;

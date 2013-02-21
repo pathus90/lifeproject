@@ -136,6 +136,36 @@ public class LPProject extends AbstractLPProjectEntity<TransitLPProject> impleme
 		}
 		return activityList;
 	}
+	
+	/**
+	 * Get all the activity-units for one specific category. The ID is the DB ID.
+	 * @param categoryID category to get from
+	 * @return ArrayList of activity-units, empty if none in that category
+	 */
+	public ArrayList<LPActivityUnit> getActivityUnitsForCategory(String categoryID){
+		ArrayList<LPActivityUnit> activityList = new ArrayList<LPActivityUnit>();
+		for(LPActivityUnit activity : choiceUnit){
+			if(activity.getCategory() == categoryID)
+				activityList.add(activity);
+		}
+		return activityList;
+	}
+
+	public ArrayList<LPActivity> getActivities() {
+		return activities;
+	}
+
+	public void setActivities(ArrayList<LPActivity> activities) {
+		this.activities = activities;
+	}
+
+	public ArrayList<LPActivityUnit> getChoiceUnits() {
+		return choiceUnit;
+	}
+
+	public void setChoiceUnits(ArrayList<LPActivityUnit> choiceUnit) {
+		this.choiceUnit = choiceUnit;
+	}
 
 	@Override
 	public IInstanciator createInstance() {

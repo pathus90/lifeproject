@@ -24,13 +24,22 @@ import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPAc
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPTask;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+/**
+ * Implementation du service rpc concernant les pojos LPActivity. Toutes les fonctions nécéssaires à la communication avec le serveur se trouve ici.
+ * @author Christophe
+ *
+ */
 public class ActivityServiceImpl extends CRUDRemoteService<TransitLPActivity> implements ActivityService {
 
 	@Override
 	protected AbstractLPEntity<TransitLPActivity> getLPEntity() {
 		return new LPActivity();
+	}
+	
+	@Override
+	protected Class<LPActivity> getLPEntityClass() {
+		return LPActivity.class;
 	}
 
 	@Override

@@ -18,7 +18,11 @@ public class TransitLPActivityUnit implements ITransitEntity {
 	 */
 	 private String id;
 	 
-
+	 /**
+	  * The category this unit is linked to
+	  */
+	 private String category;
+	 
 	/**
 	 * The activity unit
 	 */
@@ -26,13 +30,14 @@ public class TransitLPActivityUnit implements ITransitEntity {
 	private ArrayList<String> activityUnit;
 	
 	public TransitLPActivityUnit(String id,
-			ArrayList<String> activityUnit) {
+			ArrayList<String> activityUnit, String category) {
 		super();
 		this.id = id;
 		if(activityUnit != null)
 			this.activityUnit = activityUnit;
 		else
 			this.activityUnit = new ArrayList<String>();
+		this.category = category;
 	}
 
 	@Override
@@ -68,6 +73,22 @@ public class TransitLPActivityUnit implements ITransitEntity {
 
 	public int sizeOfUnit() {
 		return activityUnit.size();
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public ArrayList<String> getActivityUnit() {
+		return activityUnit;
+	}
+
+	public void setActivityUnit(ArrayList<String> activityUnit) {
+		this.activityUnit = activityUnit;
 	}
 	
 	
