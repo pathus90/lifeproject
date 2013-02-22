@@ -165,8 +165,25 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 			Key key = KeyFactory.stringToKey(id);
 			LPProject project = pm.getObjectById(LPProject.class, key);
 			
-			if(activityUnitToAdd != null)
+			if(activityUnitToAdd != null){
 				activity.updateFromTransit(activityUnitToAdd);
+				
+				//The Activity list needs to be added by hand because ignored by the updateFromTransit
+				Key keyActivity;
+				for(String activityKey : activityUnitToAdd.getActivityUnit()){
+					keyActivity = KeyFactory.stringToKey(activityKey);
+					//We verify that this Key is valid and ignore it if not valid
+					//TODO this can cost
+					try{
+						pm.getObjectById(LPActivity.class, keyActivity);
+						activity.addActivity(activityKey);
+					}catch(JDOObjectNotFoundException notFound) {
+					}
+				}
+				
+			}
+			
+			
 			project.addUnit(activity);
 			pm.makePersistent(project);
 			

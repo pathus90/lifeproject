@@ -35,6 +35,10 @@ public class TransitLPCategory implements ITransitEntity {
 		this.description = description;
 		this.imageLink = imageLink;
 	}
+	
+	public TransitLPCategory(){
+		this("", "", "", "");
+	}
 
 	@Override
 	public String getId() {

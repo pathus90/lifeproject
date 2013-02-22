@@ -58,5 +58,13 @@
 		<servlet-name>DBTestMaterialService</servlet-name>
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/DBTestMaterialService</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>ActivityUnitService</servlet-name>
+		<servlet-class>com.unilorraine.projetdevie.server.service.ActivityUnitServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ActivityUnitService</servlet-name>
+		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/ActivityUnitService</url-pattern>
+	</servlet-mapping>
 
 </web-app>

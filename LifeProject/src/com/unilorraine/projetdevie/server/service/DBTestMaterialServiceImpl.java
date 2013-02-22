@@ -14,8 +14,11 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.server.service;
 
+import java.util.ArrayList;
+
 import com.unilorraine.projetdevie.client.service.DBTestMaterialService;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivityUnit;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCategory;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProject;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
@@ -45,6 +48,8 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 	private TransitLPTask taskGreet;
 	private TransitLPTask taskMoney;
 	
+	private TransitLPActivityUnit unitSport;
+	
 	
 	private TransitLPProject projet;
 	
@@ -57,12 +62,12 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 		createSchemaTasks();
 		
 		createSchemaActivities();
-		
+				
 		createProject();
 		
 		
 	}
-	
+
 	private void createSchemaTasks() {
 		TaskServiceImpl impl = new TaskServiceImpl();
 		
@@ -79,12 +84,17 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 	 */
 	private void createProject() {
 		ProjectServiceImpl impl = new ProjectServiceImpl();
+		//ProjectServiceImpl impl = new ProjectServiceImpl();
 		projet = impl.createEntity(new TransitLPProject("", "Projet de Paul", "Description pour le projet de Paul", "", true, 0, ""));
 		
-		TransitLPActivity actIFootball = impl.addActivityFromSchema(projet.getId(), actFootball.getId());
+		//We put the two sports activities in a ActivityUnit to choose between them
+		ArrayList<String> activityList = new ArrayList<String>();
+		activityList.add(actFootball.getId());
+		activityList.add(actBasketball.getId());
 		
-		TransitLPActivity actIBasketball = impl.addActivityFromSchema(projet.getId(), actBasketball.getId());
+		unitSport = impl.addActivityUnits(projet.getId(), new TransitLPActivityUnit("", activityList, catSport.getId()));
 		
+		impl.commitActivityUnit(projet.getId(), unitSport.getId(), actFootball.getId());
 		TransitLPActivity actIBread = impl.addActivityFromSchema(projet.getId(), actBread.getId());
 		
 	}
