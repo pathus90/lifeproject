@@ -48,4 +48,10 @@ public interface ProjectServiceAsync extends ICrudServiceAsync<TransitLPProject>
 
 	void commitActivityUnit(String id, String idActivityUnit,
 			String idActivity, AsyncCallback<TransitLPActivity> callback);
+
+	void addActivityFromSchema(String id, String idOfActivitySchema,
+			AsyncCallback<TransitLPActivity> callback);
+
+	void addActivityUnitFromSchema(String id, String idOfActivityUnitSchema,
+			AsyncCallback<TransitLPActivityUnit> callback);
 }

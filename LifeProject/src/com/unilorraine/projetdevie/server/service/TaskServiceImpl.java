@@ -20,7 +20,7 @@ import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPTa
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
 
 /**
- * Implementation du service rpc concernant les pojos LPTask. Toutes les fonctions nécéssaires à la communication avec le serveur se trouve ici.
+ * Implementation concerning the {@link LPTask} Pojo, every server interaction specific to this class lay here.
  * @author Christophe
  *
  */

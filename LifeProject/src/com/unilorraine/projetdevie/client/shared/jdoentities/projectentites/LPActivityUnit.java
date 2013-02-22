@@ -25,7 +25,7 @@ public class LPActivityUnit extends AbstractInstanciatorLPEntity<TransitLPActivi
 	 * The activity unit
 	 */
 	@Persistent
-	private ArrayList<String> activityUnit;
+	private ArrayList<String> activities;
 	
 	/**
 	 * The category the activity is in
@@ -49,7 +49,7 @@ public class LPActivityUnit extends AbstractInstanciatorLPEntity<TransitLPActivi
 	 */
 	public LPActivityUnit(LPActivityUnit unit){
 		super(unit);
-		init(unit.activityUnit);
+		init(unit.activities);
 		this.category = unit.getCategory();
 		
 	}
@@ -69,41 +69,41 @@ public class LPActivityUnit extends AbstractInstanciatorLPEntity<TransitLPActivi
 	}
 
 	public boolean addActivity(String e) {
-		if(activityUnit.size() >= MAX_ITEM)
+		if(activities.size() >= MAX_ITEM)
 			return false;
-		return activityUnit.add(e);
+		return activities.add(e);
 	}
 
 	public String getActivity(int index) {
-		return activityUnit.get(index);
+		return activities.get(index);
 	}
 
 	public int indexOfActivity(String o) {
-		return activityUnit.indexOf(o);
+		return activities.indexOf(o);
 	}
 
 	public String removeActivity(int index) {
-		return activityUnit.remove(index);
+		return activities.remove(index);
 	}
 
 	public boolean removeActivity(String o) {
-		return activityUnit.remove(o);
+		return activities.remove(o);
 	}
 
 	public ListIterator<String> activityIterator() {
-		return activityUnit.listIterator();
+		return activities.listIterator();
 	}
 
 	public int size() {
-		return activityUnit.size();
+		return activities.size();
 	}
 
-	public ArrayList<String> getActivityUnit() {
-		return activityUnit;
+	public ArrayList<String> getActivities() {
+		return activities;
 	}
 
-	public void setActivityUnit(ArrayList<String> activityUnit) {
-		this.activityUnit = activityUnit;
+	public void setActivities(ArrayList<String> activities) {
+		this.activities = activities;
 	}
 
 	public String getCategory() {

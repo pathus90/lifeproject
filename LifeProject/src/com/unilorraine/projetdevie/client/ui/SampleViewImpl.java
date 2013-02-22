@@ -27,6 +27,8 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.unilorraine.projetdevie.client.service.ActivityService;
 import com.unilorraine.projetdevie.client.service.ActivityServiceAsync;
+import com.unilorraine.projetdevie.client.service.DBTestMaterialService;
+import com.unilorraine.projetdevie.client.service.DBTestMaterialServiceAsync;
 import com.unilorraine.projetdevie.client.service.TaskService;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
@@ -39,6 +41,7 @@ public class SampleViewImpl extends Composite implements SampleView {
 
 	  interface Driver extends SimpleBeanEditorDriver<TransitLPTask, TaskEditorBinder> {}
 		ActivityServiceAsync activitySrv = GWT.create(ActivityService.class);
+		DBTestMaterialServiceAsync bdService = GWT.create(DBTestMaterialService.class);
 	
 	  // Create the Driver
 	  Driver driver = GWT.create(Driver.class);
@@ -73,28 +76,26 @@ public class SampleViewImpl extends Composite implements SampleView {
 	void onButtonClick(ClickEvent event) {
 	
 		 // Initialize the service proxy.
-	    if (activitySrv == null)
-	    	activitySrv = GWT.create(TaskService.class);
+	    if (bdService == null)
+	    	bdService = GWT.create(DBTestMaterialService.class);
 
 	    // Set up the callback object.
-	    AsyncCallback<TransitLPActivity> callback = new AsyncCallback<TransitLPActivity>() {
+	    AsyncCallback<Void> callback = new AsyncCallback<Void>() {
 		      @Override
 			public void onFailure(Throwable caught) {
-		    	  System.out.println("Error in creating Transit : " + caught.getMessage());
+		    	  System.out.println("Error in populating db");
 		      }
 
 			@Override
-			public void onSuccess(TransitLPActivity result) {
-				if(result != null){
-					System.out.println("ID of created Activity " + result.getId());
-				}else{
-					System.out.println("Result came back as Null");
-				}
+			public void onSuccess(Void result) {
+				System.out.println("Should have been populated");
 			}
+
+			
 	    };
 
 	    // Make the call to the stock price service.
-	    activitySrv.createEntity(callback);
+	    bdService.populateDB(callback);
 	}
 
 	@Override

@@ -16,11 +16,16 @@ package com.unilorraine.projetdevie.server.service;
 
 import java.util.ArrayList;
 
+import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 import com.unilorraine.projetdevie.client.service.ActivityService;
 import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractLPEntity;
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity;
+import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivityUnit;
+import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPProject;
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPTask;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
@@ -66,7 +71,7 @@ public class ActivityServiceImpl extends CRUDRemoteService<TransitLPActivity> im
 		return addTask(id, null);
 	}
 
-	
+	@Override
 	public TransitLPTask addTask(String id, TransitLPTask transitTask) {
 		LPActivity activity;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
@@ -88,5 +93,39 @@ public class ActivityServiceImpl extends CRUDRemoteService<TransitLPActivity> im
 		}
 		
 		return task.createTransit();
+	}
+
+	@Override
+	public TransitLPTask addTaskFromSchema(String id, String taskSchemaId) {
+		PersistenceManager pm = PMF.get().getPersistenceManager(); 
+		LPTask task = null;
+		LPTask taskSchema = null;
+		
+		try{
+			Key key = KeyFactory.stringToKey(id);
+			LPActivity activity = pm.getObjectById(LPActivity.class, key);
+			
+			//We get the schema, then create an new instance from it
+			Key keySchema= KeyFactory.stringToKey(taskSchemaId);
+			taskSchema = pm.getObjectById(LPTask.class, keySchema);
+			task = taskSchema.createInstance();
+			
+			//Adding the new activity to project
+			activity.addTask(task);
+			
+			pm.makePersistent(activity);
+			
+			
+		}catch(JDOObjectNotFoundException notFound) {
+			return null;
+		}finally{
+			pm.close();
+		}
+		
+		//Only return transit if we actually created an activity
+		if(task != null)
+			return task.createTransit();
+		else
+			return null;
 	}
 }

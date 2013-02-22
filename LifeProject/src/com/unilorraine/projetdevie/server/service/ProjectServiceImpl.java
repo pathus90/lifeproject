@@ -33,7 +33,7 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
- * Implementation du service rpc concernant les pojos LPProjet. Toutes les fonctions nécéssaires à la communication avec le serveur se trouve ici.
+ * Implementation concerning the {@link LPActivity} Pojo, every server interaction specific to this class lay here.
  * @author Christophe
  *
  */
@@ -142,7 +142,7 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 		try{
 			Key key = KeyFactory.stringToKey(id);
 			LPProject project = pm.getObjectById(LPProject.class, key);
-			for(LPActivityUnit activity : project.getChoiceUnits()){
+			for(LPActivityUnit activity : project.getActivityUnits()){
 				list.add(activity.createTransit());
 			}
 			
@@ -189,11 +189,130 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 		return LPProject.class;
 	}
 
+	//TODO to be tested
 	@Override
 	public TransitLPActivity commitActivityUnit(String id,
 			String idActivityUnit, String idActivity) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		PersistenceManager pm = PMF.get().getPersistenceManager(); 
+		LPActivity activity = null;
+		boolean found = false;
+		
+		try{
+			Key key = KeyFactory.stringToKey(id);
+			LPProject project = pm.getObjectById(LPProject.class, key);
+			
+			//Security measures to ensure that both Unit and Activity exists in DB, will be ressource consuming
+			int unitIndex = 0;
+			for(LPActivityUnit activityUnit : project.getActivityUnits()){
+				if(activityUnit.getId() == idActivityUnit){
+					for(String activityId : activityUnit.getActivities()){
+						if(idActivity == activityId){
+							found = true;
+							break;
+						}
+					}
+					break;
+				}
+				unitIndex++;
+			}
+			
+			//Schema creation part
+			if(found){
+				
+				Key activityKey = KeyFactory.stringToKey(idActivity);
+				LPActivity activitySchema = pm.getObjectById(LPActivity.class, activityKey);
+				activity = activitySchema.createInstance();
+				
+				project.addActivity(activity);
+				project.removeUnit(unitIndex);
+				pm.makePersistent(project);
+			}
+			
+			
+		}catch(JDOObjectNotFoundException notFound) {
+			return null;
+		}finally{
+			pm.close();
+		}
+		//Only return transit if we actually created an activity
+		if(found && activity != null)
+			return activity.createTransit();
+		else
+			return null;
+		
+	}
+
+	//TODO call to be tested
+	@Override
+	public TransitLPActivity addActivityFromSchema(String id,
+			String idOfActivitySchema) {
+		
+		PersistenceManager pm = PMF.get().getPersistenceManager(); 
+		LPActivity activity = null;
+		LPActivity schemaActivity = null;
+		
+		try{
+			Key keyProject = KeyFactory.stringToKey(id);
+			LPProject project = pm.getObjectById(LPProject.class, keyProject);
+			
+			//We get the schema, then create an new instance from it
+			Key keySchemaActivity = KeyFactory.stringToKey(idOfActivitySchema);
+			schemaActivity = pm.getObjectById(LPActivity.class, keySchemaActivity);
+			activity = schemaActivity.createInstance();
+			
+			//Adding the new activity to project
+			project.addActivity(activity);
+			
+			pm.makePersistent(project);
+			
+			
+		}catch(JDOObjectNotFoundException notFound) {
+			return null;
+		}finally{
+			pm.close();
+		}
+		
+		//Only return transit if we actually created an activity
+		if(activity != null)
+			return activity.createTransit();
+		else
+			return null;
+	}
+
+	@Override
+	public TransitLPActivityUnit addActivityUnitFromSchema(String id,
+			String idOfActivityUnitSchema) {
+		PersistenceManager pm = PMF.get().getPersistenceManager(); 
+		LPActivityUnit activityUnit = null;
+		LPActivityUnit schemaActivityUnit = null;
+		
+		try{
+			Key keyProject = KeyFactory.stringToKey(id);
+			LPProject project = pm.getObjectById(LPProject.class, keyProject);
+			
+			//We get the schema, then create an new instance from it
+			Key keySchemaActivityUnit = KeyFactory.stringToKey(idOfActivityUnitSchema);
+			schemaActivityUnit = pm.getObjectById(LPActivityUnit.class, keySchemaActivityUnit);
+			activityUnit = schemaActivityUnit.createInstance();
+			
+			//Adding the new activity to project
+			project.addUnit(activityUnit);
+			
+			pm.makePersistent(project);
+			
+			
+		}catch(JDOObjectNotFoundException notFound) {
+			return null;
+		}finally{
+			pm.close();
+		}
+		
+		//Only return transit if we actually created an activity
+		if(activityUnit != null)
+			return activityUnit.createTransit();
+		else
+			return null;
 	}
 	
 }
