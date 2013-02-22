@@ -81,12 +81,13 @@ public abstract class AbstractLPProjectEntity<T extends ITransitEntity> extends 
 	}
 	
 	/**
-	 * Copy Constructor. The progress and dates are not copied!
+	 * Copy Constructor. The progress and dates are not copied and the schema ID will be set to the id of the instantiator
 	 * @param abstractLPEntity to be copied
 	 */
 	public AbstractLPProjectEntity(AbstractLPProjectEntity abstractLPEntity){
-		super(abstractLPEntity);
-		init(name, description, imageLink, status);
+		//super(abstractLPEntity);
+		init(abstractLPEntity.getName(), abstractLPEntity.getDescription(), abstractLPEntity.getImageLink(), abstractLPEntity.isStatus());
+		setSchemaID(abstractLPEntity.getId());
 	}
 	
 	public AbstractLPProjectEntity(){

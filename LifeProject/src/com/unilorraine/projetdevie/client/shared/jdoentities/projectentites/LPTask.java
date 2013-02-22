@@ -53,7 +53,6 @@ public class LPTask extends AbstractLPProjectEntity<TransitLPTask> implements II
 	@Override
 	public LPTask createInstance() {
 		LPTask task=  new LPTask(this);
-		task.setSchemaID(this.getId());
 		return task;
 	}
 

@@ -110,7 +110,6 @@ public class LPActivity extends AbstractLPProjectEntity<TransitLPActivity> imple
 	@Override
 	public LPActivity createInstance() {
 		LPActivity activity = new LPActivity(this);
-		activity.setSchemaID(this.getSchemaID());
 		return activity;
 	}
 
