@@ -9,7 +9,7 @@ import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractInstanciato
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivityUnit;
 
 /**
- * JDO db class. This class holds the activities witch needs to be choosen from for ONE SLOT in the project. It is only suppose to be composed with stereotype activities
+ * JDO db class. This class holds the activities witch needs to be chosen from for ONE SLOT in the project. It is only suppose to be composed with stereotype activities
  * @author Christophe
  *
  */
@@ -39,7 +39,7 @@ public class LPActivityUnit extends AbstractInstanciatorLPEntity<TransitLPActivi
 	 */
 	public LPActivityUnit() {
 		super();
-		init(null);
+		init(null, "");
 		
 	}
 	
@@ -49,8 +49,7 @@ public class LPActivityUnit extends AbstractInstanciatorLPEntity<TransitLPActivi
 	 */
 	public LPActivityUnit(LPActivityUnit unit){
 		super(unit);
-		init(unit.activities);
-		this.category = unit.getCategory();
+		init(unit.activities, unit.getCategory());
 		
 	}
 
@@ -58,8 +57,8 @@ public class LPActivityUnit extends AbstractInstanciatorLPEntity<TransitLPActivi
 	 * Initialisation method
 	 * @param activityUnit if is null an empty array will be initialised
 	 */
-	private void init(ArrayList<String> activityUnit){
-		activityUnit = new ArrayList<String>();
+	private void init(ArrayList<String> activityUnit, String category){
+		activities = new ArrayList<String>();
 		if(activityUnit != null){
 			for(String key : activityUnit){
 				addActivity(key);
