@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActor;
 
@@ -18,11 +19,13 @@ public class LPActor extends AbstractLPAccounts<TransitLPActor>{
 	/**
 	 * Id of the groups the Actor is in
 	 */
+	@Persistent
 	private ArrayList<String> groups;
 	
 	/**
 	 * Id of the users linked to this actor
 	 */
+	@Persistent
 	private ArrayList<String> users;
 	
 	/**

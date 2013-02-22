@@ -23,11 +23,17 @@ public class TransitLPCategory implements ITransitEntity {
 	  * Description to that category
 	  */
 	 private String description;
+	 
+	 /**
+	  * Link to the image
+	  */
+	 private String imageLink;
 	
-	public TransitLPCategory(String id, String name, String description) {
+	public TransitLPCategory(String id, String name, String description, String imageLink) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
+		this.imageLink = imageLink;
 	}
 
 	@Override
@@ -55,6 +61,14 @@ public class TransitLPCategory implements ITransitEntity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getImageLink() {
+		return imageLink;
+	}
+
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
 	}
 	
 	

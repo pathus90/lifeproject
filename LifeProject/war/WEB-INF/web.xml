@@ -26,13 +26,37 @@
 		<servlet-name>TaskService</servlet-name>
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/TaskService</url-pattern>
 	</servlet-mapping>
-		<servlet>
+	<servlet>
 		<servlet-name>ActivityService</servlet-name>
 		<servlet-class>com.unilorraine.projetdevie.server.service.ActivityServiceImpl</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ActivityService</servlet-name>
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/ActivityService</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ProjectService</servlet-name>
+		<servlet-class>com.unilorraine.projetdevie.server.service.ProjectServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProjectService</servlet-name>
+		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/ProjectService</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>CategoryService</servlet-name>
+		<servlet-class>com.unilorraine.projetdevie.server.service.CategoryServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CategoryService</servlet-name>
+		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/CategoryService</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DBTestMaterialService</servlet-name>
+		<servlet-class>com.unilorraine.projetdevie.server.service.DBTestMaterialServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBTestMaterialService</servlet-name>
+		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/DBTestMaterialService</url-pattern>
 	</servlet-mapping>
 
 </web-app>

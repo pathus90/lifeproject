@@ -159,11 +159,11 @@ public class LPProject extends AbstractLPProjectEntity<TransitLPProject> impleme
 		this.activities = activities;
 	}
 
-	public ArrayList<LPActivityUnit> getChoiceUnits() {
+	public ArrayList<LPActivityUnit> getActivityUnits() {
 		return choiceUnit;
 	}
 
-	public void setChoiceUnits(ArrayList<LPActivityUnit> choiceUnit) {
+	public void setActivityUnits(ArrayList<LPActivityUnit> choiceUnit) {
 		this.choiceUnit = choiceUnit;
 	}
 

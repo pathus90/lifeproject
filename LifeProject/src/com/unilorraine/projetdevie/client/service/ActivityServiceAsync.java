@@ -31,17 +31,26 @@ public interface ActivityServiceAsync extends ICrudServiceAsync<TransitLPActivit
 
 	/**
 	 * Add a new empty task to the activity and return the transit entity of this task
-	 * @param id the id of the Activity for witch a new task is to be created
+	 * @param id the id of the Activity for which a new task is to be created
 	 * @return the transit entity off the newly added task
 	 */
 	void addTask(String id, AsyncCallback<TransitLPTask> callback);
 
 	/**
 	 * Add a new task created from the transit to the activity and return the transit entity of this task
-	 * @param id the id of the Activity for witch a new task is to be created
-	 * @param transitTask the task data from witch the new task should be created from
+	 * @param id the id of the Activity for which a new task is to be created
+	 * @param transitTask the task data from which the new task should be created
 	 * @return the transit entity off the newly added task
 	 */
 	void addTask(String id, TransitLPTask transitTask,
+			AsyncCallback<TransitLPTask> callback);
+
+	/**
+	 * Add a new task created from a task schema to the activity and return the transit entity of this task
+	 * @param id the id of the Activity for which a new task is to be created
+	 * @param taskSchemaId the task schema from which the new task should be created
+	 * @return the transit entity off the newly added task, or null if either the activity or schema could not be found or instantiated
+	 */
+	void addTaskFromSchema(String id, String taskSchemaId,
 			AsyncCallback<TransitLPTask> callback);
 }

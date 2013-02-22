@@ -34,7 +34,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 public class ImageViewer implements EntryPoint {
   
 	private SimplePanel appWidget = new SimplePanel();
-	private Place defaultPlace = new ActorHolderPlace("Go!");
+	private Place defaultPlace = new SamplePlace("Go!");
 	
 	@Override
 	public void onModuleLoad() {

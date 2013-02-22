@@ -78,11 +78,12 @@ public class LPCategory extends AbstractLPEntity<TransitLPCategory> {
 	public boolean updateFromTransit(TransitLPCategory transitEntity) {
 		setName(transitEntity.getName());
 		setDescription(transitEntity.getDescription());
+		setLinktoImage(transitEntity.getImageLink());
 		return true;
 	}
 
 	@Override
 	public TransitLPCategory createTransit() {
-		return new TransitLPCategory(getId(), getName(), getDescription());
+		return new TransitLPCategory(getId(), getName(), getDescription(), getLinktoImage());
 	}
 }

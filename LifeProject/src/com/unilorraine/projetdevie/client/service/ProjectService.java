@@ -103,6 +103,22 @@ public interface ProjectService extends RemoteService , ICrudService<TransitLPPr
 	 * @return a transit object for newly the created activity
 	 */
 	public TransitLPActivity commitActivityUnit(String id, String idActivityUnit, String idActivity);
+	
+	/**
+	 * Add a activity created from a schema activity to the project and return the transit entity of this activity
+	 * @param id the LPProject where the activity should be added 
+	 * @param idOfActivitySchema the id of the activity from which the new activity will be created from
+	 * @return the transit object of the newly created object, or null if error (in retrieving schema or creating the activity from it)
+	 */
+	public TransitLPActivity addActivityFromSchema(String id, String idOfActivitySchema);
+	
+	/**
+	 * Add an activity-unit created from a schema activity-unit to the project and return the transit entity of this activity-unit
+	 * @param id the LPProject where the activity-unit should be added 
+	 * @param idOfActivityUnitSchema the id of the activity-unit from which the new activity-unit will be created from
+	 * @return the transit object of the newly created object, or null if error (in retrieving schema or creating the activity-unit from it)
+	 */
+	public TransitLPActivityUnit addActivityUnitFromSchema(String id, String idOfActivityUnitSchema);
 
 	
 	
