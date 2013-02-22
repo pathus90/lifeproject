@@ -18,6 +18,7 @@ import com.unilorraine.projetdevie.client.mvp.AppActivityMapper;
 import com.unilorraine.projetdevie.client.mvp.AppPlaceHistoryMapper;
 import com.unilorraine.projetdevie.client.ClientFactory;
 import com.unilorraine.projetdevie.client.place.ActorHolderPlace;
+import com.unilorraine.projetdevie.client.place.CategoryPlace;
 import com.unilorraine.projetdevie.client.place.SamplePlace;
 
 import com.google.gwt.activity.shared.ActivityManager;
@@ -34,7 +35,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 public class ImageViewer implements EntryPoint {
   
 	private SimplePanel appWidget = new SimplePanel();
-	private Place defaultPlace = new SamplePlace("Go!");
+	private Place defaultPlace = new CategoryPlace("Go!");
 	
 	@Override
 	public void onModuleLoad() {
