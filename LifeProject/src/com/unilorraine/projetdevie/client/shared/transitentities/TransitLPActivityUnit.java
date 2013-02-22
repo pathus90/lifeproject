@@ -39,6 +39,10 @@ public class TransitLPActivityUnit implements ITransitEntity {
 			this.activityUnit = new ArrayList<String>();
 		this.category = category;
 	}
+	
+	public TransitLPActivityUnit() {
+		this("", null, "");
+	}
 
 	@Override
 	public String getId() {

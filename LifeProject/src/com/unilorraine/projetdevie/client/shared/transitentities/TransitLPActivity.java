@@ -22,6 +22,7 @@ public class TransitLPActivity extends AbstractTransitLPEntity{
 	
 	public TransitLPActivity() {
 		super();
+		this.category = "";
 	}
 
 	public String getCategory() {

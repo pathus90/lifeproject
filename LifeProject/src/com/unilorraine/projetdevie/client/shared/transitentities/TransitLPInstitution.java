@@ -44,6 +44,10 @@ public class TransitLPInstitution implements ITransitEntity {
 		this.email = email;
 		this.telNumber = telNumber;
 	}
+	
+	public TransitLPInstitution() {
+		this("", "", "", "", "");
+	}
 
 	@Override
 	public String getId() {

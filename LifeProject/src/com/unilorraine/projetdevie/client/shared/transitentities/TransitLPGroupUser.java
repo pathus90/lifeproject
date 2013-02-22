@@ -31,6 +31,10 @@ public class TransitLPGroupUser implements ITransitEntity {
 		this.name = name;
 		this.description = description;
 	}
+	
+	public TransitLPGroupUser() {
+		this("", "", "");
+	}
 
 	@Override
 	public String getId() {
