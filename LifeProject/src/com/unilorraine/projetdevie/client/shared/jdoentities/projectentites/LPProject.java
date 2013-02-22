@@ -3,6 +3,7 @@ package com.unilorraine.projetdevie.client.shared.jdoentities.projectentites;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
+import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
 import com.unilorraine.projetdevie.client.shared.jdoentities.IInstanciator;
@@ -13,6 +14,7 @@ import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProjec
  * @author Christophe
  *
  */
+@PersistenceCapable
 public class LPProject extends AbstractLPProjectEntity<TransitLPProject> implements IInstanciator{
 
 	/**
@@ -170,7 +172,6 @@ public class LPProject extends AbstractLPProjectEntity<TransitLPProject> impleme
 	@Override
 	public IInstanciator createInstance() {
 		LPProject project = new LPProject(this);
-		project.setSchemaID(this.getId());
 		return project;
 	}
 	

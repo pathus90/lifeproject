@@ -18,8 +18,14 @@ import com.unilorraine.projetdevie.client.service.DBTestMaterialService;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCategory;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProject;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+/**
+ * 
+ * @author Christophe
+ *
+ */
 public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements DBTestMaterialService {
 
 	public static final String CAT_SPORT = "Sport";
@@ -34,6 +40,12 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 	private TransitLPActivity actBasketball;
 	private TransitLPActivity actBread;
 	
+	private TransitLPTask taskRules;
+	private TransitLPTask taskPlay;
+	private TransitLPTask taskGreet;
+	private TransitLPTask taskMoney;
+	
+	
 	private TransitLPProject projet;
 	
 	
@@ -42,6 +54,8 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 	public void populateDB() {
 		createCategories();
 		
+		createSchemaTasks();
+		
 		createSchemaActivities();
 		
 		createProject();
@@ -49,15 +63,29 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 		
 	}
 	
+	private void createSchemaTasks() {
+		TaskServiceImpl impl = new TaskServiceImpl();
+		
+		taskRules = impl.createEntity(new TransitLPTask("", "Apprendre les règles", "Il faut apprendre les règle pour jouer", "http://openclipart.org/image/128px/svg_to_png/97465/study.png", true, 0, ""));
+		taskPlay = impl.createEntity(new TransitLPTask("", "Apprendre à jouer", "Il temps d'apprendre à jouer pour de vrai!", "http://openclipart.org/image/128px/svg_to_png/721/johnny_automatic_playing_ball.png", true, 0, ""));
+		taskGreet = impl.createEntity(new TransitLPTask("", "Dire bonjours", "Dire bonjours à la boulangère", "http://openclipart.org/image/128px/svg_to_png/167186/Hello.png", true, 0, ""));
+		taskMoney = impl.createEntity(new TransitLPTask("", "Gérer son argent", "Donner le bon montant pour acheter son pain", "http://openclipart.org/image/128px/svg_to_png/73795/1279537209.png", true, 0, ""));
+		
+		
+	}
+
 	/**
 	 * Create a test Project
 	 */
 	private void createProject() {
 		ProjectServiceImpl impl = new ProjectServiceImpl();
 		projet = impl.createEntity(new TransitLPProject("", "Projet de Paul", "Description pour le projet de Paul", "", true, 0, ""));
-		impl.addActivityFromSchema(projet.getId(), actFootball.getId());
-		impl.addActivityFromSchema(projet.getId(), actBasketball.getId());
-		impl.addActivityFromSchema(projet.getId(), actBread.getId());
+		
+		TransitLPActivity actIFootball = impl.addActivityFromSchema(projet.getId(), actFootball.getId());
+		
+		TransitLPActivity actIBasketball = impl.addActivityFromSchema(projet.getId(), actBasketball.getId());
+		
+		TransitLPActivity actIBread = impl.addActivityFromSchema(projet.getId(), actBread.getId());
 		
 	}
 
@@ -65,10 +93,20 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 	 * Create some schema activities
 	 */
 	private void createSchemaActivities() {
-		ActivityServiceImpl impl = new ActivityServiceImpl();
-		actFootball = impl.createEntity(new TransitLPActivity("", "Football", "apprend à jouer au foot!", "http://openclipart.org/image/128px/svg_to_png/32491/football.png", true, 0, catSport.getId(), ""));
-		actBasketball = impl.createEntity(new TransitLPActivity("", "Basketball", "apprend à jouer au basketball!", "http://openclipart.org/image/128px/svg_to_png/4667/Gioppino_Basketball.png", true, 0, catSport.getId(), ""));
-		actBread = impl.createEntity(new TransitLPActivity("", "Aller à la boulangerie", "Apprend à acheter ton pain", "http://openclipart.org/image/128px/svg_to_png/16974/jean_victor_balin_bread.png", true, 0, catSocial.getId(), ""));
+		ActivityServiceImpl implActivity = new ActivityServiceImpl();
+		
+		actFootball = implActivity.createEntity(new TransitLPActivity("", "Football", "apprend à jouer au foot!", "http://openclipart.org/image/128px/svg_to_png/32491/football.png", true, 0, catSport.getId(), ""));
+		implActivity.addTaskFromSchema(actFootball.getId(), taskRules.getId());
+		implActivity.addTaskFromSchema(actFootball.getId(), taskPlay.getId());
+		
+		actBasketball = implActivity.createEntity(new TransitLPActivity("", "Basketball", "apprend à jouer au basketball!", "http://openclipart.org/image/128px/svg_to_png/4667/Gioppino_Basketball.png", true, 0, catSport.getId(), ""));
+		implActivity.addTaskFromSchema(actBasketball.getId(), taskRules.getId());
+		implActivity.addTaskFromSchema(actBasketball.getId(), taskPlay.getId());
+		
+		actBread = implActivity.createEntity(new TransitLPActivity("", "Aller à la boulangerie", "Apprend à acheter ton pain", "http://openclipart.org/image/128px/svg_to_png/16974/jean_victor_balin_bread.png", true, 0, catSocial.getId(), ""));
+		implActivity.addTaskFromSchema(actBread.getId(), taskGreet.getId());
+		implActivity.addTaskFromSchema(actFootball.getId(), taskMoney.getId());
+		
 	}
 
 	/**

@@ -135,7 +135,6 @@ public class LPActivityUnit extends AbstractInstanciatorLPEntity<TransitLPActivi
 	@Override
 	public LPActivityUnit createInstance() {
 		LPActivityUnit unit = new LPActivityUnit(this);
-		unit.setSchemaID(this.getId());
 		return unit;
 	}
 		

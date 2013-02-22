@@ -260,7 +260,7 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 			Key keySchemaActivity = KeyFactory.stringToKey(idOfActivitySchema);
 			schemaActivity = pm.getObjectById(LPActivity.class, keySchemaActivity);
 			activity = schemaActivity.createInstance();
-			
+
 			//Adding the new activity to project
 			project.addActivity(activity);
 			
