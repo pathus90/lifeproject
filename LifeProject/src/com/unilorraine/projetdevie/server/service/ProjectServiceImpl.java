@@ -222,9 +222,9 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 			//Security measures to ensure that both Unit and Activity exists in DB, will be ressource consuming
 			int unitIndex = 0;
 			for(LPActivityUnit activityUnit : project.getActivityUnits()){
-				if(activityUnit.getId() == idActivityUnit){
+				if(activityUnit.getId().equals(idActivityUnit)){
 					for(String activityId : activityUnit.getActivities()){
-						if(idActivity == activityId){
+						if(idActivity.equals(activityId)){
 							found = true;
 							break;
 						}

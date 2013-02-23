@@ -15,8 +15,16 @@
 package com.unilorraine.projetdevie.server.service;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.jdo.PersistenceManager;
 
 import com.unilorraine.projetdevie.client.service.DBTestMaterialService;
+import com.unilorraine.projetdevie.client.shared.jdoentities.IDBEntity;
+import com.unilorraine.projetdevie.client.shared.jdoentities.pots.AbstractLPPot;
+import com.unilorraine.projetdevie.client.shared.jdoentities.pots.LPPotActivity;
+import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity;
+import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivityUnit;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCategory;
@@ -57,15 +65,37 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 	
 	@Override
 	public void populateDB() {
+		
+		
 		createCategories();
 		
-		createSchemaTasks();
+//		createSchemaTasks();
+//		
+//		createSchemaActivities();
+//				
+//		createProject();
+
+		createPot();
 		
-		createSchemaActivities();
-				
-		createProject();
+	}
+
+	private void createPot() {
 		
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		LPPotActivity pot = new LPPotActivity("Test Pot", "Test description");
 		
+		try{
+			pot.addEntity(new LPActivity("Football", "apprend à jouer au foot!", "http://openclipart.org/image/128px/svg_to_png/32491/football.png", true, catSport.getId()));
+			pot.addEntity(new LPActivity("Football", "apprend à jouer au foot!", "http://openclipart.org/image/128px/svg_to_png/32491/football.png", true, catSport.getId()));
+			pot.addEntity(new LPActivity("Football", "apprend à jouer au foot!", "http://openclipart.org/image/128px/svg_to_png/32491/football.png", true, catSport.getId()));
+			
+			pm.makePersistent(pot);
+			
+			
+		}finally{
+			pm.close();
+			
+		}
 	}
 
 	private void createSchemaTasks() {
@@ -84,7 +114,7 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 	 */
 	private void createProject() {
 		ProjectServiceImpl impl = new ProjectServiceImpl();
-		//ProjectServiceImpl impl = new ProjectServiceImpl();
+		ActivityServiceImpl implActivity = new ActivityServiceImpl();
 		projet = impl.createEntity(new TransitLPProject("", "Projet de Paul", "Description pour le projet de Paul", "", true, 0, ""));
 		
 		//We put the two sports activities in a ActivityUnit to choose between them
@@ -94,8 +124,10 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 		
 		unitSport = impl.addActivityUnits(projet.getId(), new TransitLPActivityUnit("", activityList, catSport.getId()));
 		
-		impl.commitActivityUnit(projet.getId(), unitSport.getId(), actFootball.getId());
+		//impl.commitActivityUnit(projet.getId(), unitSport.getId(), actFootball.getId());
 		TransitLPActivity actIBread = impl.addActivityFromSchema(projet.getId(), actBread.getId());
+		
+		//implActivity.deleteEntity(actIBread);
 		
 	}
 

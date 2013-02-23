@@ -21,7 +21,7 @@ import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
  */
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUBCLASS_TABLE)
-public abstract class AbstractLPEntity<T extends ITransitEntity> implements ITransitableObject<T> {
+public abstract class AbstractLPEntity<T extends ITransitEntity> implements ITransitableObject<T>, IDBEntity {
 
 	/**
 	 * The id for this entity in an encoded String form
@@ -44,6 +44,7 @@ public abstract class AbstractLPEntity<T extends ITransitEntity> implements ITra
 	 * Get the id in an encoded String form
 	 * @return the id
 	 */
+	@Override
 	public String getId() {
 		return id;
 	}
