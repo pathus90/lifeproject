@@ -1,3 +1,8 @@
-/lib
-/deploy
 /appengine-generated
+
+/deploy
+
+
+/lib
+
+/classes
