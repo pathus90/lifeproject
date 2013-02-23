@@ -8,14 +8,15 @@ import javax.jdo.annotations.Persistent;
 import com.unilorraine.projetdevie.client.shared.jdoentities.IDBEntity;
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 
 /**
- * Implementation of the {@link AbstractLPPot} for LPActivity. This pot can store activites and is mainly used for enclosing schemas.
+ * Implementation of the {@link AbstractLPPot} for LPActivity. This pot can store activities and is mainly used for enclosing schemas.
  * @author Christophe
  *
  */
 @PersistenceCapable
-public class LPPotActivity extends AbstractLPPot<LPActivity> {
+public class LPPotActivity extends AbstractLPPot<TransitLPActivity,LPActivity> {
 
 	@Persistent
 	private List<LPActivity> storedEntities;

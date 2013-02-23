@@ -10,6 +10,7 @@ import javax.jdo.annotations.Persistent;
 
 import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractLPEntity;
 import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitHelper;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPPot;
 /**
  * JDO abstract class for a {@link IPot} it can hold {@link T} entities. 
@@ -22,12 +23,12 @@ import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPPot;
  * !! You need to make the list persistent yourself if you want it saved in the db !!
  * 
  * @author Christophe
- *
- * @param <T> the entities this pot can store
+ * @param <T> the type of {@link ITransitEntity} the stored entity is producing
+ * @param <S> the type of {@link AbstractLPEntity} this pot can store
  */
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUBCLASS_TABLE)
-public abstract class AbstractLPPot<T extends AbstractLPEntity> extends AbstractLPEntity<TransitLPPot> implements IPot<T>{
+public abstract class AbstractLPPot<T extends ITransitEntity, S extends AbstractLPEntity<T>> extends AbstractLPEntity<TransitLPPot<T>> implements IPot<S>{
 
 	/**
 	 * The name of the pot
@@ -48,7 +49,7 @@ public abstract class AbstractLPPot<T extends AbstractLPEntity> extends Abstract
 	 * The initialization is done for you by the super constructor.
 	 * @return the list of stored entities.
 	 */
-	protected abstract List<T> getStoredEntities();
+	protected abstract List<S> getStoredEntities();
 	
 	/**
 	 * This method needs to set the list of stored entities.
@@ -57,7 +58,7 @@ public abstract class AbstractLPPot<T extends AbstractLPEntity> extends Abstract
 	 * The initialization is done for you by the super constructor.
 	 * @param storedEntities the list of entities
 	 */
-	protected abstract void setStoredEntities( List<T> storedEntities);
+	protected abstract void setStoredEntities( List<S> storedEntities);
 	
 	/**
 	 * The list of entities linked with the pot
@@ -89,7 +90,7 @@ public abstract class AbstractLPPot<T extends AbstractLPEntity> extends Abstract
 	 * @param storedEntities the list of entity stored in the pot
 	 * @param linkedEntities the list of entity this pot is linked with
 	 */
-	public AbstractLPPot( String name, String description, List<T> storedEntites, List<String> linkedEntities) {
+	public AbstractLPPot( String name, String description, List<S> storedEntites, List<String> linkedEntities) {
 		super();
 		
 		setName(name);
@@ -98,7 +99,7 @@ public abstract class AbstractLPPot<T extends AbstractLPEntity> extends Abstract
 		if(storedEntites != null)
 			setStoredEntities(storedEntites);
 		else
-			setStoredEntities(new ArrayList<T>());
+			setStoredEntities(new ArrayList<S>());
 		
 		if(linkedEntities != null)
 			this.linkedEntities = linkedEntities;
@@ -138,13 +139,13 @@ public abstract class AbstractLPPot<T extends AbstractLPEntity> extends Abstract
 
 
 	@Override
-	public boolean addEntity(T entity) {
+	public boolean addEntity(S entity) {
 		return getStoredEntities().add(entity);
 	}
 	
 	@Override
 	public boolean removeEntitiy(String idEntity){
-		for(T entity : getStoredEntities()){
+		for(S entity : getStoredEntities()){
 			if(entity.getId().equals(idEntity)){
 				return getStoredEntities().remove(entity);
 			}
@@ -153,8 +154,8 @@ public abstract class AbstractLPPot<T extends AbstractLPEntity> extends Abstract
 	}
 
 	@Override
-	public T getStoredEntity(String idEntity) {
-		for(T entity : getStoredEntities()){
+	public S getStoredEntity(String idEntity) {
+		for(S entity : getStoredEntities()){
 			if(entity.getId().equals(idEntity)){
 				return entity;
 			}
@@ -163,7 +164,7 @@ public abstract class AbstractLPPot<T extends AbstractLPEntity> extends Abstract
 	}
 
 	@Override
-	public List<T> getAllStoredEntities() {
+	public List<S> getAllStoredEntities() {
 		return getStoredEntities();
 	}
 
@@ -192,15 +193,16 @@ public abstract class AbstractLPPot<T extends AbstractLPEntity> extends Abstract
 	}
 
 	@Override
-	public boolean updateFromTransit(TransitLPPot transitEntity) {
+	public boolean updateFromTransit(TransitLPPot<T> transitEntity) {
 		setName(transitEntity.getName());
 		setDescription(transitEntity.getDescription());
 		return true;
 	}
 
 	@Override
-	public TransitLPPot createTransit() {
-		return new TransitLPPot(getId(), getName(), getDescription());
+	public TransitLPPot<T> createTransit() {
+		TransitHelper<T, S> helper = new TransitHelper<T, S>();
+		return new TransitLPPot<T>(getId(), getName(), getDescription(), helper.createTransitEntities(getAllStoredEntities()));
 	}
 
 }
