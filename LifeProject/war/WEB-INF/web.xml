@@ -18,6 +18,7 @@
 	<welcome-file-list>
 		<welcome-file>ImageViewer.html</welcome-file>
 	</welcome-file-list>
+	
 	<servlet>
 		<servlet-name>TaskService</servlet-name>
 		<servlet-class>com.unilorraine.projetdevie.server.service.TaskServiceImpl</servlet-class>
@@ -26,6 +27,7 @@
 		<servlet-name>TaskService</servlet-name>
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/TaskService</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>ActivityService</servlet-name>
 		<servlet-class>com.unilorraine.projetdevie.server.service.ActivityServiceImpl</servlet-class>
@@ -34,6 +36,7 @@
 		<servlet-name>ActivityService</servlet-name>
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/ActivityService</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>ProjectService</servlet-name>
 		<servlet-class>com.unilorraine.projetdevie.server.service.ProjectServiceImpl</servlet-class>
@@ -42,6 +45,7 @@
 		<servlet-name>ProjectService</servlet-name>
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/ProjectService</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>CategoryService</servlet-name>
 		<servlet-class>com.unilorraine.projetdevie.server.service.CategoryServiceImpl</servlet-class>
@@ -50,6 +54,7 @@
 		<servlet-name>CategoryService</servlet-name>
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/CategoryService</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>DBTestMaterialService</servlet-name>
 		<servlet-class>com.unilorraine.projetdevie.server.service.DBTestMaterialServiceImpl</servlet-class>
@@ -58,6 +63,7 @@
 		<servlet-name>DBTestMaterialService</servlet-name>
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/DBTestMaterialService</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>ActivityUnitService</servlet-name>
 		<servlet-class>com.unilorraine.projetdevie.server.service.ActivityUnitServiceImpl</servlet-class>
@@ -66,6 +72,7 @@
 		<servlet-name>ActivityUnitService</servlet-name>
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/ActivityUnitService</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>PotActivityService</servlet-name>
 		<servlet-class>com.unilorraine.projetdevie.server.service.pots.PotActivityServiceImpl</servlet-class>
@@ -74,6 +81,7 @@
 		<servlet-name>PotActivityService</servlet-name>
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/PotActivityService</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>DBInitService</servlet-name>
 		<servlet-class>com.unilorraine.projetdevie.server.service.init.DBInitServiceImpl</servlet-class>
@@ -82,6 +90,7 @@
 		<servlet-name>DBInitService</servlet-name>
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/DBInitService</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>PotCategoryService</servlet-name>
 		<servlet-class>com.unilorraine.projetdevie.server.service.pots.PotCategoryServiceImpl</servlet-class>
@@ -90,6 +99,7 @@
 		<servlet-name>PotCategoryService</servlet-name>
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/PotCategoryService</url-pattern>
 	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>PotUserGroupService</servlet-name>
 		<servlet-class>com.unilorraine.projetdevie.server.service.pots.PotUserGroupServiceImpl</servlet-class>

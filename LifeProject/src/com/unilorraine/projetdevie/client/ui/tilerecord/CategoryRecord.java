@@ -3,6 +3,11 @@ package com.unilorraine.projetdevie.client.ui.tilerecord;
 import com.smartgwt.client.widgets.tile.TileRecord;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCategory;
 
+/**
+ * Representation data for a TileView in SmartGWT
+ * @author Christophe
+ *
+ */
 public class CategoryRecord extends TileRecord {
  
   
