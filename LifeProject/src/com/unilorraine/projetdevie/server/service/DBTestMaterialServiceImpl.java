@@ -45,6 +45,11 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 	public static final String CAT_MUSIC = "Musique";
 	
 	private TransitLPPot<TransitLPActivity> activityPot;
+	private TransitLPPot<TransitLPActivity> activityPot2;
+	
+	private TransitLPActivity actFootball2;
+	private TransitLPActivity actBasketball2;
+	private TransitLPActivity actBread2;
 	
 	private TransitLPCategory catSport;
 	private TransitLPCategory catSocial;
@@ -76,9 +81,26 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 		
 		createActivityPot();
 		
+		createActivityPot2();
+		
 //		createSchemaActivities();
 				
 		createProject();
+		
+		getPots();
+		
+	}
+
+	private void getPots() {
+		PotActivityServiceImpl potService = new PotActivityServiceImpl();
+		
+		List<TransitLPPot<TransitLPActivity>> list = potService.getTransitPotsByLink(catSocial.getId());
+		for(TransitLPPot<TransitLPActivity> pots : list){
+			System.out.println("Pot : " + pots.getName());
+			for(TransitLPActivity transit : pots.getStoredEntities()){
+				System.out.println("	Transit : " + transit.getName());
+			}
+		}
 		
 	}
 
@@ -86,7 +108,7 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 		PotActivityServiceImpl potService = new PotActivityServiceImpl();
 		ActivityServiceImpl implActivity = new ActivityServiceImpl();
 		
-		activityPot = potService.createEntity();
+		activityPot = potService.createEntity(new TransitLPPot<TransitLPActivity>("", "Pot 1", "", null));
 		
 		actFootball = potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Football", "apprend à jouer au foot!", "http://openclipart.org/image/128px/svg_to_png/32491/football.png", true, 0, catSport.getId(), ""));
 		implActivity.addTaskFromSchema(actFootball.getId(), taskRules.getId());
@@ -99,6 +121,30 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 		actBread = potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Aller à la boulangerie", "Apprend à acheter ton pain", "http://openclipart.org/image/128px/svg_to_png/16974/jean_victor_balin_bread.png", true, 0, catSocial.getId(), ""));
 		implActivity.addTaskFromSchema(actBread.getId(), taskGreet.getId());
 		implActivity.addTaskFromSchema(actFootball.getId(), taskMoney.getId());
+		
+		//potService.addLink(activityPot.getId(), catSocial.getId());
+		
+	}
+	
+	private void createActivityPot2() {
+		PotActivityServiceImpl potService = new PotActivityServiceImpl();
+		ActivityServiceImpl implActivity = new ActivityServiceImpl();
+		
+		activityPot2 = potService.createEntity(new TransitLPPot<TransitLPActivity>("", "Pot 2", "", null));
+		
+		actFootball2 = potService.addStoredEntitiy(activityPot2.getId(), new TransitLPActivity("", "Football", "apprend à jouer au foot!", "http://openclipart.org/image/128px/svg_to_png/32491/football.png", true, 0, catSport.getId(), ""));
+		implActivity.addTaskFromSchema(actFootball2.getId(), taskRules.getId());
+		implActivity.addTaskFromSchema(actFootball2.getId(), taskPlay.getId());
+		
+		actBasketball2 = potService.addStoredEntitiy(activityPot2.getId(), new TransitLPActivity("", "Basketball", "apprend à jouer au basketball!", "http://openclipart.org/image/128px/svg_to_png/4667/Gioppino_Basketball.png", true, 0, catSport.getId(), ""));
+		implActivity.addTaskFromSchema(actBasketball2.getId(), taskRules.getId());
+		implActivity.addTaskFromSchema(actBasketball2.getId(), taskPlay.getId());
+		
+		actBread2 = potService.addStoredEntitiy(activityPot2.getId(), new TransitLPActivity("", "Aller à la boulangerie", "Apprend à acheter ton pain", "http://openclipart.org/image/128px/svg_to_png/16974/jean_victor_balin_bread.png", true, 0, catSocial.getId(), ""));
+		implActivity.addTaskFromSchema(actBread2.getId(), taskGreet.getId());
+		implActivity.addTaskFromSchema(actFootball2.getId(), taskMoney.getId());
+		
+		potService.addLink(activityPot2.getId(), catSocial.getId());
 		
 	}
 
