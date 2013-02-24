@@ -18,6 +18,8 @@ import org.apache.xml.dtm.Axis;
 
 import com.unilorraine.projetdevie.client.ui.ActorHolderView;
 import com.unilorraine.projetdevie.client.ui.ActorHolderViewImpl;
+import com.unilorraine.projetdevie.client.ui.CategorySelectionView;
+import com.unilorraine.projetdevie.client.ui.CategorySelectionViewImpl;
 import com.unilorraine.projetdevie.client.ui.CategoryView;
 import com.unilorraine.projetdevie.client.ui.CategoryViewImpl;
 import com.unilorraine.projetdevie.client.ui.SampleView;
@@ -40,6 +42,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private static final TaskAdminView taskAdminView = new TaskAdminViewImpl();
 	private static final ActorHolderView actorHolderView = new ActorHolderViewImpl();
 	private static final CategoryView categoryView = new CategoryViewImpl();
+	private static final CategorySelectionView categorySelectionView = new CategorySelectionViewImpl();
 	
 	@Override
 	public EventBus getEventBus() {
@@ -70,5 +73,10 @@ public class ClientFactoryImpl implements ClientFactory {
 	public CategoryView getCategoryView() {
 
 		return categoryView;
+	}
+
+	@Override
+	public CategorySelectionView getCategorySelectionView() {
+		return categorySelectionView;
 	}
 }

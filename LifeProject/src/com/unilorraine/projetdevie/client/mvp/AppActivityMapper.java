@@ -17,10 +17,12 @@ package com.unilorraine.projetdevie.client.mvp;
 import com.unilorraine.projetdevie.client.ClientFactory;
 import com.unilorraine.projetdevie.client.activity.ActorHolderActivity;
 import com.unilorraine.projetdevie.client.activity.CategoryActivity;
+import com.unilorraine.projetdevie.client.activity.CategorySelectionActivity;
 import com.unilorraine.projetdevie.client.activity.SampleActivity;
 import com.unilorraine.projetdevie.client.activity.TaskAdminActivity;
 import com.unilorraine.projetdevie.client.place.ActorHolderPlace;
 import com.unilorraine.projetdevie.client.place.CategoryPlace;
+import com.unilorraine.projetdevie.client.place.CategorySelectionPlace;
 import com.unilorraine.projetdevie.client.place.SamplePlace;
 import com.unilorraine.projetdevie.client.place.TaskAdminPlace;
 
@@ -51,6 +53,8 @@ public class AppActivityMapper implements ActivityMapper {
 			return new TaskAdminActivity((TaskAdminPlace) place, clientFactory);
 		if (place instanceof ActorHolderPlace)
 			return new ActorHolderActivity((ActorHolderPlace)place, clientFactory);
+		if(place instanceof CategorySelectionPlace)
+			return new CategorySelectionActivity((CategorySelectionPlace)place, clientFactory);
 		if (place instanceof CategoryPlace)
 			return new CategoryActivity((CategoryPlace)place, clientFactory);
 		return null;
