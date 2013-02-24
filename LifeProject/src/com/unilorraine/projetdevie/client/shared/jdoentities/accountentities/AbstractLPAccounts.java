@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ListIterator;
 
+import javax.jdo.annotations.Inheritance;
+import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import com.google.appengine.api.datastore.Key;
@@ -17,6 +19,7 @@ import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
  *
  */
 @PersistenceCapable
+@Inheritance(strategy = InheritanceStrategy.SUBCLASS_TABLE)
 public abstract class AbstractLPAccounts<T extends ITransitEntity>  extends AbstractLPEntity<T> {
 
 	 /**

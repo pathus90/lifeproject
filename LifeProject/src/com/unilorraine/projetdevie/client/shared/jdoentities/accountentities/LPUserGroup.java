@@ -3,7 +3,7 @@ package com.unilorraine.projetdevie.client.shared.jdoentities.accountentities;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractLPEntity;
-import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPGroupUser;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPUserGroup;
 
 /**
  * JDO db Class to define the User group for the application
@@ -11,7 +11,7 @@ import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPGroupU
  *
  */
 @PersistenceCapable
-public class LPUserGroup extends AbstractLPEntity<TransitLPGroupUser> {
+public class LPUserGroup extends AbstractLPEntity<TransitLPUserGroup> {
 
 	 /**
 	  * Name for this user group
@@ -56,15 +56,15 @@ public class LPUserGroup extends AbstractLPEntity<TransitLPGroupUser> {
 	}
 	
 	@Override
-	public boolean updateFromTransit(TransitLPGroupUser transitEntity) {
+	public boolean updateFromTransit(TransitLPUserGroup transitEntity) {
 		setName(transitEntity.getName());
 		setDescription(transitEntity.getDescription());
 		return true;
 	}
 
 	@Override
-	public TransitLPGroupUser createTransit() {
-		return new TransitLPGroupUser(getId(), getName(), getDescription());
+	public TransitLPUserGroup createTransit() {
+		return new TransitLPUserGroup(getId(), getName(), getDescription());
 	}
 	 
 	 

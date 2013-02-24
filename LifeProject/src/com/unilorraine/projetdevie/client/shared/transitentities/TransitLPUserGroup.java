@@ -7,7 +7,7 @@ package com.unilorraine.projetdevie.client.shared.transitentities;
  * @author Christophe
  *
  */
-public class TransitLPGroupUser implements ITransitEntity {
+public class TransitLPUserGroup implements ITransitEntity {
 
 	/**
 	 * The id for this entity
@@ -25,14 +25,14 @@ public class TransitLPGroupUser implements ITransitEntity {
 	 private String description;
 	 
 	 
-	public TransitLPGroupUser(String id, String name, String description) {
+	public TransitLPUserGroup(String id, String name, String description) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 	}
 	
-	public TransitLPGroupUser() {
+	public TransitLPUserGroup() {
 		this("", "", "");
 	}
 

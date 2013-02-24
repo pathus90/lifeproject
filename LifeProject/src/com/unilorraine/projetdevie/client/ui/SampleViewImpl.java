@@ -27,9 +27,10 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.unilorraine.projetdevie.client.service.ActivityService;
 import com.unilorraine.projetdevie.client.service.ActivityServiceAsync;
-import com.unilorraine.projetdevie.client.service.DBTestMaterialService;
-import com.unilorraine.projetdevie.client.service.DBTestMaterialServiceAsync;
 import com.unilorraine.projetdevie.client.service.TaskService;
+import com.unilorraine.projetdevie.client.service.helperinterfaces.DBTestMaterialService;
+import com.unilorraine.projetdevie.client.service.helperinterfaces.DBTestMaterialServiceAsync;
+import com.unilorraine.projetdevie.client.service.init.DBInitService;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
 import com.unilorraine.projetdevie.client.ui.binder.TaskEditorBinder;
@@ -41,7 +42,6 @@ public class SampleViewImpl extends Composite implements SampleView {
 
 	  interface Driver extends SimpleBeanEditorDriver<TransitLPTask, TaskEditorBinder> {}
 		ActivityServiceAsync activitySrv = GWT.create(ActivityService.class);
-		DBTestMaterialServiceAsync bdService = GWT.create(DBTestMaterialService.class);
 	
 	  // Create the Driver
 	  Driver driver = GWT.create(Driver.class);
@@ -74,10 +74,6 @@ public class SampleViewImpl extends Composite implements SampleView {
 	
 	@UiHandler("button")
 	void onButtonClick(ClickEvent event) {
-	
-		 // Initialize the service proxy.
-	    if (bdService == null)
-	    	bdService = GWT.create(DBTestMaterialService.class);
 
 	    // Set up the callback object.
 	    AsyncCallback<Void> callback = new AsyncCallback<Void>() {
@@ -95,7 +91,7 @@ public class SampleViewImpl extends Composite implements SampleView {
 	    };
 
 	    // Make the call to the stock price service.
-	    bdService.populateDB(callback);
+	    DBInitService.Util.getInstance().initMethod(callback);
 	}
 
 	@Override

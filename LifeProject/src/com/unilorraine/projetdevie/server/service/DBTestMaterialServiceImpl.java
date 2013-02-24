@@ -19,7 +19,7 @@ import java.util.List;
 
 import javax.jdo.PersistenceManager;
 
-import com.unilorraine.projetdevie.client.service.DBTestMaterialService;
+import com.unilorraine.projetdevie.client.service.helperinterfaces.DBTestMaterialService;
 import com.unilorraine.projetdevie.client.shared.jdoentities.IDBEntity;
 import com.unilorraine.projetdevie.client.shared.jdoentities.pots.AbstractLPPot;
 import com.unilorraine.projetdevie.client.shared.jdoentities.pots.LPPotActivity;
@@ -31,6 +31,7 @@ import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCatego
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPPot;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProject;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
+import com.unilorraine.projetdevie.server.service.pots.PotActivityServiceImpl;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**

@@ -1,4 +1,4 @@
-package com.unilorraine.projetdevie.client.service;
+package com.unilorraine.projetdevie.client.service.pots;
 
 import com.unilorraine.projetdevie.client.service.helperinterfaces.IPotServiceAsync;
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity;

@@ -12,17 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.unilorraine.projetdevie.server.service;
+package com.unilorraine.projetdevie.server.service.pots;
 
-import com.unilorraine.projetdevie.client.service.PotActivityService;
+import com.unilorraine.projetdevie.client.service.pots.PotActivityService;
 import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractLPEntity;
 import com.unilorraine.projetdevie.client.shared.jdoentities.pots.LPPotActivity;
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPPot;
+import com.unilorraine.projetdevie.server.service.AbstractPotServiceImpl;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-public class PotActivityServiceImpl extends AbstractPotServiceImpl<TransitLPActivity, LPActivity> {
+public class PotActivityServiceImpl extends AbstractPotServiceImpl<TransitLPActivity, LPActivity> implements PotActivityService {
 
 	@Override
 	protected AbstractLPEntity<TransitLPPot<TransitLPActivity>> getLPEntity() {

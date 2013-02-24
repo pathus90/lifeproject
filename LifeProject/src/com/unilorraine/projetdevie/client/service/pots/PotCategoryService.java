@@ -12,25 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.unilorraine.projetdevie.client.service;
+package com.unilorraine.projetdevie.client.service.pots;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.unilorraine.projetdevie.client.service.helperinterfaces.IPotService;
-import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity;
-import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
+import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPCategory;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCategory;
 
-@RemoteServiceRelativePath("PotActivityService")
-public interface PotActivityService extends IPotService<TransitLPActivity, LPActivity> {
+@RemoteServiceRelativePath("PotCategoryService")
+public interface PotCategoryService extends IPotService<TransitLPCategory, LPCategory> {
 	/**
 	 * Utility class for simplifying access to the instance of async service.
 	 */
 	public static class Util {
-		private static PotActivityServiceAsync instance;
-		public static PotActivityServiceAsync getInstance(){
+		private static PotCategoryServiceAsync instance;
+		public static PotCategoryServiceAsync getInstance(){
 			if (instance == null) {
-				instance = GWT.create(PotActivityService.class);
+				instance = GWT.create(PotCategoryService.class);
 			}
 			return instance;
 		}

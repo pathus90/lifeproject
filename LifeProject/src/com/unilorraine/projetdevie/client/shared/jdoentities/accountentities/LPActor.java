@@ -38,7 +38,7 @@ public class LPActor extends AbstractLPAccounts<TransitLPActor>{
 	 * @param instution
 	 */
 	public LPActor(String lastname, String firstname, String email,
-			String description, String pictureLink, Long instution) {
+			String description, String pictureLink) {
 		super(lastname, firstname, email, description, pictureLink);
 		groups = new ArrayList<String>();
 		users = new ArrayList<String>();

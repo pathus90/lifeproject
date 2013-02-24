@@ -68,11 +68,35 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>PotActivityService</servlet-name>
-		<servlet-class>com.unilorraine.projetdevie.server.service.PotActivityServiceImpl</servlet-class>
+		<servlet-class>com.unilorraine.projetdevie.server.service.pots.PotActivityServiceImpl</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>PotActivityService</servlet-name>
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/PotActivityService</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DBInitService</servlet-name>
+		<servlet-class>com.unilorraine.projetdevie.server.service.init.DBInitServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBInitService</servlet-name>
+		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/DBInitService</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>PotCategoryService</servlet-name>
+		<servlet-class>com.unilorraine.projetdevie.server.service.pots.PotCategoryServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PotCategoryService</servlet-name>
+		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/PotCategoryService</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>PotUserGroupService</servlet-name>
+		<servlet-class>com.unilorraine.projetdevie.server.service.pots.PotUserGroupServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PotUserGroupService</servlet-name>
+		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/PotUserGroupService</url-pattern>
 	</servlet-mapping>
 
 </web-app>
