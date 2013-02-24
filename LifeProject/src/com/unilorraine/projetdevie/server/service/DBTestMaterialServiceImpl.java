@@ -28,6 +28,7 @@ import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivityUnit;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCategory;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPPot;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProject;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -42,6 +43,8 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 	public static final String CAT_SPORT = "Sport";
 	public static final String CAT_SOCIAL = "Social";
 	public static final String CAT_MUSIC = "Musique";
+	
+	private TransitLPPot<TransitLPActivity> activityPot;
 	
 	private TransitLPCategory catSport;
 	private TransitLPCategory catSocial;
@@ -69,33 +72,34 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 		
 		createCategories();
 		
-//		createSchemaTasks();
-//		
+		createSchemaTasks();
+		
+		createActivityPot();
+		
 //		createSchemaActivities();
-//				
-//		createProject();
-
-		createPot();
+				
+		createProject();
 		
 	}
 
-	private void createPot() {
+	private void createActivityPot() {
+		PotActivityServiceImpl potService = new PotActivityServiceImpl();
+		ActivityServiceImpl implActivity = new ActivityServiceImpl();
 		
-		PersistenceManager pm = PMF.get().getPersistenceManager();
-		LPPotActivity pot = new LPPotActivity("Test Pot", "Test description");
+		activityPot = potService.createEntity();
 		
-		try{
-			pot.addEntity(new LPActivity("Football", "apprend à jouer au foot!", "http://openclipart.org/image/128px/svg_to_png/32491/football.png", true, catSport.getId()));
-			pot.addEntity(new LPActivity("Football", "apprend à jouer au foot!", "http://openclipart.org/image/128px/svg_to_png/32491/football.png", true, catSport.getId()));
-			pot.addEntity(new LPActivity("Football", "apprend à jouer au foot!", "http://openclipart.org/image/128px/svg_to_png/32491/football.png", true, catSport.getId()));
-			
-			pm.makePersistent(pot);
-			
-			
-		}finally{
-			pm.close();
-			
-		}
+		actFootball = potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Football", "apprend à jouer au foot!", "http://openclipart.org/image/128px/svg_to_png/32491/football.png", true, 0, catSport.getId(), ""));
+		implActivity.addTaskFromSchema(actFootball.getId(), taskRules.getId());
+		implActivity.addTaskFromSchema(actFootball.getId(), taskPlay.getId());
+		
+		actBasketball = potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Basketball", "apprend à jouer au basketball!", "http://openclipart.org/image/128px/svg_to_png/4667/Gioppino_Basketball.png", true, 0, catSport.getId(), ""));
+		implActivity.addTaskFromSchema(actBasketball.getId(), taskRules.getId());
+		implActivity.addTaskFromSchema(actBasketball.getId(), taskPlay.getId());
+		
+		actBread = potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Aller à la boulangerie", "Apprend à acheter ton pain", "http://openclipart.org/image/128px/svg_to_png/16974/jean_victor_balin_bread.png", true, 0, catSocial.getId(), ""));
+		implActivity.addTaskFromSchema(actBread.getId(), taskGreet.getId());
+		implActivity.addTaskFromSchema(actFootball.getId(), taskMoney.getId());
+		
 	}
 
 	private void createSchemaTasks() {
@@ -114,7 +118,7 @@ public class DBTestMaterialServiceImpl extends RemoteServiceServlet implements D
 	 */
 	private void createProject() {
 		ProjectServiceImpl impl = new ProjectServiceImpl();
-		ActivityServiceImpl implActivity = new ActivityServiceImpl();
+
 		projet = impl.createEntity(new TransitLPProject("", "Projet de Paul", "Description pour le projet de Paul", "", true, 0, ""));
 		
 		//We put the two sports activities in a ActivityUnit to choose between them

@@ -51,6 +51,7 @@ public class LPActivity extends AbstractLPProjectEntity<TransitLPActivity> imple
 	public LPActivity(LPActivity activity){
 		super(activity);
 		this.category = activity.category;
+		tasks = new ArrayList<LPTask>();
 		for(LPTask task : activity.tasks){
 			tasks.add(new LPTask(task));
 		}

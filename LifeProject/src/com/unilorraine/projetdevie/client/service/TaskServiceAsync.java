@@ -15,6 +15,7 @@
 package com.unilorraine.projetdevie.client.service;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.unilorraine.projetdevie.client.service.helperinterfaces.ICrudServiceAsync;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
 
 public interface TaskServiceAsync extends ICrudServiceAsync<TransitLPTask> {

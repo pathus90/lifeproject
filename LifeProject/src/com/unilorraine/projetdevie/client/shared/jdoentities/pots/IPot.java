@@ -2,6 +2,7 @@ package com.unilorraine.projetdevie.client.shared.jdoentities.pots;
 
 import java.util.List;
 
+import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractLPEntity;
 import com.unilorraine.projetdevie.client.shared.jdoentities.IDBEntity;
 import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
 /**
@@ -11,11 +12,11 @@ import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
  * The pot does not ensure the consistency of its links.
  * This will allow to create a specific usage context for a pot.
  * 
- * @param <T> the specific entity the implementing class stores 
+ * @param <S> the specific entity the implementing class stores 
  * @author Christophe
  *
  */
-public interface IPot<T extends IDBEntity> extends IDBEntity {
+public interface IPot<S extends IDBEntity> extends IDBEntity {
 
 	/**
 	 * Set the name of this pot
@@ -47,7 +48,7 @@ public interface IPot<T extends IDBEntity> extends IDBEntity {
 	 * @param entity to be added
 	 * @return true if it could be added
 	 */
-	public boolean addEntity(T entity);
+	public boolean addEntity(S entity);
 	
 	/**
 	 * Remove an entity from the pot.
@@ -61,13 +62,13 @@ public interface IPot<T extends IDBEntity> extends IDBEntity {
 	 * @param idEntity
 	 * @return the entity found, null if an error occurs
 	 */
-	public T getStoredEntity(String idEntity);
+	public S getStoredEntity(String idEntity);
 	
 	/**
 	 * Get all the stored entities of this pot
 	 * @return a list of entites
 	 */
-	public List<T> getAllStoredEntities();
+	public List<S> getAllStoredEntities();
 	
 	/**
 	 * Links this pot to another entity

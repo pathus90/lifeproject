@@ -67,12 +67,12 @@
 		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/ActivityUnitService</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>PotService</servlet-name>
-		<servlet-class>com.unilorraine.projetdevie.server.service.PotServiceImpl</servlet-class>
+		<servlet-name>PotActivityService</servlet-name>
+		<servlet-class>com.unilorraine.projetdevie.server.service.PotActivityServiceImpl</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>PotService</servlet-name>
-		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/PotService</url-pattern>
+		<servlet-name>PotActivityService</servlet-name>
+		<url-pattern>/com.unilorraine.projetdevie.ImageViewer/PotActivityService</url-pattern>
 	</servlet-mapping>
 
 </web-app>

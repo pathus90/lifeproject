@@ -17,20 +17,20 @@ package com.unilorraine.projetdevie.client.service;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import com.unilorraine.projetdevie.client.service.helperinterfaces.ICrudService;
-import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
+import com.unilorraine.projetdevie.client.service.helperinterfaces.IPotService;
+import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 
-@RemoteServiceRelativePath("TaskService")
-public interface TaskService extends RemoteService, ICrudService<TransitLPTask> {
-	
+@RemoteServiceRelativePath("PotActivityService")
+public interface PotActivityService extends IPotService<TransitLPActivity, LPActivity> {
 	/**
 	 * Utility class for simplifying access to the instance of async service.
 	 */
 	public static class Util {
-		private static TaskServiceAsync instance;
-		public static TaskServiceAsync getInstance(){
+		private static PotActivityServiceAsync instance;
+		public static PotActivityServiceAsync getInstance(){
 			if (instance == null) {
-				instance = GWT.create(TaskService.class);
+				instance = GWT.create(PotActivityService.class);
 			}
 			return instance;
 		}

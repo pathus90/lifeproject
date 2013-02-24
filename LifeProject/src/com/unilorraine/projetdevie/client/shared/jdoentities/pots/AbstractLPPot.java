@@ -61,6 +61,12 @@ public abstract class AbstractLPPot<T extends ITransitEntity, S extends Abstract
 	protected abstract void setStoredEntities( List<S> storedEntities);
 	
 	/**
+	 * Returns an new instance of the entity kind this pot can store.
+	 * @return a new instance of the entity kind this pot can store.
+	 */
+	public abstract S getInstanceOfStoredEntity();
+	
+	/**
 	 * The list of entities linked with the pot
 	 */
 	@Persistent
@@ -204,5 +210,5 @@ public abstract class AbstractLPPot<T extends ITransitEntity, S extends Abstract
 		TransitHelper<T, S> helper = new TransitHelper<T, S>();
 		return new TransitLPPot<T>(getId(), getName(), getDescription(), helper.createTransitEntities(getAllStoredEntities()));
 	}
-
+	
 }

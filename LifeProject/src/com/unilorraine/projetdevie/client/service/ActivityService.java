@@ -19,11 +19,12 @@ import java.util.ArrayList;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.unilorraine.projetdevie.client.service.helperinterfaces.ICrudService;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
 
 /**
- * Remote Service interface for an activity service
+ * Remote Service interface for an activity service to add tasks and CRUD operations.
  * @author Christophe
  *
  */

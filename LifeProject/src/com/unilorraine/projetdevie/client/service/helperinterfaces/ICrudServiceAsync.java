@@ -1,4 +1,4 @@
-package com.unilorraine.projetdevie.client.service;
+package com.unilorraine.projetdevie.client.service.helperinterfaces;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;

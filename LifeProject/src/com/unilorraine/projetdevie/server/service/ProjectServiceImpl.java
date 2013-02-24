@@ -276,6 +276,7 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 			//We get the schema, then create an new instance from it
 			Key keySchemaActivity = KeyFactory.stringToKey(idOfActivitySchema);
 			schemaActivity = pm.getObjectById(LPActivity.class, keySchemaActivity);
+			System.out.println("Size of schema : " + schemaActivity.getTasks().size());
 			activity = schemaActivity.createInstance();
 
 			//Adding the new activity to project

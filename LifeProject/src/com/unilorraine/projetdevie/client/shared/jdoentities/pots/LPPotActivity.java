@@ -5,6 +5,7 @@ import java.util.List;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
+import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractLPEntity;
 import com.unilorraine.projetdevie.client.shared.jdoentities.IDBEntity;
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
@@ -45,7 +46,11 @@ public class LPPotActivity extends AbstractLPPot<TransitLPActivity,LPActivity> {
 	@Override
 	protected void setStoredEntities(List<LPActivity> storedEntities) {
 		this.storedEntities = storedEntities;
+	}
 
+	@Override
+	public LPActivity getInstanceOfStoredEntity() {
+		return new LPActivity();
 	}
 
 }

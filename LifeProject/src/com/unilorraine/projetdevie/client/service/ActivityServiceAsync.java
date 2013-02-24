@@ -16,6 +16,7 @@ package com.unilorraine.projetdevie.client.service;
 
 import java.util.ArrayList;
 
+import com.unilorraine.projetdevie.client.service.helperinterfaces.ICrudServiceAsync;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
 import com.google.gwt.user.client.rpc.AsyncCallback;

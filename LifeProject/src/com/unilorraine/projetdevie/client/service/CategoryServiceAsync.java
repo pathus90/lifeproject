@@ -17,6 +17,7 @@ package com.unilorraine.projetdevie.client.service;
 import java.util.ArrayList;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.unilorraine.projetdevie.client.service.helperinterfaces.ICrudServiceAsync;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCategory;
 
 public interface CategoryServiceAsync extends ICrudServiceAsync<TransitLPCategory> {

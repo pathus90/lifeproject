@@ -6,7 +6,7 @@ import javax.jdo.PersistenceManager;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.unilorraine.projetdevie.client.service.ICrudService;
+import com.unilorraine.projetdevie.client.service.helperinterfaces.ICrudService;
 import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractLPEntity;
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
