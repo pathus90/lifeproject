@@ -8,7 +8,6 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
-import com.google.appengine.api.datastore.Key;
 import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractLPEntity;
 import com.unilorraine.projetdevie.client.shared.transitentities.AbstractTransitLPAccount;
 import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
@@ -135,7 +134,7 @@ public abstract class AbstractLPAccounts<T extends ITransitEntity>  extends Abst
 		return institutions.get(index);
 	}
 
-	public int indexOfInstution(Key o) {
+	public int indexOfInstution(String o) {
 		return institutions.indexOf(o);
 	}
 
@@ -175,6 +174,7 @@ public abstract class AbstractLPAccounts<T extends ITransitEntity>  extends Abst
 	 * @param entity to be created
 	 */
 	protected void helperFillTransit(AbstractTransitLPAccount entity){
+		entity.setId(getId());
 		entity.setFirstname(getFirstname());
 		entity.setLastname(getLastname());
 		entity.setDescription(getDescription());
