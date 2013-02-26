@@ -4,6 +4,7 @@
 	<inherits name="com.google.gwt.place.Place"/>
 	<inherits name="com.google.gwt.activity.Activity"/>
 	<inherits name="com.smartgwt.SmartGwt"/>
+	<inherits name="com.smartclient.theme.silverwave.SilverWave"/>
 	<entry-point class="com.unilorraine.projetdevie.client.ImageViewer"/>
 	<replace-with class="com.unilorraine.projetdevie.client.ClientFactoryImpl">
 		<when-type-is class="com.unilorraine.projetdevie.client.ClientFactory"/>
