@@ -14,12 +14,22 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.client.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.unilorraine.projetdevie.client.ClientFactory;
+import com.unilorraine.projetdevie.client.place.ApplicationPanelPlace;
 import com.unilorraine.projetdevie.client.place.SamplePlace;
 import com.unilorraine.projetdevie.client.service.TaskService;
 import com.unilorraine.projetdevie.client.service.TaskServiceAsync;
+import com.unilorraine.projetdevie.client.service.init.DBInitService;
+import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActor;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPInstitution;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
+import com.unilorraine.projetdevie.client.ui.AppContext;
 import com.unilorraine.projetdevie.client.ui.SampleView;
+import com.unilorraine.projetdevie.server.service.init.DBInitServiceImpl;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.core.client.GWT;
@@ -56,12 +66,47 @@ public class SampleActivity extends AbstractActivity implements SampleView.Prese
 		view.setName(name);
 		view.setPresenter(this);
 		containerWidget.setWidget(view.asWidget());
+		
+		initDB();
 	}
 
+	 public void initDB() {
+		
+		AsyncCallback<List<ITransitEntity>> callback = new AsyncCallback<List<ITransitEntity>>() {
+		      @Override
+			public void onFailure(Throwable caught) {
+		    	  System.out.println("Error in populating db");
+		      }
+
+			@Override
+			public void onSuccess(List<ITransitEntity> result) {
+				System.out.println("Should have been populated");
+				TransitLPInstitution institution = (TransitLPInstitution)result.get(0);
+				TransitLPActor actor = (TransitLPActor)result.get(1);
+				System.out.println("Institution : " + institution.getName());
+				System.out.println("Actor : " + actor.getFirstname());
+				
+				ApplicationPanelPlace place = new ApplicationPanelPlace("Application Panel");
+				List<String> links = new ArrayList<String>();
+				links.add(institution.getId());
+				place.setAppContext(new AppContext(actor, links));
+				goTo(place);
+			}
+
+			
+	    };
+
+	    // Make the call to the stock price service.
+	    DBInitService.Util.getInstance().initMethod(callback);
+		
+	}
+
+	 /*
 	@Override
 	public String mayStop() {
 		return "Please hold on. This activity is stopping.";
 	}
+	*/
 
 	/**
 	 * @see SampleView.Presenter#goTo(Place)
@@ -69,36 +114,5 @@ public class SampleActivity extends AbstractActivity implements SampleView.Prese
 	@Override
 	public void goTo(Place place) {
 		clientFactory.getPlaceController().goTo(place);
-	}
-
-	@Override
-	public void load(String id) {
-		 // Initialize the service proxy.
-	    if (taskSrv == null) {
-	    	taskSrv = GWT.create(TaskService.class);
-	    }
-
-	    // Set up the callback object.
-	    AsyncCallback<TransitLPTask> callback = new AsyncCallback<TransitLPTask>() {
-	      @Override
-		public void onFailure(Throwable caught) {
-	    	  System.out.println("Error in fetching Transit : " + caught.getMessage());
-	      }
-
-		@Override
-		public void onSuccess(TransitLPTask result) {
-			if(result != null){
-				clientFactory.getSampleView().fillEditor(result);
-			}else{
-				System.out.println("Result came back as Null");
-			}
-			
-		}
-
-	      
-	    };
-
-	    // Make the call to the stock price service.
-	   taskSrv.readEntity(id, callback);		
-	}
+	}	
 }

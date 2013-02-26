@@ -18,6 +18,7 @@ import com.unilorraine.projetdevie.client.ui.SampleView;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
+import com.unilorraine.projetdevie.client.ui.ApplicationPanelView;
 import com.unilorraine.projetdevie.client.ui.TaskAdminView;
 import com.unilorraine.projetdevie.client.ui.ActorHolderView;
 import com.unilorraine.projetdevie.client.ui.CategoryView;
@@ -38,4 +39,5 @@ public interface ClientFactory {
 	public ActorHolderView getActorHolderView();
 	public CategoryView getCategoryView();
 	public CategorySelectionView getCategorySelectionView();
+	public ApplicationPanelView getApplicationPanelView();
 }

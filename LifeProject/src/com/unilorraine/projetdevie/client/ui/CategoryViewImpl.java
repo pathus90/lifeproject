@@ -69,7 +69,7 @@ public class CategoryViewImpl extends FlowPanel implements CategoryView {
         
         categoryName = new DetailViewerField("name");
         categoryChoice = new DetailViewerField("choice");
-        tileGrid.setFields(categoryPicture,categoryName,categoryChoice);
+        tileGrid.setFields(categoryPicture, categoryName,categoryChoice);
 		
 		vStack.addMember(tileGrid);
 		add(vStack);

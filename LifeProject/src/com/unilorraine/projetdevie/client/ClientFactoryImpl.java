@@ -14,10 +14,10 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.client;
 
-import org.apache.xml.dtm.Axis;
-
 import com.unilorraine.projetdevie.client.ui.ActorHolderView;
 import com.unilorraine.projetdevie.client.ui.ActorHolderViewImpl;
+import com.unilorraine.projetdevie.client.ui.ApplicationPanelView;
+import com.unilorraine.projetdevie.client.ui.ApplicationPanelViewImpl;
 import com.unilorraine.projetdevie.client.ui.CategorySelectionView;
 import com.unilorraine.projetdevie.client.ui.CategorySelectionViewImpl;
 import com.unilorraine.projetdevie.client.ui.CategoryView;
@@ -43,6 +43,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private static final ActorHolderView actorHolderView = new ActorHolderViewImpl();
 	private static final CategoryView categoryView = new CategoryViewImpl();
 	private static final CategorySelectionView categorySelectionView = new CategorySelectionViewImpl();
+	private static final ApplicationPanelView applicationPanelView = new ApplicationPanelViewImpl();
 	
 	@Override
 	public EventBus getEventBus() {
@@ -78,5 +79,10 @@ public class ClientFactoryImpl implements ClientFactory {
 	@Override
 	public CategorySelectionView getCategorySelectionView() {
 		return categorySelectionView;
+	}
+
+	@Override
+	public ApplicationPanelView getApplicationPanelView() {
+		return applicationPanelView;
 	}
 }

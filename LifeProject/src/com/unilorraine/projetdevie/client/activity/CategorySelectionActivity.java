@@ -14,13 +14,22 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.client.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.unilorraine.projetdevie.client.ClientFactory;
 import com.unilorraine.projetdevie.client.place.CategorySelectionPlace;
+import com.unilorraine.projetdevie.client.service.pots.PotActivityService;
+import com.unilorraine.projetdevie.client.service.pots.PotCategoryService;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCategory;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPPot;
 import com.unilorraine.projetdevie.client.ui.CategorySelectionView;
+import com.unilorraine.projetdevie.client.ui.tilerecord.CategoryRecord;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 /**
@@ -37,10 +46,17 @@ public class CategorySelectionActivity extends AbstractActivity implements Categ
 	 * Sample property.
 	 */
 	private String name;
+	
+	/**
+	 * The id the categories should be fetched from
+	 */
+	private CategoryRecord[] records;
 
 	public CategorySelectionActivity(CategorySelectionPlace place, ClientFactory clientFactory) {
 		this.name = place.getName();
 		this.clientFactory = clientFactory;
+		
+		records = place.getRecords();
 	}
 
 	@Override
@@ -48,13 +64,19 @@ public class CategorySelectionActivity extends AbstractActivity implements Categ
 		CategorySelectionView view = clientFactory.getCategorySelectionView();
 		view.setName(name);
 		view.setPresenter(this);
+		
+		view.initTileGrid(records);
+		
 		containerWidget.setWidget(view.asWidget());
+		
 	}
 
+	/*
 	@Override
 	public String mayStop() {
 		return "Please hold on. This activity is stopping.";
 	}
+	*/
 
 	/**
 	 * @see CategorySelectionView.Presenter#goTo(Place)

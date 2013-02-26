@@ -16,6 +16,7 @@ package com.unilorraine.projetdevie.client.ui;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
+import com.unilorraine.projetdevie.client.ui.tilerecord.CategoryRecord;
 
 /**
  * View base interface.
@@ -26,6 +27,12 @@ public interface CategorySelectionView extends IsWidget {
 	void setName(String helloName);
 
 	void setPresenter(Presenter listener);
+	
+	/**
+	 * Initiate the tilegrid with given tiles
+	 * @param arrayCatReccord the tiles to show
+	 */
+	void initTileGrid(CategoryRecord[] arrayCatReccord);
 
 	public interface Presenter {
 		/**

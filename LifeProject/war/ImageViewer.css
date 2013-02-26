@@ -1,6 +1,6 @@
 body { 
 	color: black;
-	margin: 5px;
+	margin:5px;
 	font-size: small;
 	font-family: Arial, sans-serif;
 	background-color: white;
@@ -293,4 +293,10 @@ a:visited {
 .gwt-DisclosurePanel .header {
 	background-color: #e8eef7;
 	cursor: hand;
+}
+.title {
+	color: dodgerblue;
+	font-stretch: normal;
+	font-size: 18px;
+	font-weight: bold;
 }

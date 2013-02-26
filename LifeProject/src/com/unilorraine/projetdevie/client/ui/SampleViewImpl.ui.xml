@@ -9,7 +9,6 @@
 	</ui:style>
 
 	<g:FlowPanel styleName="{style.panel}">
-		<p1:TaskEditorBinder/>
-		<g:Button ui:field="button">Load</g:Button>
+		<g:Button ui:field="button">Go!</g:Button>
 	</g:FlowPanel>
 </ui:UiBinder>

@@ -15,9 +15,12 @@
 package com.unilorraine.projetdevie.server.service.init;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
+
+import org.eclipse.jdt.internal.compiler.flow.InsideSubRoutineFlowContext;
 
 import com.unilorraine.projetdevie.client.service.init.DBInitService;
 import com.unilorraine.projetdevie.client.service.pots.PotUserGroupService;
@@ -27,6 +30,7 @@ import com.unilorraine.projetdevie.client.shared.jdoentities.accountentities.LPI
 import com.unilorraine.projetdevie.client.shared.jdoentities.accountentities.LPUser;
 import com.unilorraine.projetdevie.client.shared.jdoentities.accountentities.LPUserGroup;
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPProject;
+import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivityUnit;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActor;
@@ -62,12 +66,6 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 	private static final String CAT_SOCIAL = "Social";
 	private static final String CAT_MUSIC = "Musique";
 	
-	private static String institutionID;
-	
-	private static String userID;
-	
-	private static String actorID;
-	
 	private TransitLPPot<TransitLPActivity> activityPot;
 	
 	private TransitLPCategory catSport;
@@ -82,98 +80,37 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 	private TransitLPTask taskPlay;
 	private TransitLPTask taskGreet;
 	private TransitLPTask taskMoney;
-	
-	@Override
-	public TransitLPInstitution getInstitution() {
-		PersistenceManager pm = PMF.get().getPersistenceManager(); 
-		LPInstitution lp = null;
-		
-		try{
-			Key key = KeyFactory.stringToKey(institutionID);
-			lp = pm.getObjectById(LPInstitution.class, key);
-			
-		}catch(JDOObjectNotFoundException notFound) {
-			return null;
-		}finally{
-			pm.close();
-		}
-		
-		if(lp != null)
-			return lp.createTransit();
-		else
-			return null;
-	}
 
 	@Override
-	public TransitLPUser getUser() {
+	public List<ITransitEntity> initMethod() {
 		
-		PersistenceManager pm = PMF.get().getPersistenceManager(); 
-		LPUser lp = null;
+		TransitLPInstitution institution = createInstitution();
 		
-		try{
-			Key key = KeyFactory.stringToKey(userID);
-			lp = pm.getObjectById(LPUser.class, key);
-			
-		}catch(JDOObjectNotFoundException notFound) {
-			return null;
-		}finally{
-			pm.close();
-		}
+		String groupID = createGroups(institution.getId());
 		
-		if(lp != null)
-			return lp.createTransit();
-		else
-			return null;
+		TransitLPUser user = createUser(institution.getId());
 		
-	}
-
-	@Override
-	public TransitLPActor getActor() {
+		TransitLPActor actor = createActor(groupID, institution.getId(), user.getId());
 		
-		PersistenceManager pm = PMF.get().getPersistenceManager(); 
-		LPActor lp = null;
-		
-		try{
-			Key key = KeyFactory.stringToKey(actorID);
-			lp = pm.getObjectById(LPActor.class, key);
-			
-		}catch(JDOObjectNotFoundException notFound) {
-			return null;
-		}finally{
-			pm.close();
-		}
-		
-		if(lp != null)
-			return lp.createTransit();
-		else
-			return null;
-	}
-
-	@Override
-	public void initMethod() {
-		
-		institutionID = createInstitution();
-		
-		String groupID = createGroups();
-		
-		userID = createUser();
-		
-		actorID = createActor(groupID);
-		
-		createCategories();
+		createCategories(institution.getId());
 		
 		//This should also be done by pots because we will not use the tasks, we will do it this way
 		//But normally you put them directly in the shema activities so they are linked with make a own Task pot
 		createSchemaTasks();
 		
 		//Create the pot of activities
-		createActivityPot();
+		createActivityPot(institution.getId());
 				
 		//finally create an empty project for our user
-		createProject();
+		createProject(user.getId());
+		
+		List<ITransitEntity> list = new ArrayList<ITransitEntity>();
+		list.add(institution);
+		list.add(actor);
+		return list;
 	}
 
-	private String createGroups() {
+	private String createGroups(String institutionID) {
 		PotUserGroupService groupService = new PotUserGroupServiceImpl();
 		
 		//create the pot using the RPC, no id needed and no entries passed because they would ignored.
@@ -193,7 +130,7 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 		
 	}
 
-	private String createActor(String groupID) {
+	private TransitLPActor createActor(String groupID, String institutionID, String userID) {
 		PersistenceManager pm = PMF.get().getPersistenceManager(); 
 		LPActor lp = null;
 		
@@ -217,13 +154,13 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 			
 		}
 		if(lp != null)
-			return lp.getId();
+			return lp.createTransit();
 		else
 			return null;
 		
 	}
 
-	private String createUser() {
+	private TransitLPUser createUser(String institutionID) {
 		PersistenceManager pm = PMF.get().getPersistenceManager(); 
 		LPUser lp = null;
 		
@@ -238,13 +175,13 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 			
 		}
 		if(lp != null)
-			return lp.getId();
+			return lp.createTransit();
 		else
 			return null;
 		
 	}
 
-	private String createInstitution() {
+	private TransitLPInstitution createInstitution() {
 		
 		PersistenceManager pm = PMF.get().getPersistenceManager(); 
 		LPInstitution lp = null;
@@ -259,13 +196,13 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 			
 		}
 		if(lp != null)
-			return lp.getId();
+			return lp.createTransit();
 		else
 			return null;
 		
 	}
 	
-	private void createActivityPot() {
+	private void createActivityPot(String institutionID) {
 		
 		PotActivityServiceImpl potService = new PotActivityServiceImpl();
 		
@@ -313,12 +250,12 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 	/**
 	 * Create a test Project
 	 */
-	private void createProject() {
+	private void createProject(String userID) {
 		
 		//again no rpc so we need to do it by hand
 		PersistenceManager pm = PMF.get().getPersistenceManager(); 
 		LPUser lp = null;
-		
+		System.out.println("User ID " + userID);
 		try{
 			Key key = KeyFactory.stringToKey(userID);
 			lp = pm.getObjectById(LPUser.class, key);
@@ -339,7 +276,7 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 	/**
 	 * Populate the DB with Categories
 	 */
-	private void createCategories(){
+	private void createCategories(String institutionID){
 		
 		//Using the category pot service
 		PotCategoryServiceImpl potService = new PotCategoryServiceImpl();

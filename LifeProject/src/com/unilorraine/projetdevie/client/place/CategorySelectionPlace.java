@@ -16,6 +16,7 @@ package com.unilorraine.projetdevie.client.place;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
+import com.unilorraine.projetdevie.client.ui.tilerecord.CategoryRecord;
 
 /**
  * A place object representing a particular state of the UI. A Place can be converted to and from a
@@ -29,6 +30,11 @@ public class CategorySelectionPlace extends Place {
 	 * Sample property (stores token). 
 	 */
 	private String name;
+	
+	/**
+	 * The link id from which the categories should be fetched
+	 */
+	private CategoryRecord[] records;
 
 	public CategorySelectionPlace(String token) {
 		this.name = token;
@@ -36,6 +42,22 @@ public class CategorySelectionPlace extends Place {
 
 	public String getName() {
 		return name;
+	}
+
+	/**
+	 * The link id from which the categories should be fetched
+	 * @return
+	 */
+	public CategoryRecord[] getRecords() {
+		return records;
+	}
+
+	/**
+	 * The link id from which the categories should be fetched
+	 * @param linkId
+	 */
+	public void setRecord(CategoryRecord[] records) {
+		this.records = records;
 	}
 
 	/**

@@ -16,15 +16,18 @@ package com.unilorraine.projetdevie.client.mvp;
 
 import com.unilorraine.projetdevie.client.ClientFactory;
 import com.unilorraine.projetdevie.client.activity.ActorHolderActivity;
+import com.unilorraine.projetdevie.client.activity.ApplicationPanelActivity;
 import com.unilorraine.projetdevie.client.activity.CategoryActivity;
 import com.unilorraine.projetdevie.client.activity.CategorySelectionActivity;
 import com.unilorraine.projetdevie.client.activity.SampleActivity;
 import com.unilorraine.projetdevie.client.activity.TaskAdminActivity;
 import com.unilorraine.projetdevie.client.place.ActorHolderPlace;
+import com.unilorraine.projetdevie.client.place.ApplicationPanelPlace;
 import com.unilorraine.projetdevie.client.place.CategoryPlace;
 import com.unilorraine.projetdevie.client.place.CategorySelectionPlace;
 import com.unilorraine.projetdevie.client.place.SamplePlace;
 import com.unilorraine.projetdevie.client.place.TaskAdminPlace;
+import com.unilorraine.projetdevie.client.ui.ApplicationPanelViewImpl;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -57,6 +60,8 @@ public class AppActivityMapper implements ActivityMapper {
 			return new CategorySelectionActivity((CategorySelectionPlace)place, clientFactory);
 		if (place instanceof CategoryPlace)
 			return new CategoryActivity((CategoryPlace)place, clientFactory);
+		if (place instanceof ApplicationPanelPlace)
+			return new ApplicationPanelActivity((ApplicationPanelPlace)place, clientFactory);
 		return null;
 	}
 
