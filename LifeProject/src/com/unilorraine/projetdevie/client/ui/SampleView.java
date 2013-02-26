@@ -35,6 +35,6 @@ public interface SampleView extends IsWidget {
 		 * Navigate to a new Place in the browser.
 		 */
 		void goTo(Place place);
-		void load(String id);
+		 public void initDB();
 	}
 }

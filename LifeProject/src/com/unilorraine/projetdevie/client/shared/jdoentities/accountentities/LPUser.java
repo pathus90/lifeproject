@@ -114,8 +114,10 @@ public class LPUser extends AbstractLPAccounts<TransitLPUser> {
 	public TransitLPUser createTransit() {
 		TransitLPUser transit = new TransitLPUser();
 		helperFillTransit(transit);
-		transit.setActiveProject(getActiveProject().getId());
-		transit.setBuildingProject(getBuildingProject().getId());
+		if(getActiveProject() != null)
+			transit.setActiveProject(getActiveProject().getId());
+		if(getBuildingProject() != null)
+			transit.setBuildingProject(getBuildingProject().getId());
 		return transit;
 	}
 	
