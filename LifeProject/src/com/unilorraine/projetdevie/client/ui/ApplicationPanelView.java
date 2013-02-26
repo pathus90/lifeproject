@@ -69,6 +69,13 @@ public interface ApplicationPanelView extends IsWidget {
 	void emptyMenu();
 	
 	/**
+	 * @param item
+	 * @param fireEvents
+	 * @see com.google.gwt.user.client.ui.Tree#setSelectedItem(com.google.gwt.user.client.ui.TreeItem, boolean)
+	 */
+	void setSelectedItem(TreeItem item, boolean fireEvents);
+	
+	/**
 	 * Controller for ApplicationPanelView
 	 * @author Christophe
 	 *
@@ -104,7 +111,7 @@ public interface ApplicationPanelView extends IsWidget {
 		 * Methode in which the {@link AppModule} activities have to be defined to be pushed in the handler  
 		 * TODO This is juste a fast implementation, it really needs to be polishing 
 		 */
-		abstract List<RegisterableModule> moduleReferences();
+		List<RegisterableModule> moduleReferences();
 		
 	}
 }

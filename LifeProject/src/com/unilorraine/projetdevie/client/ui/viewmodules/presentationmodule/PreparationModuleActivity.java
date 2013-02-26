@@ -70,6 +70,8 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 	 */
 	private void intiMenu() {
 		
+		removeAll();
+		
 		//Item 1 sub-tree
 		TreeItem item1 = new TreeItem();
 		item1.setText(MENU_ONE);

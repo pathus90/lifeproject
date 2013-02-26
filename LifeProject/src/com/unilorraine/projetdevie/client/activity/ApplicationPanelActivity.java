@@ -36,6 +36,7 @@ import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.TreeItem;
 
 /**
@@ -222,5 +223,17 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		modules.add(prepModule3);
 		
 		return modules;
+	}
+
+
+	@Override
+	public void redraw(Panel panel) {
+		view.setAppModuleView(panel);
+	}
+
+
+	@Override
+	public void setSelectedItem(TreeItem item, boolean fireEvents) {
+		view.setSelectedItem(item, fireEvents);
 	}
 }

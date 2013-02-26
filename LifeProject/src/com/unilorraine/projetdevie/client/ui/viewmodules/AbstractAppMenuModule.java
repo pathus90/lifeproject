@@ -60,6 +60,10 @@ public abstract class AbstractAppMenuModule extends AbstractAppModule implements
 		return itemTreeList.size();
 	}
 
+	
+	public void removeAll(){
+		itemTreeList = new ArrayList<TreeItem>();
+	}
 
 	public List<TreeItem> getItemTreeList() {
 		return itemTreeList;

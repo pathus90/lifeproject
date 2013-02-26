@@ -138,4 +138,10 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 		
 	}
 
+	@Override
+	public void setSelectedItem(TreeItem item, boolean fireEvents) {
+		menutTree.setSelectedItem(item, fireEvents);
+	}
+
+	
 }

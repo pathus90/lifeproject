@@ -1,5 +1,7 @@
 package com.unilorraine.projetdevie.client.ui;
 
+import com.google.gwt.user.client.ui.Panel;
+import com.google.gwt.user.client.ui.TreeItem;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
 
 /**
@@ -26,4 +28,19 @@ public interface ModuleListener {
 	 * @param module the module to be connected
 	 */
 	void connectModule(AppModule module);
+	
+	/**
+	 * Redraws the panel in the module listener
+	 * @param panel the panel to be redrawn
+	 */
+	void redraw(Panel panel);
+	
+	/**
+	 * @param item
+	 * @param fireEvents
+	 * @see com.google.gwt.user.client.ui.Tree#setSelectedItem(com.google.gwt.user.client.ui.TreeItem, boolean)
+	 */
+	void setSelectedItem(TreeItem item, boolean fireEvents);
+	
+	
 }
