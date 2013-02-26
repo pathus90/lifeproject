@@ -22,6 +22,8 @@ public class TransitLPUser extends AbstractTransitLPAccount{
 
 	public TransitLPUser() {
 		super();
+		activeProject = "";
+		buildingProject = "";
 	}
 
 	public String getActiveProject() {

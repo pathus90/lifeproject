@@ -14,9 +14,12 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.client.service.init;
 
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActor;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPInstitution;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProject;
@@ -42,27 +45,9 @@ public interface DBInitService extends RemoteService {
 	 * This method will initialize the db but not remove the old object! 
 	 * You have to do that by hand by deleting the /war/WEB-INF/appengine-generated/local_db.bin file.
 	 * Then call this method to setup the db.
+	 * @return 
 	 */
-	public void initMethod();
-	
-	/**
-	 * The institution this scenario play in. The institution will be linked with the category an activity pot you need. 
-	 * So use the Id provided by this transit to get them from their respective potservice.
-	 * @return the institution transit for this scenario
-	 */
-	public TransitLPInstitution getInstitution();
-	
-	/**
-	 * The user transit object, he is holding the project, so use the id provided by this transit and the projectservice to get the building project.
-	 * @return the transit object of the user for this scenario
-	 */
-	public TransitLPUser getUser();
-	
-	/**
-	 * get the transit object for the actor, meaning the person responsible for the actor, he will be part of the "autor" usergroup
-	 * @return transit of the responsible actor for our user
-	 */
-	public TransitLPActor getActor();
+	public List<ITransitEntity> initMethod();
 	
 	
 	
