@@ -38,6 +38,9 @@ public interface CategoryView extends IsWidget {
 	 */
 	void initTileGrid(CategoryRecord[] arrayCatReccord);
 
+	//TODO Change the parameter of the function with list of Activities, this is just for test
+	void initActivityGrid(CategoryRecord[] arrayCatReccord);
+	
 	public interface Presenter {
 		/**
 		 * Navigate to a new Place in the browser.
@@ -49,6 +52,17 @@ public interface CategoryView extends IsWidget {
 		 * @return
 		 */
 		void setCategories();
+		/**
+		 * After click on button Next, and before going to activities panel, check if one category is chosen
+		 * @param b 
+		 * @return
+		 */
+		boolean testCategoryChecked(boolean b);
+		/**
+		 * TODO
+		 * Load Activities from server
+		 */
+		void setActivities();
 		
 	}
 }

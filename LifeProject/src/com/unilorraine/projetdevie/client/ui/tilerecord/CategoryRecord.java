@@ -2,6 +2,7 @@ package com.unilorraine.projetdevie.client.ui.tilerecord;
 
 import com.smartgwt.client.widgets.tile.TileRecord;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCategory;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProject;
 
 public class CategoryRecord extends TileRecord {
  
@@ -9,7 +10,9 @@ public class CategoryRecord extends TileRecord {
 	public CategoryRecord(TransitLPCategory category){
         this(category.getName(), category.getImageLink(), null, category.getId());		
 	}
-   
+	public CategoryRecord(TransitLPProject project){
+        this(project.getName(), project.getImageLink(), null, project.getId());		
+	}
     public CategoryRecord(String name, String picture, String description,String id) {  
         setName(name);  
         setPicture(picture);  

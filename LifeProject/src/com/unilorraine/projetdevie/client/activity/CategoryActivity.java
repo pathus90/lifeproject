@@ -17,13 +17,18 @@ package com.unilorraine.projetdevie.client.activity;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.eclipse.jdt.core.compiler.CategorizedProblem;
+
 import com.smartgwt.client.widgets.tile.TileRecord;
 import com.unilorraine.projetdevie.client.ClientFactory;
 import com.unilorraine.projetdevie.client.place.CategoryPlace;
-import com.unilorraine.projetdevie.client.service.ActivityServiceAsync;
 import com.unilorraine.projetdevie.client.service.CategoryService;
 import com.unilorraine.projetdevie.client.service.CategoryServiceAsync;
+import com.unilorraine.projetdevie.client.service.ProjectService;
+import com.unilorraine.projetdevie.client.service.ProjectServiceAsync;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCategory;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProject;
 import com.unilorraine.projetdevie.client.ui.CategoryView;
 import com.unilorraine.projetdevie.client.ui.tilerecord.CategoryRecord;
 import com.unilorraine.projetdevie.server.service.CategoryServiceImpl;
@@ -50,14 +55,15 @@ public class CategoryActivity extends AbstractActivity implements CategoryView.P
 	 * Sample property.
 	 */
 	private String name;
-	private TileRecord[] tiles;
-	private CategoryService categoryService;
-
+	private int currentState;
+	private CategoryRecord[] arrayCatReccord;
+	
 	private CategoryServiceAsync service = GWT.create(CategoryService.class);
 	
 	public CategoryActivity(CategoryPlace place, ClientFactory clientFactory) {
 		this.name = place.getName();
 		this.clientFactory = clientFactory;
+		this.currentState = 0;
 	}
 
 	@Override
@@ -66,9 +72,8 @@ public class CategoryActivity extends AbstractActivity implements CategoryView.P
 		System.out.println("View " + view);
 		view.setName(name);
 		view.setPresenter(this);
-		
+		if (currentState == 0)
 		setCategories();
-		
 		containerWidget.setWidget(view.asWidget());
 	}
 
@@ -105,14 +110,16 @@ public class CategoryActivity extends AbstractActivity implements CategoryView.P
 				if (result == null)
 					System.out.println("Error server!");
 				else{
+					
 //					categories = categoryService.getAllCategories();
-					CategoryRecord[] arrayCatReccord = new CategoryRecord[result.size()];
+					arrayCatReccord = new CategoryRecord[result.size()];
 					int i = 0;
 					for(TransitLPCategory cat : result){
 						arrayCatReccord[i] = new CategoryRecord(cat);
 						i++;
 					}
 					clientFactory.getCategoryView().initTileGrid(arrayCatReccord);	
+
 				}
 			}
 			
@@ -120,4 +127,20 @@ public class CategoryActivity extends AbstractActivity implements CategoryView.P
 		service.getAllCategories(callback);
 		
 	}
+
+	@Override
+	public void setActivities() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean testCategoryChecked(boolean b) {
+		if (b==true){
+			
+			clientFactory.getCategoryView().initActivityGrid(arrayCatReccord);
+			}
+		return b;
+	}
+
 }

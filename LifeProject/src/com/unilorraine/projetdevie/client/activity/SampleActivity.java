@@ -56,6 +56,7 @@ public class SampleActivity extends AbstractActivity implements SampleView.Prese
 		view.setName(name);
 		view.setPresenter(this);
 		containerWidget.setWidget(view.asWidget());
+		
 	}
 
 	@Override
