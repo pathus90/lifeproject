@@ -25,6 +25,7 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.Widget;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
+import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
 
 /**
  * View base interface.
@@ -63,18 +64,11 @@ public interface ApplicationPanelView extends IsWidget {
 	 * @author Christophe
 	 *
 	 */
-	public interface Presenter extends SelectionHandler<TreeItem> {
+	public interface Presenter extends SelectionHandler<TreeItem>, ModuleListener {
 		/**
 		 * Navigate to a new Place in the browser.
 		 */
 		void goTo(Place place);
-		
-		/**
-		 * Connect a module to the application panel. 
-		 * This should connect the menu, the plugin panel to this module and set the {@link AppContext}
-		 * @param module the module to be connected
-		 */
-		void connectModule(AppModule module);
 		
 		/**
 		 * Getter for the app context
@@ -96,6 +90,12 @@ public interface ApplicationPanelView extends IsWidget {
 		 * Got to the default module, for exemple the module
 		 */
 		void gotoDefaultMenu();
+		
+		/**
+		 * Methode in which the {@link AppModule} activities have to be defined to be pushed in the handler  
+		 * TODO This is juste a fast implementation, it really needs to be polishing 
+		 */
+		abstract List<RegisterableModule> moduleReferences();
 		
 	}
 }

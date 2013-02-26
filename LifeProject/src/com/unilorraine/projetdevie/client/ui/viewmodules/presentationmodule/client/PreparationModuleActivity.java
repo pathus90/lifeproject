@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule;
+package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.client;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.core.client.GWT;
@@ -30,11 +30,27 @@ import com.unilorraine.projetdevie.client.ui.viewmodules.AbstractAppMenuModule;
  */
 public class PreparationModuleActivity extends AbstractAppMenuModule implements PreparationModuleView.Presenter {
 
-	PreparationModuleView view;
+	private static final String MODULE_NAME = "Préparation du LP";
+	private static final String MODULE_PIC_LINK = "";
+	
+	private static PreparationModuleView view;
+	
+	
 	
 	public PreparationModuleActivity() {
-		view = GWT.create(PreparationModuleView.class);
+		super();
+		setModuleName(MODULE_NAME);
 	}
+
+	@Override
+	public void onStart() {
+		if(view ==null)
+			view = new PreparationModuleViewImpl();//(PreparationModuleView)GWT.create(PreparationModuleView.class);
+		
+		//This is very important, if you don't fire up the listener your module won't be shown
+		super.onStart();
+	};
+	
 	
 	//TODO to implement
 	@Override
@@ -44,7 +60,12 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 
 	@Override
 	public Widget getWidget() {
-		return view.asWidget();
+		if(view != null)
+			return view.asWidget();
+		else{
+			System.err.println("The PreparationModuleView is not instantiated!");
+			return null;
+		} 
 	}
 	
 }

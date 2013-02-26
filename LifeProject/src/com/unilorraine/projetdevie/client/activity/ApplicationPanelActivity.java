@@ -14,6 +14,11 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.client.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.catalina.startup.SetDocBaseRule;
+
 import com.unilorraine.projetdevie.client.ClientFactory;
 import com.unilorraine.projetdevie.client.place.ApplicationPanelPlace;
 import com.unilorraine.projetdevie.client.ui.AppContext;
@@ -21,8 +26,10 @@ import com.unilorraine.projetdevie.client.ui.ApplicationPanelView;
 import com.unilorraine.projetdevie.client.ui.ModuleListener;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.MenuModule;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleRegister;
+import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
+import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.client.ModuleHandlerActivity;
+import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.client.ModuleHandlerView;
+import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.client.PreparationModuleActivity;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.logical.shared.SelectionEvent;
@@ -34,7 +41,7 @@ import com.google.gwt.user.client.ui.TreeItem;
 /**
  * Activities are started and stopped by an ActivityManager associated with a container Widget.
  */
-public class ApplicationPanelActivity extends AbstractActivity implements ApplicationPanelView.Presenter, ModuleListener {
+public class ApplicationPanelActivity extends AbstractActivity implements ApplicationPanelView.Presenter {
 	/**
 	 * Used to obtain views, eventBus, placeController.
 	 * Alternatively, could be injected via GIN.
@@ -65,11 +72,17 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 	 * The app context, holds for example the user and the entities this app is linked with.
 	 */
 	private AppContext appContext;
+	
+	private ModuleHandlerActivity moduleHandler;
 
 	public ApplicationPanelActivity(ApplicationPanelPlace place, ClientFactory clientFactory) {
 		this.name = place.getName();
 		this.clientFactory = clientFactory;
+		
+		moduleHandler = new ModuleHandlerActivity();
+		moduleHandler.setModules(moduleReferences());
 	}
+
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
@@ -80,8 +93,7 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		this.view = view;
 		containerWidget.setWidget(view.asWidget());
 		
-		PreparationModuleRegister register = new PreparationModuleRegister();
-		connectModule(register.getModule());
+		gotoDefaultMenu();
 	}
 
 	@Override
@@ -178,9 +190,30 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 
 	@Override
 	public void gotoDefaultMenu() {
-		PreparationModuleActivity module = new PreparationModuleActivity();
-		module.setAppContext(appContext);
-		connectModule(module);
+		connectModule(moduleHandler);
+	}
+
+
+	@Override
+	public List<RegisterableModule> moduleReferences() {
+		List<RegisterableModule> modules = new ArrayList<RegisterableModule>();
 		
+		//Add the modules here
+		//The preparation module
+		PreparationModuleActivity prepModule = new PreparationModuleActivity();
+		prepModule.setAppContext(appContext);
+		modules.add(prepModule);
+		
+		//The preparation module
+		PreparationModuleActivity prepModule2 = new PreparationModuleActivity();
+		prepModule2.setAppContext(appContext);
+		modules.add(prepModule2);
+		
+		//The preparation module
+		PreparationModuleActivity prepModule3 = new PreparationModuleActivity();
+		prepModule3.setAppContext(appContext);
+		modules.add(prepModule3);
+		
+		return modules;
 	}
 }

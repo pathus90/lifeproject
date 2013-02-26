@@ -89,7 +89,6 @@ public class CategorySelectionViewImpl extends FlowPanel implements CategorySele
 
 	@Override
 	public void initTileGrid(CategoryRecord[] arrayCatReccord) {
-		System.out.println("Array : " + arrayCatReccord.length);
 		tileGrid.setData(arrayCatReccord);
 	}
 

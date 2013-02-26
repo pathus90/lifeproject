@@ -12,21 +12,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule;
+package com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.client;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
+import com.unilorraine.projetdevie.client.ui.tilerecord.ModuleRecord;
 
 /**
  * View base interface.
  * Extends IsWidget so a view impl can easily provide its container widget.
  */
-public interface PreparationModuleView extends IsWidget {
+public interface ModuleHandlerView extends IsWidget {
+  
+	void setName(String helloName);
 
 	void setPresenter(Presenter listener);
+	
+	/**
+	 * Initialize the tile grid with some module records
+	 * @param records
+	 */
+	void initTileGrid(ModuleRecord[] records);
 
-	public interface Presenter extends AppModule{
-		
+	public interface Presenter {
+		/**
+		 * Navigate to a new Place in the browser.
+		 */
+		void goTo(Place place);
 	}
 }
