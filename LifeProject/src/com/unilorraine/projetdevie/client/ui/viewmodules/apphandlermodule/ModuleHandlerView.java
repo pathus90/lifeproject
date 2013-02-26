@@ -27,8 +27,10 @@ import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
 
 /**
  * Interface for a module handler. The handlers job is to start the other modules.
- * Right now the Module is used in a very naive way, the object holder does juste complete the list of {@link AppModule}  by means of the setter 
+ * Right now the Module is used in a very naive way, the object holder does just complete the list of {@link AppModule}  by means of the setter 
  * and the module handler is set as a default module. For implementation details see {@link ApplicationPanelActivity}.<br/>
+ * <strong>Important</strong> In this implementation the constructors pf the {@link AppModule} are only called <strong>one</strong> so if you need to reset them, 
+ * you have to do it in the {@link AppModule#onStart()} or {@link AppModule#onDestroy()} methods.
  * The activity basically just has to construct the {@link ModuleRecord} list out of the module list in it's {@link AppModule#onStart()} method.
  * Then set the {@link TileGrid} that is used to show the modules and we are golden.<br/>
  * The very cool part about module handler is that it is a module it self which raises the egg or chicken question.

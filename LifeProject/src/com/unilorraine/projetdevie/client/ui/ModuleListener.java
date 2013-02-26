@@ -2,6 +2,7 @@ package com.unilorraine.projetdevie.client.ui;
 
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.TreeItem;
+import com.google.gwt.user.client.ui.Widget;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
 
 /**
@@ -30,10 +31,16 @@ public interface ModuleListener {
 	void connectModule(AppModule module);
 	
 	/**
-	 * Redraws the panel in the module listener
-	 * @param panel the panel to be redrawn
+	 * Draws the passed widget in the module listener. Will logically <strong>not</strong> use the {@link AppModule#getWidget()} form the app module. 
+	 * Use this if you you have fix starting view for example.
+	 * @param widget the widget to be redrawn
 	 */
-	void redraw(Panel panel);
+	void redraw(Widget widget);
+	
+	/**
+	 * Redraws the panel in the module listener by calling the {@link AppModule#getWidget()}
+	 */
+	void redraw();
 	
 	/**
 	 * @param item

@@ -38,6 +38,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.TreeItem;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
  * The controller implementation of {@link ApplicationPanelView.Presenter}. See {@link ApplicationPanelView} for more details. 
@@ -227,13 +228,20 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 
 
 	@Override
-	public void redraw(Panel panel) {
-		view.setAppModuleView(panel);
+	public void redraw(Widget widget) {
+		view.setAppModuleView(widget);
 	}
 
 
 	@Override
 	public void setSelectedItem(TreeItem item, boolean fireEvents) {
 		view.setSelectedItem(item, fireEvents);
+	}
+
+	@Override
+	public void redraw() {
+		if(activeModule !=null)
+			view.setAppModuleView(activeModule.getWidget());
+		
 	}
 }
