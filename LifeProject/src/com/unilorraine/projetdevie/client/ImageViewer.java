@@ -19,7 +19,10 @@ import com.unilorraine.projetdevie.client.mvp.AppPlaceHistoryMapper;
 import com.unilorraine.projetdevie.client.ClientFactory;
 import com.unilorraine.projetdevie.client.place.ActorHolderPlace;
 import com.unilorraine.projetdevie.client.place.CategoryPlace;
+import com.unilorraine.projetdevie.client.place.CategorySelectionPlace;
 import com.unilorraine.projetdevie.client.place.SamplePlace;
+import com.unilorraine.projetdevie.client.ui.CategorySelectionViewImpl;
+import com.unilorraine.projetdevie.server.service.init.DBInitServiceImpl;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
