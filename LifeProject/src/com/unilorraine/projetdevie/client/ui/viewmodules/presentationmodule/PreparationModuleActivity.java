@@ -15,6 +15,7 @@
 package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule;
 
 import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
@@ -32,7 +33,7 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 	PreparationModuleView view;
 	
 	public PreparationModuleActivity() {
-		view = new PreparationModuleViewImpl();
+		view = GWT.create(PreparationModuleView.class);
 	}
 	
 	//TODO to implement

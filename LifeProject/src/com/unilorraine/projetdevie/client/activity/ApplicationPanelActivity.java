@@ -22,6 +22,7 @@ import com.unilorraine.projetdevie.client.ui.ModuleListener;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.MenuModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity;
+import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleRegister;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.logical.shared.SelectionEvent;
@@ -79,8 +80,8 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		this.view = view;
 		containerWidget.setWidget(view.asWidget());
 		
-		
-		connectModule(new PreparationModuleActivity());
+		PreparationModuleRegister register = new PreparationModuleRegister();
+		connectModule(register.getModule());
 	}
 
 	@Override
