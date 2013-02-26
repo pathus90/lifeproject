@@ -7,8 +7,9 @@ import com.unilorraine.projetdevie.client.ui.ModuleListener;
 
 /**
  * Abstract implementation of an {@link AppModule} extended by {@link RegisterableModule}. It handles the {@link ModuleListener} structure, and the {@link AppContext}.
- * It adds a fireDestroyReady and fireDisplayReady methods to be used to notify the {@link ModuleListener}.
- * It adds protected setters for the name and the picture link so the implementations instantiate them but a default value is given in the default constructor.
+ * It adds a fireDestroyReady, fireDisplayReady and fireConnectPlugin methods to be used to notify the {@link ModuleListener}.
+ * It adds protected setters for the name and the picture link so the implementations instantiate them but a default value is given in the default constructor.<br/>
+ * See also {@link AppModule} for more informations about app modules.
  * @author Christophe
  *
  */
@@ -111,6 +112,15 @@ public abstract class AbstractAppModule implements RegisterableModule {
 	protected void fireDestructionReady(){
 		if(listener != null)
 			listener.moduleDestructionReady();
+	}
+	
+	/**
+	 * Helper methods that fires the {@link ModuleListener#connectModule(AppModule)} method if the listner is not null;
+	 * @param module the module to be connected
+	 */
+	protected void fireConnectModule(AppModule module){
+		if(listener != null)
+			listener.connectModule(module);
 	}
 	
 	/**

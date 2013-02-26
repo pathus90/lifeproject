@@ -41,7 +41,8 @@ import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 
 /**
- * Sample implementation of {@link ApplicationPanelView}.
+ * Implementation for a {@link ApplicationPanelView}. It proposes a FlowPanel ion the right side and a left menu tree on the left side for the modules to use.
+ * For more informations see {@link ApplicationPanelView} 
  */
 public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPanelView {
 	
@@ -113,6 +114,7 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 	public void setAppMenuItems(List<TreeItem> treeItems) {
 		menutTree.removeItems();
 		for(TreeItem item : treeItems){
+			item.addStyleName("treeItem");
 			menutTree.addItem(item);
 		}
 		
@@ -127,6 +129,12 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 	@Override
 	public void setMenuTreeListener(SelectionHandler<TreeItem> listener) {
 		menutTree.addSelectionHandler(listener);
+		
+	}
+
+	@Override
+	public void emptyMenu() {
+		menutTree.removeItems();
 		
 	}
 

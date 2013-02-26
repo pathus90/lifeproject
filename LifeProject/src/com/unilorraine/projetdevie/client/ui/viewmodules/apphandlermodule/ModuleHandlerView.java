@@ -14,13 +14,24 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule;
 
-import com.google.gwt.place.shared.Place;
+import java.lang.reflect.Constructor;
+import java.util.List;
+
 import com.google.gwt.user.client.ui.IsWidget;
+import com.smartgwt.client.widgets.tile.TileGrid;
+import com.smartgwt.client.widgets.tile.events.RecordClickHandler;
+import com.unilorraine.projetdevie.client.activity.ApplicationPanelActivity;
 import com.unilorraine.projetdevie.client.ui.tilerecord.ModuleRecord;
+import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
+import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
 
 /**
- * View base interface.
- * Extends IsWidget so a view impl can easily provide its container widget.
+ * Interface for a module handler. The handlers job is to start the other modules.
+ * Right now the Module is used in a very naive way, the object holder does juste complete the list of {@link AppModule}  by means of the setter 
+ * and the module handler is set as a default module. For implementation details see {@link ApplicationPanelActivity}.<br/>
+ * The activity basically just has to construct the {@link ModuleRecord} list out of the module list in it's {@link AppModule#onStart()} method.
+ * Then set the {@link TileGrid} that is used to show the modules and we are golden.<br/>
+ * The very cool part about module handler is that it is a module it self which raises the egg or chicken question.
  */
 public interface ModuleHandlerView extends IsWidget {
   
@@ -34,10 +45,23 @@ public interface ModuleHandlerView extends IsWidget {
 	 */
 	void initTileGrid(ModuleRecord[] records);
 
-	public interface Presenter {
+	/**
+	 * Activity interface for the module handler "module"
+	 * @author Christophe
+	 *
+	 */
+	public interface Presenter extends AppModule, RecordClickHandler{
+
 		/**
-		 * Navigate to a new Place in the browser.
+		 * Get the list of modules assigned to the module handler
+		 * @return
 		 */
-		void goTo(Place place);
+		List<RegisterableModule> getModules();
+
+		/**
+		 * Set the list of modules assigned to the module handler
+		 * @param modules
+		 */
+		void setModules(List<RegisterableModule> modules);
 	}
 }

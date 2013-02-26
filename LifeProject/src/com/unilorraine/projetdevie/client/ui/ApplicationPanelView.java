@@ -24,12 +24,16 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.Widget;
+import com.smartgwt.client.widgets.tree.Tree;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
+import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerView;
 
 /**
- * View base interface.
- * Extends IsWidget so a view impl can easily provide its container widget.
+ * The application view is the main view of our app. It's job is to display different modules at the user convenience.<br/> 
+ * For doing so it works with the onStart and onStop methods of the {@link AppModule} it contains and rely on the {@link ModuleHandlerView} 
+ * for module selection. It provides a flow panel where the modules can put their view and a menu {@link Tree} that can be filled by the modules so 
+ * they don't have to worry about the menu layouting.
  */
 public interface ApplicationPanelView extends IsWidget {
 	
@@ -58,6 +62,11 @@ public interface ApplicationPanelView extends IsWidget {
 	 * Sets the listener of the Tree
 	 */
 	void setMenuTreeListener( SelectionHandler<TreeItem> listener);
+	
+	/**
+	 * Sets an empty list if there no menu
+	 */
+	void emptyMenu();
 	
 	/**
 	 * Controller for ApplicationPanelView

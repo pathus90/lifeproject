@@ -24,7 +24,7 @@ import com.smartgwt.client.widgets.viewer.DetailViewerField;
 import com.unilorraine.projetdevie.client.ui.tilerecord.ModuleRecord;
 
 /**
- * Sample implementation of {@link ModuleHandlerView}.
+ * The view for the module handler. Basically it is just a {@link TileGrid}. For more informations see {@link ModuleHandlerView}
  */
 public class ModuleHandlerViewImpl extends FlowPanel implements ModuleHandlerView {
 	private Presenter listener;
@@ -81,6 +81,7 @@ public class ModuleHandlerViewImpl extends FlowPanel implements ModuleHandlerVie
 	@Override
 	public void setPresenter(Presenter listener) {
 		this.listener = listener;
+		moduleGrid.addRecordClickHandler(listener);
 	}
 
 	@Override

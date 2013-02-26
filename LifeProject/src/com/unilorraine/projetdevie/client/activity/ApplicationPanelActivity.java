@@ -39,7 +39,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.TreeItem;
 
 /**
- * Activities are started and stopped by an ActivityManager associated with a container Widget.
+ * The controller implementation of {@link ApplicationPanelView.Presenter}. See {@link ApplicationPanelView} for more details. 
  */
 public class ApplicationPanelActivity extends AbstractActivity implements ApplicationPanelView.Presenter {
 	/**
@@ -88,8 +88,13 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		ApplicationPanelView view = clientFactory.getApplicationPanelView();
 		view.setName(name);
+		
+		//Nos 15 listeners...
+		view.setPresenter(this);
 		view.setPresenter(this);
 		view.setMenuTreeListener(this);
+		
+		
 		this.view = view;
 		containerWidget.setWidget(view.asWidget());
 		
@@ -149,9 +154,11 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		// set the view
 		view.setAppModuleView(activeModule.getWidget());
 		
-		//set the menu
+		//set the menu or empties it
 		if(activeModule instanceof MenuModule)
 			view.setAppMenuItems(((MenuModule)activeModule).getMenuItems());
+		else
+			view.emptyMenu();
 	}
 	
 	@Override

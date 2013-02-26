@@ -16,7 +16,8 @@ public class ModuleRecord extends TileRecord {
 	private RegisterableModule module;
 	
 	public ModuleRecord(RegisterableModule module){
-        this(module.getModuleName(), module.getModulePictureLink());		
+        this(module.getModuleName(), module.getModulePictureLink());	
+        this.module = module;
 	}
    
     public ModuleRecord(String name, String picture) {  

@@ -23,13 +23,15 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Widget;
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.widgets.tile.TileGrid;
+import com.smartgwt.client.widgets.tile.events.RecordClickEvent;
 import com.unilorraine.projetdevie.client.ui.tilerecord.ModuleRecord;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AbstractAppModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
 
 /**
- * Activities are started and stopped by an ActivityManager associated with a container Widget.
+ * The activity for the module manager. For more informations see {@link ModuleHandlerView}
  */
 public class ModuleHandlerActivity extends AbstractAppModule implements ModuleHandlerView.Presenter {
 	
@@ -54,16 +56,11 @@ public class ModuleHandlerActivity extends AbstractAppModule implements ModuleHa
 		
 		//Modules should already have been added;
 		view.initTileGrid(createRecords());
+		view.setPresenter(this);
 		
 		//Notify the super class that we are ready
 		//You need to this or the module wont start
 		super.onStart();
-	}
-
-	@Override
-	public void goTo(Place place) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	/**
@@ -81,10 +78,12 @@ public class ModuleHandlerActivity extends AbstractAppModule implements ModuleHa
 		return records.toArray(recordsArray);
 	}
 
+	@Override
 	public List<RegisterableModule> getModules() {
 		return modules;
 	}
 
+	@Override
 	public void setModules(List<RegisterableModule> modules) {
 		this.modules = modules;
 	}
@@ -97,6 +96,16 @@ public class ModuleHandlerActivity extends AbstractAppModule implements ModuleHa
 			System.err.println("The PreparationModuleView is not instantiated!");
 			return null;
 		} 
+	}
+
+	@Override
+	public void onRecordClick(RecordClickEvent event) {
+		Record record =  event.getRecord();
+		if(record instanceof ModuleRecord){
+			RegisterableModule module = ((ModuleRecord)record).getModule();
+			fireConnectModule(module);
+		}
+		
 	}
 	
 	

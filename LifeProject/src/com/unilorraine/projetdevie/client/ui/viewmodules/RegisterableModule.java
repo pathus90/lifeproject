@@ -3,6 +3,7 @@ package com.unilorraine.projetdevie.client.ui.viewmodules;
 /**
  * Makes a app module registerable.
  * Actually it just extends it with some user displays like a name and a picture so a ui could let the user pick this module.
+ * See also {@link AppModule} for more informations about app modules.
  * @author Christophe
  *
  */
