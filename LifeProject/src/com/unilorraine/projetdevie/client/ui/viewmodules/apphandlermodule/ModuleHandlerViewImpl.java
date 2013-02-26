@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.client;
+package com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule;
 
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -44,14 +44,14 @@ public class ModuleHandlerViewImpl extends FlowPanel implements ModuleHandlerVie
 		add(title);
 		
 		moduleGrid = new TileGrid();
-		moduleGrid.setSize("501px", "426px");
+		moduleGrid.setSize("501px", "100%");
 		
-		moduleGrid.setEdgeSize(15);
-		//moduleGrid.setShowEdges(false);
+		moduleGrid.setEdgeSize(0);
+		moduleGrid.setShowEdges(false);
 		
 		moduleGrid.setHeight("295px");
-		moduleGrid.setTileWidth(80);
-		moduleGrid.setTileHeight(80);
+		moduleGrid.setTileWidth(120);
+		moduleGrid.setTileHeight(120);
 		moduleGrid.setSelectionType(SelectionStyle.SINGLE);  
 		moduleGrid.setCanReorderTiles(true);  
 		moduleGrid.setShowAllRecords(true);  
@@ -60,8 +60,8 @@ public class ModuleHandlerViewImpl extends FlowPanel implements ModuleHandlerVie
 		
 		modulePicture = new DetailViewerField("picture");
 		modulePicture.setType("image");
-		modulePicture.setImageWidth(50);  
-		modulePicture.setImageHeight(50);
+		modulePicture.setImageWidth(100);  
+		modulePicture.setImageHeight(100);
 		
 		moduleName = new DetailViewerField("name");
 		

@@ -27,9 +27,9 @@ import com.unilorraine.projetdevie.client.ui.ModuleListener;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.MenuModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
-import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.client.ModuleHandlerActivity;
-import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.client.ModuleHandlerView;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.client.PreparationModuleActivity;
+import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerActivity;
+import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerView;
+import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.logical.shared.SelectionEvent;
