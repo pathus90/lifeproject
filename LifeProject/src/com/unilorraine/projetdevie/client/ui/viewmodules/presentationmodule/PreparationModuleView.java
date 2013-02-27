@@ -17,6 +17,8 @@ package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
+import com.unilorraine.projetdevie.client.ui.viewmodules.MenuModule;
+import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
 
 /**
  * View base interface.
@@ -26,7 +28,7 @@ public interface PreparationModuleView extends IsWidget {
 
 	void setPresenter(Presenter listener);
 
-	public interface Presenter extends AppModule{
+	public interface Presenter extends MenuModule, RegisterableModule{
 		
 	}
 }

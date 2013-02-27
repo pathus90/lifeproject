@@ -74,6 +74,7 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 		
 		//Item 1 sub-tree
 		TreeItem item1 = new TreeItem();
+		
 		item1.setText(MENU_ONE);
 		item1.setUserObject(MENU_ONE);
 		

@@ -19,7 +19,7 @@ import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.Prep
  * For an implementation example take a look at the {@link ModuleHandlerActivity}</p>
  * <p>The {@link AppModule} is extended by two interfaces to add functionalities. The {@link RegisterableModule} interface make the module usable by the {@link ModuleHandlerView} module.<br/>
  * The {@link MenuModule} gives the module the possibly to use the menu space of {@link ApplicationPanelView} in which it will be displayed. So you don't have to worry about menu designing what so ever. 
- * Just handle the events thrown by your listener. The {@link PreparationModuleActivity} would be an implmatention example.</p>
+ * Just handle the events thrown by your listener. The {@link PreparationModuleActivity} would be an implematention example.</p>
  * <p>The AppModules are indented to be displayed with the {@link ApplicationPanelView}, which handles the menu style and the main module panel.
  * But nothing forces you to work like this because AppModules are nothing more then a controller and a view. You could even combine them together.
  * We decided not to use the {@link com.google.gwt.user.client.ui.Composite} class but a simple {@link Panel} for convenience reason.

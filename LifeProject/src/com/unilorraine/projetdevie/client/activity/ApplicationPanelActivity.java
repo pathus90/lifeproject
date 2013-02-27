@@ -205,6 +205,7 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 
 	@Override
 	public List<RegisterableModule> moduleReferences() {
+		
 		List<RegisterableModule> modules = new ArrayList<RegisterableModule>();
 		
 		//Add the modules here
