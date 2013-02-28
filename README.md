@@ -43,8 +43,4 @@ Don't worry this is an opensource fun project just dive right in. Soon a lot of 
 ## Conclusion ##
 
 You know the drill : Fork, Commit, Pull and help us save those puppies!
- 
 
-
-lifeproject
-===========
