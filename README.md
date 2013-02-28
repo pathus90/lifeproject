@@ -26,7 +26,7 @@ In France (yeah, yeah) this planning is mostly done on paper and filed away afte
 - Learning curves over long time
 - Having the autistic people help build their project through adapted tools
 - Experience exchanging between institutions even countries
-- Beeing secure from water, rats, bugs, godzilla...
+- Being secure from water, rats, bugs, godzilla...
 
 This is far from being a complet list of the possibilities.   
 **The main idea is to help build better projects and give the autistic people more say in it.**
