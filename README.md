@@ -33,7 +33,7 @@ This is far from being a complet list of the possibilities.
 
 ## And what do I have to do with this?
 
-Man **we need help!** As of now this is still a student project at the university but soon we will need contributors to make it viable reality. We are ambitious and in need of craftsmanship (I would have loved to developped it google style in my garage but there just is no money in this).  
+Man **we need help!** As of now this is still a student project at the university but soon we will need contributors to make it a viable reality. We are ambitious and in need of craftsmanship (I would have loved to developped it google style in my garage but there just is no money in this).  
 So if love to crunch **Java** lines, like to play with googly technologies like **GWT, App Engine and JDO** you are what we are searching for!  
 
 > But I don't feel so confortable with these tecs...
