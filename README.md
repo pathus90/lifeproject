@@ -2,7 +2,7 @@
 
 ***The Life Project Creator*** (we really need a cool acronym...) is a about helping people to help people!  
   
-Sounds great right? We love good catch phrases. So, what we are trying to build here is a **online platform** that helps social workers, parents, medical caretakers, ect take care of **autistic people**.
+Sounds great right? We love good catch phrases. So, what we are trying to build here is an **online platform** that helps social workers, parents, medical caretakers, ect take care of **autistic people**.
 
 ## What does that mean?
 
