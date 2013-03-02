@@ -2,7 +2,7 @@
 
 ***The Life Project Creator*** (we really need a cool acronym...) is a about helping people to help people!  
   
-Sounds great right? We love good catch phrases. So, what we are trying to build here is an **online platform** that helps social workers, parents, medical caretakers, ect take care of **autistic people**.
+Sounds great right? We love good catch phrases. So, what we are trying to build here is an **online platform** that helps social workers, parents, medical caretakers, etc. take care of **autistic people**.
 
 ## What does that mean?
 
@@ -16,7 +16,7 @@ No we can't, a life project is actually planned year by year but still...
 
 ## And what do you need a platform for?
 
-In France (yeah, yeah) this planning is mostly done on paper and filed away after completion. They're are no digital trace of the life projects. Except the obvious fact that this is unacceptable for computer scientists it reduces the possibilities greatly for all parties envolved. Just have a look at some the features that are not possible to have without a online platform : 
+In France (yeah, yeah) this planning is mostly done on paper and filed away after completion. They're are no digital trace of the life projects. Except the obvious fact that this is unacceptable for computer scientists it reduces the possibilities greatly for all parties envolved. Just have a look at some the features that are not possible to have without an online platform : 
 
 - Immediate notification when changes occure
 - An accessible schedule for the autistic people and their guardiens 
