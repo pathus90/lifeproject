@@ -28,6 +28,7 @@ import com.smartgwt.client.widgets.tile.TileGrid;
 import com.smartgwt.client.widgets.tile.events.RecordClickEvent;
 import com.unilorraine.projetdevie.client.ui.tilerecord.ModuleRecord;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AbstractAppModule;
+import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
 
 /**
@@ -51,12 +52,14 @@ public class ModuleHandlerActivity extends AbstractAppModule implements ModuleHa
 
 	@Override
 	public void onStart() {
-		if(view == null)
+		if(view == null){
 			view = new ModuleHandlerViewImpl();//GWT.create(ModuleHandlerView.class);
+			view.initTileGrid(createRecords());
+			view.setPresenter(this);
+		}
 		
 		//Modules should already have been added;
-		view.initTileGrid(createRecords());
-		view.setPresenter(this);
+		
 		
 		//Notify the super class that we are ready
 		//You need to this or the module wont start
@@ -101,12 +104,12 @@ public class ModuleHandlerActivity extends AbstractAppModule implements ModuleHa
 	@Override
 	public void onRecordClick(RecordClickEvent event) {
 		Record record =  event.getRecord();
-		if(record instanceof ModuleRecord){
-			RegisterableModule module = ((ModuleRecord)record).getModule();
-			fireConnectModule(module);
+		Object moduleObject = record.getAttributeAsObject("module");
+		
+		if(moduleObject instanceof RegisterableModule){
+			fireConnectModule((RegisterableModule)moduleObject);
 		}
 		
 	}
-	
 	
 }

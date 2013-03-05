@@ -101,17 +101,21 @@ public abstract class AbstractAppModule implements RegisterableModule {
 	/**
 	 * Simple method that fires the display ready on the listener
 	 */
-	protected void fireDisplayReady(){
+	protected final void fireDisplayReady(){
 		if(listener != null)
 			listener.moduleDisplayReady();
+		else
+			System.err.println("No listener to fire diplay from");
 	}
 	
 	/**
 	 * simple method that fires the destroy ready on the listener
 	 */
-	protected void fireDestructionReady(){
+	protected final void fireDestructionReady(){
 		if(listener != null)
 			listener.moduleDestructionReady();
+		else
+			System.err.println("No listener to fire destruction from");
 	}
 	
 	/**
@@ -121,6 +125,8 @@ public abstract class AbstractAppModule implements RegisterableModule {
 	protected void fireConnectModule(AppModule module){
 		if(listener != null)
 			listener.connectModule(module);
+		else
+			System.err.println("No listener to fire connect from");
 	}
 	
 	/**

@@ -65,5 +65,6 @@ public interface ModuleHandlerView extends IsWidget {
 		 * @param modules
 		 */
 		void setModules(List<RegisterableModule> modules);
+		
 	}
 }

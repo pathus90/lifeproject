@@ -39,6 +39,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.smartgwt.client.widgets.ImgButton;
 
 /**
  * Implementation for a {@link ApplicationPanelView}. It proposes a FlowPanel ion the right side and a left menu tree on the left side for the modules to use.
@@ -51,31 +52,34 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 	private FlowPanel pluginPanel;
 	private Tree menutTree;
 	private Button btnMenu;
+	private ImgButton imgButton;
 
 	public ApplicationPanelViewImpl() {
-		setSize("800px", "500px");
+		setSize("800px", "800px");
 		
 		VerticalPanel verticalPanel = new VerticalPanel();
 		add(verticalPanel);
-		verticalPanel.setSize("800px", "500px");
+		verticalPanel.setSize("800px", "800px");
 		
 		Label loginInfo = new Label("Christophe logout");
 		loginInfo.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		verticalPanel.add(loginInfo);
 		loginInfo.setWidth("776px");
 		
-		btnMenu = new Button("Menu");
+		btnMenu = new Button("Dashboard");
+		btnMenu.setWidth("75px");
+		
 		btnMenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				listener.gotoDefaultMenu();
 			}
 		});
 		verticalPanel.add(btnMenu);
-		btnMenu.setWidth("75px");
+		
 		
 		DockLayoutPanel mainPluginPanel = new DockLayoutPanel(Unit.EM);
 		verticalPanel.add(mainPluginPanel);
-		mainPluginPanel.setSize("100%", "400px");
+		mainPluginPanel.setSize("100%", "800px");
 		
 		pulginMenu = new VerticalPanel();
 		mainPluginPanel.addWest(pulginMenu, 15.0);
@@ -142,6 +146,5 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 	public void setSelectedItem(TreeItem item, boolean fireEvents) {
 		menutTree.setSelectedItem(item, fireEvents);
 	}
-
 	
 }

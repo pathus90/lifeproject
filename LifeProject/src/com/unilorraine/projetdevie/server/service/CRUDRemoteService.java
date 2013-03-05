@@ -1,5 +1,8 @@
 package com.unilorraine.projetdevie.server.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 
@@ -109,7 +112,6 @@ public abstract class CRUDRemoteService<T extends ITransitEntity> extends Remote
 		try{
 			Key key = KeyFactory.stringToKey(id);
 			lp = pm.getObjectById(getLPEntityClass(), key);
-			
 			T transit = lp.createTransit();
 			
 			pm.deletePersistent(lp);
@@ -144,6 +146,75 @@ public abstract class CRUDRemoteService<T extends ITransitEntity> extends Remote
 			return lp.createTransit();
 		else
 			return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.unilorraine.projetdevie.client.service.helperinterfaces.ICrudService#updateEntities(java.util.List)
+	 */
+	@Override
+	public List<T> updateEntities(List<T> transitEntities) {
+		List<T> transitList = new ArrayList<T>();
+		
+		for(T transit : transitEntities){
+			
+			T transitEntity = updateEntity(transit);
+			if(transitEntity != null)
+				transitList.add(transitEntity);
+		}
+		
+		return transitList;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.unilorraine.projetdevie.client.service.helperinterfaces.ICrudService#deleteEntities(java.util.List)
+	 */
+	@Override
+	public List<T> deleteEntities(List<T> transitEntities) {
+		List<String> ids = new ArrayList<String>();
+		for(T transit : transitEntities){
+			ids.add(transit.getId());
+		}
+		return deleteEntitiesFromId(ids);
+	}
+
+	//TODO this is not the efficient way, deleteAllPersistant should be used for big deletions
+	//But we can't send back a list if so
+	/* (non-Javadoc)
+	 * @see com.unilorraine.projetdevie.client.service.helperinterfaces.ICrudService#deleteEntitiesFromId(java.util.List)
+	 */
+	@Override
+	public List<T> deleteEntitiesFromId(List<String> entitiesId) {
+		List<T> transitList = new ArrayList<T>();
+		
+		for(String transit : entitiesId){
+			
+			T transitEntity = deleteEntity(transit);
+			
+			if(transitEntity != null)
+				transitList.add(transitEntity);
+		}
+		
+		return transitList;
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.unilorraine.projetdevie.client.service.helperinterfaces.ICrudService#readEntities(java.util.List)
+	 */
+	@Override
+	public List<T> readEntities(List<String> ids) {
+		List<T> transitList = new ArrayList<T>();
+		
+		for(String id : ids){
+			
+			T transitEntity = readEntity(id);
+			
+			if(transitEntity != null)
+				transitList.add(transitEntity);
+		}
+		
+		return transitList;
+		
 	}
 	
 	

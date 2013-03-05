@@ -1,30 +1,48 @@
 package com.unilorraine.projetdevie.client.ui.tilerecord;
 
+import sun.reflect.generics.visitor.Reifier;
+
 import com.smartgwt.client.widgets.tile.TileGrid;
 import com.smartgwt.client.widgets.tile.TileRecord;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCategory;
 import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
 
 /**
- * A tile record for the registerable modules of the app.
+ * A tile record for the registerable modules of the app. <br/>
+ * The {@link RegisterableModule} is stored under the attribute "module", the name under "name" and the picture link under "picture".
  * This will use the name and the picture link to create tiles for a {@link TileGrid}
  * @author Christophe
  *
  */
 public class ModuleRecord extends TileRecord {
-
-	private RegisterableModule module;
 	
 	public ModuleRecord(RegisterableModule module){
-        this(module.getModuleName(), module.getModulePictureLink());	
-        this.module = module;
+        setName(module.getModuleName());
+        setPicture(module.getModulePictureLink());
+        
+        setModule(module);
+        
 	}
    
-    public ModuleRecord(String name, String picture) {  
-        setName(name);  
-        setPicture(picture);  
+    
+	/** 
+     * Set the app module. 
+     * 
+     * @param appModule the module to be set
+     */  
+    public void setModule(RegisterableModule appModule) {  
+        setAttribute("module", appModule);  
     }  
     
+    /** 
+     * Return the module {@link RegisterableModule}
+     * 
+     * @return the module 
+     */  
+    public RegisterableModule getModule() {  
+        return (RegisterableModule)getAttributeAsObject("module");  
+    }
+	
     /** 
      * Set the name. 
      * 
@@ -60,13 +78,5 @@ public class ModuleRecord extends TileRecord {
      */  
     public String getPicture() {  
         return getAttribute("picture");  
-    }
-
-    /**
-     * Get the linked Module
-     * @return the module in this record
-     */
-	public RegisterableModule getModule() {
-		return module;
-	}  
+    }  
 }

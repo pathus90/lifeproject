@@ -1,6 +1,7 @@
 package com.unilorraine.projetdevie.client.shared.transitentities;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ListIterator;
 
 import javax.jdo.annotations.Persistent;
@@ -27,14 +28,14 @@ public class TransitLPActivityUnit implements ITransitEntity {
 	 * The activity unit
 	 */
 	@Persistent
-	private ArrayList<String> activityUnit;
+	private List<String> activityUnit;
 	
 	public TransitLPActivityUnit(String id,
-			ArrayList<String> activityUnit, String category) {
+			List<String> choices, String category) {
 		super();
 		this.id = id;
-		if(activityUnit != null)
-			this.activityUnit = activityUnit;
+		if(choices != null)
+			this.activityUnit = choices;
 		else
 			this.activityUnit = new ArrayList<String>();
 		this.category = category;
@@ -87,7 +88,7 @@ public class TransitLPActivityUnit implements ITransitEntity {
 		this.category = category;
 	}
 
-	public ArrayList<String> getActivityUnit() {
+	public List<String> getActivityUnit() {
 		return activityUnit;
 	}
 

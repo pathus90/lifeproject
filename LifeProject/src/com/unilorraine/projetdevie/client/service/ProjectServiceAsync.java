@@ -15,6 +15,7 @@
 package com.unilorraine.projetdevie.client.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.unilorraine.projetdevie.client.service.helperinterfaces.ICrudServiceAsync;
@@ -55,4 +56,10 @@ public interface ProjectServiceAsync extends ICrudServiceAsync<TransitLPProject>
 
 	void addActivityUnitFromSchema(String id, String idOfActivityUnitSchema,
 			AsyncCallback<TransitLPActivityUnit> callback);
+
+	void setActivityUnits(String id, List<TransitLPActivityUnit> activityUnits,
+			AsyncCallback<TransitLPProject> callback);
+
+	void setActivities(String id, List<TransitLPActivity> activities,
+			AsyncCallback<TransitLPProject> callback);
 }

@@ -14,13 +14,23 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.server.service.pots;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.jdo.JDOObjectNotFoundException;
+import javax.jdo.PersistenceManager;
+import javax.jdo.Query;
+
 import com.unilorraine.projetdevie.client.service.pots.PotActivityService;
 import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractLPEntity;
+import com.unilorraine.projetdevie.client.shared.jdoentities.pots.AbstractLPPot;
 import com.unilorraine.projetdevie.client.shared.jdoentities.pots.LPPotActivity;
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitHelper;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPPot;
 import com.unilorraine.projetdevie.server.service.AbstractPotServiceImpl;
+import com.unilorraine.projetdevie.server.service.PMF;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class PotActivityServiceImpl extends AbstractPotServiceImpl<TransitLPActivity, LPActivity> implements PotActivityService {

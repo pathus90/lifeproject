@@ -29,7 +29,7 @@ import com.unilorraine.projetdevie.client.ui.tilerecord.ModuleRecord;
 public class ModuleHandlerViewImpl extends FlowPanel implements ModuleHandlerView {
 	private Presenter listener;
 	private Label title;
-	private final TileGrid moduleGrid;
+	private TileGrid moduleGrid;
 	private DetailViewerField modulePicture;
 	private DetailViewerField moduleName;
 

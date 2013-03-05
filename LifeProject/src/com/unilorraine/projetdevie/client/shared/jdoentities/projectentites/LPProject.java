@@ -65,6 +65,10 @@ public class LPProject extends AbstractLPProjectEntity<TransitLPProject> impleme
 		
 	}
 
+	public void resetActivities(){
+		activities = new ArrayList<LPActivity>();
+	}
+	
 	public boolean addActivity(LPActivity Activity) {
 		return activities.add(Activity);
 	}
@@ -123,6 +127,10 @@ public class LPProject extends AbstractLPProjectEntity<TransitLPProject> impleme
 
 	public int sizeOfUnit() {
 		return choiceUnit.size();
+	}
+	
+	public void resetActivityUnits(){
+		choiceUnit = new ArrayList<LPActivityUnit>();
 	}
 	
 	/**

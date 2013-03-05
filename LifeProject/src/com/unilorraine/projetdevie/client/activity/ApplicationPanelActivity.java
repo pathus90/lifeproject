@@ -24,11 +24,13 @@ import com.unilorraine.projetdevie.client.place.ApplicationPanelPlace;
 import com.unilorraine.projetdevie.client.ui.AppContext;
 import com.unilorraine.projetdevie.client.ui.ApplicationPanelView;
 import com.unilorraine.projetdevie.client.ui.ModuleListener;
+import com.unilorraine.projetdevie.client.ui.tilerecord.ModuleRecord;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.MenuModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerActivity;
 import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerView;
+import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.CategoryModuleActivity;
 import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -76,13 +78,25 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 	private AppContext appContext;
 	
 	private ModuleHandlerActivity moduleHandler;
+	
+	private ModuleHandlerActivity minifiedHandler;
 
 	public ApplicationPanelActivity(ApplicationPanelPlace place, ClientFactory clientFactory) {
 		this.name = place.getName();
 		this.clientFactory = clientFactory;
 		
+		appContext = place.getAppContext();
+		
 		moduleHandler = new ModuleHandlerActivity();
 		moduleHandler.setModules(moduleReferences());
+		
+		/*
+		minifiedHandler = new ModuleHandlerActivity();
+		minifiedHandler.setMinifiedView(true);
+		ArrayList<RegisterableModule> minifiedModules = new ArrayList<RegisterableModule>();
+		minifiedModules.add(moduleHandler);
+		minifiedHandler.setModules(minifiedModules);
+		*/
 	}
 
 
@@ -98,7 +112,6 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		
 		
 		this.view = view;
-		containerWidget.setWidget(view.asWidget());
 		
 		gotoDefaultMenu();
 	}
@@ -210,19 +223,15 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		
 		//Add the modules here
 		//The preparation module
-		PreparationModuleActivity prepModule = new PreparationModuleActivity();
-		prepModule.setAppContext(appContext);
-		modules.add(prepModule);
+		CategoryModuleActivity category = new CategoryModuleActivity();
+		modules.add(category);
 		
-		//The preparation module
-		PreparationModuleActivity prepModule2 = new PreparationModuleActivity();
-		prepModule2.setAppContext(appContext);
-		modules.add(prepModule2);
-		
+		/*
 		//The preparation module
 		PreparationModuleActivity prepModule3 = new PreparationModuleActivity();
 		prepModule3.setAppContext(appContext);
 		modules.add(prepModule3);
+		*/
 		
 		return modules;
 	}
