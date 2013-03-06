@@ -221,6 +221,7 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 			Key key = KeyFactory.stringToKey(id);
 			LPProject project = pm.getObjectById(LPProject.class, key);
 			
+			//TODO try with contains
 			//Security measures to ensure that both Unit and Activity exists in DB, will be ressource consuming
 			int unitIndex = 0;
 			for(LPActivityUnit activityUnit : project.getActivityUnits()){
@@ -238,7 +239,6 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 			
 			//Schema creation part
 			if(found){
-				
 				Key activityKey = KeyFactory.stringToKey(idActivity);
 				LPActivity activitySchema = pm.getObjectById(LPActivity.class, activityKey);
 				activity = activitySchema.createInstance();
@@ -250,6 +250,7 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 			
 			
 		}catch(JDOObjectNotFoundException notFound) {
+			System.err.println("Not found error in commit");
 			return null;
 		}finally{
 			pm.close();

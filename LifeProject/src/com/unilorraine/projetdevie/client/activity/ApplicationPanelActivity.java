@@ -32,6 +32,7 @@ import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.Module
 import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerView;
 import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.CategoryModuleActivity;
 import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity;
+import com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserActivity;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.logical.shared.SelectionEvent;
@@ -78,8 +79,6 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 	private AppContext appContext;
 	
 	private ModuleHandlerActivity moduleHandler;
-	
-	private ModuleHandlerActivity minifiedHandler;
 
 	public ApplicationPanelActivity(ApplicationPanelPlace place, ClientFactory clientFactory) {
 		this.name = place.getName();
@@ -90,13 +89,6 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		moduleHandler = new ModuleHandlerActivity();
 		moduleHandler.setModules(moduleReferences());
 		
-		/*
-		minifiedHandler = new ModuleHandlerActivity();
-		minifiedHandler.setMinifiedView(true);
-		ArrayList<RegisterableModule> minifiedModules = new ArrayList<RegisterableModule>();
-		minifiedModules.add(moduleHandler);
-		minifiedHandler.setModules(minifiedModules);
-		*/
 	}
 
 
@@ -112,6 +104,7 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		
 		
 		this.view = view;
+		containerWidget.setWidget(view.asWidget());
 		
 		gotoDefaultMenu();
 	}
@@ -225,6 +218,10 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		//The preparation module
 		CategoryModuleActivity category = new CategoryModuleActivity();
 		modules.add(category);
+		
+		//Add the unit chooser module
+		UnitChooserActivity chooser = new UnitChooserActivity();
+		modules.add(chooser);
 		
 		/*
 		//The preparation module

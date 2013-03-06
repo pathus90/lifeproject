@@ -26,7 +26,9 @@ import com.unilorraine.projetdevie.client.service.init.DBInitService;
 import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActor;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPInstitution;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProject;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPTask;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPUser;
 import com.unilorraine.projetdevie.client.ui.AppContext;
 import com.unilorraine.projetdevie.client.ui.SampleView;
 import com.unilorraine.projetdevie.server.service.init.DBInitServiceImpl;
@@ -80,15 +82,19 @@ public class SampleActivity extends AbstractActivity implements SampleView.Prese
 
 			@Override
 			public void onSuccess(List<ITransitEntity> result) {
+				//TODO we are so cheating here...
+				
 				System.out.println("Should have been populated");
 				TransitLPInstitution institution = (TransitLPInstitution)result.get(0);
 				TransitLPActor actor = (TransitLPActor)result.get(1);
-				System.out.println("Institution : " + institution.getName());
-				System.out.println("Actor : " + actor.getFirstname());
+				TransitLPUser user = (TransitLPUser)result.get(2);
+				TransitLPProject project = (TransitLPProject)result.get(3);
 				
 				ApplicationPanelPlace place = new ApplicationPanelPlace("Application Panel");
 				List<String> links = new ArrayList<String>();
 				links.add(institution.getId());
+				links.add(user.getId());
+				links.add(project.getId());
 				place.setAppContext(new AppContext(actor, links));
 				goTo(place);
 			}

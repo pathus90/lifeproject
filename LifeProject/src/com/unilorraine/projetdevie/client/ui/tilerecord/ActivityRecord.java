@@ -6,6 +6,8 @@ import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCatego
 
 public class ActivityRecord extends TileRecord{
 	  
+	public final static String ACTIVITY_ATTRIBUTE = "transit";
+	
     public ActivityRecord(TransitLPActivity activity) {  
         setName(activity.getName());  
         setPicture(activity.getImageLink());  
@@ -21,7 +23,7 @@ public class ActivityRecord extends TileRecord{
      * @param name the name 
      */  
     public void setTransit(TransitLPActivity activity) {  
-        setAttribute("transit", activity);  
+        setAttribute(ACTIVITY_ATTRIBUTE, activity);  
     }  
     
     /** 
@@ -30,7 +32,7 @@ public class ActivityRecord extends TileRecord{
      * @return the name 
      */  
     public TransitLPActivity getTransit() {  
-        return (TransitLPActivity)getAttributeAsObject("transit");  
+        return (TransitLPActivity)getAttributeAsObject(ACTIVITY_ATTRIBUTE);  
     }  
     
     /** 

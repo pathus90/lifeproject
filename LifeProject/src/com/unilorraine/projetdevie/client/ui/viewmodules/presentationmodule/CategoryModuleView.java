@@ -14,48 +14,29 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule;
 
-import java.util.List;
-
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
-import com.smartgwt.client.data.Record;
-import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCategory;
-import com.unilorraine.projetdevie.client.ui.tilerecord.ActivityRecord;
-import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
+import com.smartgwt.client.widgets.tile.events.RecordClickHandler;
+import com.unilorraine.projetdevie.client.ui.CategorySelectionView.Presenter;
+import com.unilorraine.projetdevie.client.ui.tilerecord.CategoryRecord;
 import com.unilorraine.projetdevie.client.ui.viewmodules.MenuModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects.UnitPanel;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects.UnitTileGrid;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects.UnitTileGridListener;
 
 /**
  * View base interface.
  * Extends IsWidget so a view impl can easily provide its container widget.
  */
-public interface PreparationModuleView extends IsWidget {
+public interface CategoryModuleView extends IsWidget {
 
 	void setPresenter(Presenter listener);
 	
-	void setText(String text);
-	
-	void setProjectActivities(ActivityRecord[] activities);
-	
-	List<Record> getProjectActivities();
-	
-	void setSchemaActivities(ActivityRecord[] activities);
-	
-	void addExistingUnitChoice(String id, ActivityRecord[] activities);
-	
-	List<List<Record>> getUnitChoices();
-	
-	void addNewUnitChoice();
-	
-	void removeGrid(UnitPanel unitPanel);
+	/**
+	 * Initiate the tilegrid with given tiles
+	 * @param arrayCatReccord the tiles to show
+	 */
+	void initTileGrid(CategoryRecord[] arrayCatReccord);
 
-	public interface Presenter extends MenuModule, RegisterableModule, UnitTileGridListener {
-		void setCategory(TransitLPCategory transitCategory);
-		TransitLPCategory getCategory();
+	public interface Presenter  extends RegisterableModule, RecordClickHandler{
 		
-		void saveProject();
 	}
 }

@@ -53,6 +53,7 @@ public class ModuleHandlerActivity extends AbstractAppModule implements ModuleHa
 	@Override
 	public void onStart() {
 		if(view == null){
+			System.out.println("View initialised");
 			view = new ModuleHandlerViewImpl();//GWT.create(ModuleHandlerView.class);
 			view.initTileGrid(createRecords());
 			view.setPresenter(this);
