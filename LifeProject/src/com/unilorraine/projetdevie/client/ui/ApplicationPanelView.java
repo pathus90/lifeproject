@@ -103,9 +103,22 @@ public interface ApplicationPanelView extends IsWidget {
 		void emptyModule();
 		
 		/**
-		 * Got to the default module, for exemple the module
+		 * Connect to the module handler, which is supposed to switch between modules
 		 */
-		void gotoDefaultMenu();
+		void connectModuleHandler();
+		
+		/**
+		 * Get the module handler for the view
+		 * @return the module handler
+		 */
+		ModuleHandlerView.Presenter getModuleHandler();
+		
+		/**
+		 * Set the module handler for the view
+		 * @param handler the module handler
+		 */
+		void setModuleHandler(ModuleHandlerView.Presenter handler);
+		
 		
 		/**
 		 * Methode in which the {@link AppModule} activities have to be defined to be pushed in the handler  

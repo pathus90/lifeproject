@@ -15,7 +15,7 @@ import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProjec
  *
  */
 @PersistenceCapable
-public class LPProject extends AbstractLPProjectEntity<TransitLPProject> implements IInstanciator{
+public class LPProject extends AbstractLPProjectEntity<TransitLPProject>{
 
 	/**
 	 * List of activities in this project

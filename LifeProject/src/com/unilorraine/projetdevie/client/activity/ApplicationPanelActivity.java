@@ -30,6 +30,7 @@ import com.unilorraine.projetdevie.client.ui.viewmodules.MenuModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerActivity;
 import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerView;
+import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerView.Presenter;
 import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.CategoryModuleActivity;
 import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity;
 import com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserActivity;
@@ -78,7 +79,10 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 	 */
 	private AppContext appContext;
 	
-	private ModuleHandlerActivity moduleHandler;
+	/**
+	 * The module handler which switches between modules
+	 */
+	private ModuleHandlerView.Presenter moduleHandler;
 
 	public ApplicationPanelActivity(ApplicationPanelPlace place, ClientFactory clientFactory) {
 		this.name = place.getName();
@@ -106,7 +110,7 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		this.view = view;
 		containerWidget.setWidget(view.asWidget());
 		
-		gotoDefaultMenu();
+		connectModuleHandler();
 	}
 
 	@Override
@@ -204,7 +208,7 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 	}
 
 	@Override
-	public void gotoDefaultMenu() {
+	public void connectModuleHandler() {
 		connectModule(moduleHandler);
 	}
 
@@ -249,6 +253,19 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 	public void redraw() {
 		if(activeModule !=null)
 			view.setAppModuleView(activeModule.getWidget());
+		
+	}
+
+
+	@Override
+	public Presenter getModuleHandler() {
+		return moduleHandler;
+	}
+
+
+	@Override
+	public void setModuleHandler(ModuleHandlerView.Presenter handler) {
+		moduleHandler = handler;
 		
 	}
 }

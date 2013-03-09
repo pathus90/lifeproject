@@ -71,7 +71,7 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 		
 		btnMenu.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				listener.gotoDefaultMenu();
+				listener.connectModuleHandler();
 			}
 		});
 		verticalPanel.add(btnMenu);
