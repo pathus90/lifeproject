@@ -12,7 +12,8 @@ import com.unilorraine.projetdevie.client.ui.ModuleListener;
 
 /**
  * Extension of the {@link AbstractAppModule} with a {@link TreeItem} List to work with and return it through the {@link AbstractAppModule#getMenuItems()} method. 
- * Use the existing add and remove method from this class to add some menu items.
+ * Use the existing add and remove method from this class to add some menu items.<br/>
+ * See also {@link AppModule} for more informations about app modules.
  * @author Christophe
  *
  */
@@ -59,6 +60,10 @@ public abstract class AbstractAppMenuModule extends AbstractAppModule implements
 		return itemTreeList.size();
 	}
 
+	
+	public void removeAll(){
+		itemTreeList = new ArrayList<TreeItem>();
+	}
 
 	public List<TreeItem> getItemTreeList() {
 		return itemTreeList;

@@ -14,26 +14,40 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.client.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.catalina.startup.SetDocBaseRule;
+
 import com.unilorraine.projetdevie.client.ClientFactory;
 import com.unilorraine.projetdevie.client.place.ApplicationPanelPlace;
 import com.unilorraine.projetdevie.client.ui.AppContext;
 import com.unilorraine.projetdevie.client.ui.ApplicationPanelView;
 import com.unilorraine.projetdevie.client.ui.ModuleListener;
+import com.unilorraine.projetdevie.client.ui.tilerecord.ModuleRecord;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.MenuModule;
+import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
+import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerActivity;
+import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerView;
+import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerView.Presenter;
+import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.CategoryModuleActivity;
 import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity;
+import com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserActivity;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.TreeItem;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
- * Activities are started and stopped by an ActivityManager associated with a container Widget.
+ * The controller implementation of {@link ApplicationPanelView.Presenter}. See {@link ApplicationPanelView} for more details. 
  */
-public class ApplicationPanelActivity extends AbstractActivity implements ApplicationPanelView.Presenter, ModuleListener {
+public class ApplicationPanelActivity extends AbstractActivity implements ApplicationPanelView.Presenter {
 	/**
 	 * Used to obtain views, eventBus, placeController.
 	 * Alternatively, could be injected via GIN.
@@ -64,23 +78,39 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 	 * The app context, holds for example the user and the entities this app is linked with.
 	 */
 	private AppContext appContext;
+	
+	/**
+	 * The module handler which switches between modules
+	 */
+	private ModuleHandlerView.Presenter moduleHandler;
 
 	public ApplicationPanelActivity(ApplicationPanelPlace place, ClientFactory clientFactory) {
 		this.name = place.getName();
 		this.clientFactory = clientFactory;
+		
+		appContext = place.getAppContext();
+		
+		moduleHandler = new ModuleHandlerActivity();
+		moduleHandler.setModules(moduleReferences());
+		
 	}
+
 
 	@Override
 	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
 		ApplicationPanelView view = clientFactory.getApplicationPanelView();
 		view.setName(name);
+		
+		//Nos 15 listeners...
+		view.setPresenter(this);
 		view.setPresenter(this);
 		view.setMenuTreeListener(this);
+		
+		
 		this.view = view;
 		containerWidget.setWidget(view.asWidget());
 		
-		
-		connectModule(new PreparationModuleActivity());
+		connectModuleHandler();
 	}
 
 	@Override
@@ -136,9 +166,11 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		// set the view
 		view.setAppModuleView(activeModule.getWidget());
 		
-		//set the menu
+		//set the menu or empties it
 		if(activeModule instanceof MenuModule)
 			view.setAppMenuItems(((MenuModule)activeModule).getMenuItems());
+		else
+			view.emptyMenu();
 	}
 	
 	@Override
@@ -176,10 +208,64 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 	}
 
 	@Override
-	public void gotoDefaultMenu() {
-		PreparationModuleActivity module = new PreparationModuleActivity();
-		module.setAppContext(appContext);
-		connectModule(module);
+	public void connectModuleHandler() {
+		connectModule(moduleHandler);
+	}
+
+
+	@Override
+	public List<RegisterableModule> moduleReferences() {
+		
+		List<RegisterableModule> modules = new ArrayList<RegisterableModule>();
+		
+		//Add the modules here
+		//The preparation module
+		CategoryModuleActivity category = new CategoryModuleActivity();
+		modules.add(category);
+		
+		//Add the unit chooser module
+		UnitChooserActivity chooser = new UnitChooserActivity();
+		modules.add(chooser);
+		
+		/*
+		//The preparation module
+		PreparationModuleActivity prepModule3 = new PreparationModuleActivity();
+		prepModule3.setAppContext(appContext);
+		modules.add(prepModule3);
+		*/
+		
+		return modules;
+	}
+
+
+	@Override
+	public void redraw(Widget widget) {
+		view.setAppModuleView(widget);
+	}
+
+
+	@Override
+	public void setSelectedItem(TreeItem item, boolean fireEvents) {
+		view.setSelectedItem(item, fireEvents);
+	}
+
+	@Override
+	public void redraw() {
+		if(activeModule !=null)
+			view.setAppModuleView(activeModule.getWidget());
+		
+	}
+
+
+	@Override
+	public Presenter getModuleHandler() {
+		return moduleHandler;
+	}
+
+
+	@Override
+	public void setModuleHandler(ModuleHandlerView.Presenter handler) {
+		moduleHandler = handler;
 		
 	}
 }

@@ -14,15 +14,20 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.client.service.pots;
 
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.unilorraine.projetdevie.client.service.helperinterfaces.IPotService;
+import com.unilorraine.projetdevie.client.shared.jdoentities.pots.IPot;
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPPot;
 
 @RemoteServiceRelativePath("PotActivityService")
 public interface PotActivityService extends IPotService<TransitLPActivity, LPActivity> {
+	
 	/**
 	 * Utility class for simplifying access to the instance of async service.
 	 */

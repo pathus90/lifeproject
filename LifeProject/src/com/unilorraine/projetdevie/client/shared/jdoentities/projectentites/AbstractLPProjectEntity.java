@@ -1,6 +1,5 @@
 package com.unilorraine.projetdevie.client.shared.jdoentities.projectentites;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.jdo.annotations.Inheritance;
@@ -108,9 +107,10 @@ public abstract class AbstractLPProjectEntity<T extends ITransitEntity> extends 
 		this.imageLink = imageLink;
 		this.status = status;
 		
-		Calendar cal = Calendar.getInstance();
+		//TODO some strange error, needs to be fixed
+		//Calendar cal = Calendar.getInstance();
 		
-		this.dateOfCreation = cal.getTime();
+		this.dateOfCreation = new Date(); //getTime();
 		this.lastUpdate = this.dateOfCreation;
 		this.progress = 0;
 	}
@@ -159,9 +159,10 @@ public abstract class AbstractLPProjectEntity<T extends ITransitEntity> extends 
 		return lastUpdate;
 	}
 
+	//TODO fix strange cal error
 	public void setLastUpdate() {
-		Calendar cal = Calendar.getInstance();
-		this.lastUpdate = cal.getTime();
+		//Calendar cal = Calendar.getInstance();
+		this.lastUpdate = new Date();//cal.getTime();
 	}
 
 	public Date getDateOfCreation() {

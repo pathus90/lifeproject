@@ -1,29 +1,40 @@
 package com.unilorraine.projetdevie.client.ui.tilerecord;
 
 import com.smartgwt.client.widgets.tile.TileRecord;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPCategory;
 
-/**
- * Representation data for a TileView in SmartGWT
- * @author Christophe
- *
- */
-public class CategoryRecord extends TileRecord {
- 
-	private TransitLPCategory categoryTransit;
-  
-	public CategoryRecord(TransitLPCategory category){
-        this(category.getName(), category.getImageLink(), null, category.getId());	
-        categoryTransit = category;
-	}
-   
-    public CategoryRecord(String name, String picture, String description,String id) {  
-        setName(name);  
-        setPicture(picture);  
-        setDescription(description); 
-        setId(id);
+public class ActivityRecord extends TileRecord{
+	  
+	public final static String ACTIVITY_ATTRIBUTE = "transit";
+	
+    public ActivityRecord(TransitLPActivity activity) {  
+        setName(activity.getName());  
+        setPicture(activity.getImageLink());  
+        setDescription(activity.getDescription()); 
+        setId(activity.getId());
+        
+        setTransit(activity);
     }  
   
+    /** 
+     * Set the transit. 
+     * 
+     * @param name the name 
+     */  
+    public void setTransit(TransitLPActivity activity) {  
+        setAttribute(ACTIVITY_ATTRIBUTE, activity);  
+    }  
+    
+    /** 
+     * Return the transit. 
+     * 
+     * @return the name 
+     */  
+    public TransitLPActivity getTransit() {  
+        return (TransitLPActivity)getAttributeAsObject(ACTIVITY_ATTRIBUTE);  
+    }  
+    
     /** 
      * Set the name. 
      * 
@@ -86,18 +97,4 @@ public class CategoryRecord extends TileRecord {
     public String getId(String name){
     	return getAttribute("id");
     }
-
-	/**
-	 * @return the categoryTransit
-	 */
-	public TransitLPCategory getCategoryTransit() {
-		return categoryTransit;
-	}
-
-	/**
-	 * @param categoryTransit the categoryTransit to set
-	 */
-	public void setCategoryTransit(TransitLPCategory categoryTransit) {
-		this.categoryTransit = categoryTransit;
-	}
 }

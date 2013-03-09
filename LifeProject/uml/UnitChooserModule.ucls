@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.1" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="com.unilorraine.projetdevie.client.activity.ApplicationPanelActivity" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/activity/ApplicationPanelActivity.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="53" width="320" x="6" y="-203"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserActivity.CommitUnit" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/unitchoosermodule/UnitChooserActivity.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-191" y="-6"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserActivity.FetchUnitTransits" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/unitchoosermodule/UnitChooserActivity.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-192" y="167"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserActivity.FetchProjectActivityUnits" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/unitchoosermodule/UnitChooserActivity.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-195" y="355"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserActivity" project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/unitchoosermodule/UnitChooserActivity.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="165" y="153"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserActivity.FetchProjectActivites" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/unitchoosermodule/UnitChooserActivity.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="162" y="458"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserActivity.FetchProjectActivityUnit" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/unitchoosermodule/UnitChooserActivity.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="519" y="497"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface id="8" language="java" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserView.Presenter" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/unitchoosermodule/UnitChooserView.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="58" width="295" x="348" y="111"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <interface id="9" language="java" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserView" project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/unitchoosermodule/UnitChooserView.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="502" y="-95"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="10" language="java" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserViewImpl" project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/unitchoosermodule/UnitChooserViewImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="820" y="236"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <nesting id="11">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </nesting>  
+  <association id="12">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="13" name="view"/>      
+      <multiplicity id="14" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="15">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </nesting>  
+  <realization id="16">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <nesting id="17">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
+  </nesting>  
+  <nesting id="18">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="8"/>  
+  </nesting>  
+  <nesting id="19">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </nesting>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="21">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="22" name="listener"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="24">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <nesting id="25">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </nesting>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

@@ -19,7 +19,7 @@ public class LPActivityUnit extends AbstractInstanciatorLPEntity<TransitLPActivi
 	/**
 	 * The maximum of choices for one unit
 	 */
-	public final static int MAX_ITEM = 5;
+	public final static int MAX_ITEM = 4;
 
 	/**
 	 * The activity unit

@@ -12,36 +12,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.unilorraine.projetdevie.client.ui;
+package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.place.shared.Place;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
-import com.smartgwt.client.types.DragAppearance;
+import com.google.gwt.user.client.ui.Label;
 import com.smartgwt.client.types.SelectionStyle;
 import com.smartgwt.client.widgets.layout.VStack;
 import com.smartgwt.client.widgets.tile.TileGrid;
 import com.smartgwt.client.widgets.viewer.DetailViewerField;
 import com.unilorraine.projetdevie.client.ui.tilerecord.CategoryRecord;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Label;
 
 /**
- * Sample implementation of {@link CategorySelectionView}.
+ * Sample implementation of {@link CategoryModuleView}.
  */
-public class CategorySelectionViewImpl extends FlowPanel implements CategorySelectionView {
+public class CategoryModuleViewImpl extends FlowPanel implements CategoryModuleView {
 	
 	private Presenter listener;
 	private DetailViewerField categoryPicture;
 	private DetailViewerField categoryName;
-	private DetailViewerField categoryChoice;
 	private TileGrid tileGrid;
 	private VStack vStack;
 	
 	
-	public CategorySelectionViewImpl() {
+	public CategoryModuleViewImpl() {
 		
 		vStack = new VStack();
 		
@@ -58,10 +51,6 @@ public class CategorySelectionViewImpl extends FlowPanel implements CategorySele
 		tileGrid.setTileWidth(80);
 		tileGrid.setTileHeight(80);
 		tileGrid.setSelectionType(SelectionStyle.SINGLE);  
-		//tileGrid.setCanReorderTiles(true);  
-		// tileGrid.setShowAllRecords(true);  
-		 //tileGrid.setTileDragAppearance(DragAppearance.OUTLINE);   
-		 //tileGrid.setAnimateTileChange(true); 
 		 
 		 categoryPicture = new DetailViewerField("picture");
 		 categoryPicture.setType("image");  
@@ -69,8 +58,7 @@ public class CategorySelectionViewImpl extends FlowPanel implements CategorySele
 		 categoryPicture.setImageHeight(50); 
 		 
 		 categoryName = new DetailViewerField("name");
-		 categoryChoice = new DetailViewerField("choice");
-		 tileGrid.setFields(categoryPicture,categoryName,categoryChoice);
+		 tileGrid.setFields(categoryPicture,categoryName);
 		 vStack.addMember(tileGrid);
 		add(vStack);
 		
@@ -78,13 +66,9 @@ public class CategorySelectionViewImpl extends FlowPanel implements CategorySele
 	}
 
 	@Override
-	public void setName(String name) {
-		
-	}
-
-	@Override
 	public void setPresenter(Presenter listener) {
 		this.listener = listener;
+		tileGrid.addRecordClickHandler(listener);
 	}
 
 	@Override

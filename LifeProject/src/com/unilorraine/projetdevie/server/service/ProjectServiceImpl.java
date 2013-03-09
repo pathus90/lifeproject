@@ -15,10 +15,12 @@
 package com.unilorraine.projetdevie.server.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
-import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
+
 
 import com.unilorraine.projetdevie.client.service.ProjectService;
 import com.unilorraine.projetdevie.client.shared.jdoentities.AbstractLPEntity;
@@ -219,6 +221,7 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 			Key key = KeyFactory.stringToKey(id);
 			LPProject project = pm.getObjectById(LPProject.class, key);
 			
+			//TODO try with contains
 			//Security measures to ensure that both Unit and Activity exists in DB, will be ressource consuming
 			int unitIndex = 0;
 			for(LPActivityUnit activityUnit : project.getActivityUnits()){
@@ -236,7 +239,6 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 			
 			//Schema creation part
 			if(found){
-				
 				Key activityKey = KeyFactory.stringToKey(idActivity);
 				LPActivity activitySchema = pm.getObjectById(LPActivity.class, activityKey);
 				activity = activitySchema.createInstance();
@@ -248,6 +250,7 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 			
 			
 		}catch(JDOObjectNotFoundException notFound) {
+			System.err.println("Not found error in commit");
 			return null;
 		}finally{
 			pm.close();
@@ -329,6 +332,92 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 		//Only return transit if we actually created an activity
 		if(activityUnit != null)
 			return activityUnit.createTransit();
+		else
+			return null;
+	}
+
+	//TODO Very bad implementation, because we recall the project every time
+	@Override
+	public TransitLPProject setActivityUnits(String id,
+			List<TransitLPActivityUnit> activityUnits) {
+		
+		PersistenceManager pm = PMF.get().getPersistenceManager(); 
+		
+		LPProject project = null;
+		try{
+			Key key = KeyFactory.stringToKey(id);
+			project = pm.getObjectById(LPProject.class, key);
+			
+			project.resetActivityUnits();
+	
+			pm.makePersistent(project);
+			
+			
+		}catch(JDOObjectNotFoundException notFound) {
+			return null;
+		}finally{
+			pm.close();
+		}
+		
+		for(TransitLPActivityUnit transitActivity : activityUnits){
+			addActivityUnits(project.getId(), transitActivity);
+		}
+		
+		if(project != null)
+			return project.createTransit();
+		else
+			return null;
+	}
+
+	//TODO Very bad implementation, because we recall the project every time
+	@Override
+	public TransitLPProject setActivities(String id,
+			List<TransitLPActivity> activities) {
+
+		PersistenceManager pm = PMF.get().getPersistenceManager(); 
+		
+		HashMap<String, TransitLPActivity> hash = new HashMap<String, TransitLPActivity>();
+		for(TransitLPActivity transit : activities){
+			System.out.println("Name : " +transit.getName());
+			hash.put(transit.getId(), transit);
+		}
+
+		LPProject project = null;
+		
+		try{
+			Key key = KeyFactory.stringToKey(id);
+			project = pm.getObjectById(LPProject.class, key);
+			
+			for(LPActivity activity : project.getActivities()){
+				String idActivity = activity.getId();
+				if(!hash.containsKey(idActivity)){
+					project.removeActivity(activity);
+				}else
+					hash.remove(idActivity);
+			}
+			
+			pm.makePersistent(project);
+			
+			
+		}catch(JDOObjectNotFoundException notFound) {
+			System.err.println("Not found + " + notFound.getMessage());
+			return null;
+		}catch(Exception e){
+			System.err.println("Error : " + e.getMessage());
+			return null;
+		}
+		finally{
+			pm.close();
+		}
+		
+		for(TransitLPActivity transitActivity : hash.values()){
+			System.out.println("To be added " + transitActivity.getName());
+			addActivityFromSchema(project.getId(), transitActivity.getId());
+			
+		}
+		
+		if(project != null)
+			return project.createTransit();
 		else
 			return null;
 	}

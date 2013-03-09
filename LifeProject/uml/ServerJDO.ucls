@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.1" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" 
+    name="com.unilorraine.projetdevie.client.shared.jdoentities.AbstractInstanciatorLPEntity" project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/AbstractInstanciatorLPEntity.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="324" x="1547" y="248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.unilorraine.projetdevie.client.shared.jdoentities.AbstractLPEntity" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/AbstractLPEntity.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="223" x="955" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface id="3" language="java" name="com.unilorraine.projetdevie.client.shared.jdoentities.IDBEntity" 
+    project="LifeProject" file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/IDBEntity.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="223" x="1284" y="248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <interface id="4" language="java" name="com.unilorraine.projetdevie.client.shared.jdoentities.IInstanciator" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/IInstanciator.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1394" y="457"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <interface id="5" language="java" name="com.unilorraine.projetdevie.client.shared.jdoentities.ITransitableObject" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/ITransitableObject.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="223" x="363" y="248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="6" language="java" 
+    name="com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.AbstractLPProjectEntity" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/projectentites/AbstractLPProjectEntity.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="540" width="282" x="1010" y="855"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/projectentites/LPActivity.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="387" width="282" x="1050" y="2060"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" 
+    name="com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivityUnit" project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/projectentites/LPActivityUnit.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="423" width="282" x="1576" y="2060"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" 
+    name="com.unilorraine.projetdevie.client.shared.jdoentities.accountentities.AbstractLPAccounts" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/accountentities/AbstractLPAccounts.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="567" width="323" x="1911" y="248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPCategory" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/projectentites/LPCategory.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="297" width="282" x="41" y="248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPProject" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/projectentites/LPProject.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="585" width="322" x="1616" y="1435"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPTask" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/projectentites/LPTask.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="282" x="1010" y="2523"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.unilorraine.projetdevie.client.shared.jdoentities.accountentities.LPActor" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/accountentities/LPActor.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="405" width="289" x="1945" y="855"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" 
+    name="com.unilorraine.projetdevie.client.shared.jdoentities.accountentities.LPInstitution" project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/accountentities/LPInstitution.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="351" width="289" x="626" y="248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.unilorraine.projetdevie.client.shared.jdoentities.accountentities.LPUser" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/accountentities/LPUser.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="289" x="1616" y="855"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" 
+    name="com.unilorraine.projetdevie.client.shared.jdoentities.accountentities.LPUserGroup" project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/shared/jdoentities/accountentities/LPUserGroup.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="289" x="955" y="248"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <association id="17">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="18" name="tasks"/>      
+      <multiplicity id="19" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="21" name="choiceUnit"/>      
+      <multiplicity id="22" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="23">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="24">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="25" name="activities"/>      
+      <multiplicity id="26" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="29">    
+    <bendpoint x="1835" y="129"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="30">    
+    <bendpoint x="1883" y="1198"/>    
+    <bendpoint x="1891" y="1387"/>    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="31" name="archivProject"/>      
+      <multiplicity id="32" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="33">    
+    <bendpoint x="1707" y="191"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="34">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <realization id="35">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <generalization id="36">    
+    <bendpoint x="1040" y="1435"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="37">    
+    <bendpoint x="1549" y="1871"/>    
+    <bendpoint x="1549" y="1475"/>    
+    <bendpoint x="1585" y="855"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="38">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="39" name="activeProject"/>      
+      <multiplicity id="40" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <bendpoint x="1657" y="1168"/>    
+    <bendpoint x="1625" y="1236"/>    
+    <bendpoint x="1623" y="1321"/>    
+    <bendpoint x="1629" y="1389"/>    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="42" name="buildingProject"/>      
+      <multiplicity id="43" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="44">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="45">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="46">    
+    <bendpoint x="977" y="2417"/>    
+    <bendpoint x="896" y="2157"/>    
+    <bendpoint x="1019" y="1435"/>    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <realization id="47">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <generalization id="48">    
+    <bendpoint x="181" y="156"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="49">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

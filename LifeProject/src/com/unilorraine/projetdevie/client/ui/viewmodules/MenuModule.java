@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.TreeItem;
 
 /**
  * A Menu capable menu. Needs to provide {@link TreeItem} to the app container and to handle the action pushed at it.
+ * See also {@link AppModule} for more informations about app modules.
  * @author Christophe
  *
  */

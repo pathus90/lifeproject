@@ -105,13 +105,16 @@ public class CategoryActivity extends AbstractActivity implements CategoryView.P
 				if (result == null)
 					System.out.println("Error server!");
 				else{
-//					categories = categoryService.getAllCategories();
+					//Trasnform the transit object in reccords
 					CategoryRecord[] arrayCatReccord = new CategoryRecord[result.size()];
+					
 					int i = 0;
+					
 					for(TransitLPCategory cat : result){
 						arrayCatReccord[i] = new CategoryRecord(cat);
 						i++;
 					}
+					
 					clientFactory.getCategoryView().initTileGrid(arrayCatReccord);	
 				}
 			}

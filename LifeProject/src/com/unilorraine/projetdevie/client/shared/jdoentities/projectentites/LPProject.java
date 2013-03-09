@@ -15,7 +15,7 @@ import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProjec
  *
  */
 @PersistenceCapable
-public class LPProject extends AbstractLPProjectEntity<TransitLPProject> implements IInstanciator{
+public class LPProject extends AbstractLPProjectEntity<TransitLPProject>{
 
 	/**
 	 * List of activities in this project
@@ -65,6 +65,10 @@ public class LPProject extends AbstractLPProjectEntity<TransitLPProject> impleme
 		
 	}
 
+	public void resetActivities(){
+		activities = new ArrayList<LPActivity>();
+	}
+	
 	public boolean addActivity(LPActivity Activity) {
 		return activities.add(Activity);
 	}
@@ -123,6 +127,10 @@ public class LPProject extends AbstractLPProjectEntity<TransitLPProject> impleme
 
 	public int sizeOfUnit() {
 		return choiceUnit.size();
+	}
+	
+	public void resetActivityUnits(){
+		choiceUnit = new ArrayList<LPActivityUnit>();
 	}
 	
 	/**

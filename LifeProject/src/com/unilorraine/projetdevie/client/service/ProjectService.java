@@ -15,6 +15,7 @@
 package com.unilorraine.projetdevie.client.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -120,6 +121,24 @@ public interface ProjectService extends RemoteService , ICrudService<TransitLPPr
 	 * @return the transit object of the newly created object, or null if error (in retrieving schema or creating the activity-unit from it)
 	 */
 	public TransitLPActivityUnit addActivityUnitFromSchema(String id, String idOfActivityUnitSchema);
+	
+	/**
+	 * TODO this method needs to be thought about some more. This is just a kick fix for fast UI
+	 * This method will replace the entire unit list by a new one based on the passed unit list
+	 * @param id the LPProject where the activity-unit should be added 
+	 * @param activityUnits the list of the new units to be set for this project
+	 * @return the transit project
+	 */
+	public TransitLPProject setActivityUnits(String id, List<TransitLPActivityUnit> activityUnits);
+	
+	/**
+	 * TODO this method needs to be thought about some more. This is just a kick fix for fast UI
+	 * This method will replace the entire activity list by a new one based on the passed activity list
+	 * @param id the LPProject where the activity-unit should be added 
+	 * @param activities the list of the new activities to be set for this project
+	 * @return the transit project
+	 */
+	public TransitLPProject setActivities(String id, List<TransitLPActivity> activities);
 
 	
 	

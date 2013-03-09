@@ -24,11 +24,16 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.Widget;
+import com.smartgwt.client.widgets.tree.Tree;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
+import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
+import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerView;
 
 /**
- * View base interface.
- * Extends IsWidget so a view impl can easily provide its container widget.
+ * The application view is the main view of our app. It's job is to display different modules at the user convenience.<br/> 
+ * For doing so it works with the onStart and onStop methods of the {@link AppModule} it contains and rely on the {@link ModuleHandlerView} 
+ * for module selection. It provides a flow panel where the modules can put their view and a menu {@link Tree} that can be filled by the modules so 
+ * they don't have to worry about the menu layouting.
  */
 public interface ApplicationPanelView extends IsWidget {
 	
@@ -59,22 +64,27 @@ public interface ApplicationPanelView extends IsWidget {
 	void setMenuTreeListener( SelectionHandler<TreeItem> listener);
 	
 	/**
+	 * Sets an empty list if there no menu
+	 */
+	void emptyMenu();
+	
+	/**
+	 * @param item
+	 * @param fireEvents
+	 * @see com.google.gwt.user.client.ui.Tree#setSelectedItem(com.google.gwt.user.client.ui.TreeItem, boolean)
+	 */
+	void setSelectedItem(TreeItem item, boolean fireEvents);
+	
+	/**
 	 * Controller for ApplicationPanelView
 	 * @author Christophe
 	 *
 	 */
-	public interface Presenter extends SelectionHandler<TreeItem> {
+	public interface Presenter extends SelectionHandler<TreeItem>, ModuleListener {
 		/**
 		 * Navigate to a new Place in the browser.
 		 */
 		void goTo(Place place);
-		
-		/**
-		 * Connect a module to the application panel. 
-		 * This should connect the menu, the plugin panel to this module and set the {@link AppContext}
-		 * @param module the module to be connected
-		 */
-		void connectModule(AppModule module);
 		
 		/**
 		 * Getter for the app context
@@ -93,9 +103,28 @@ public interface ApplicationPanelView extends IsWidget {
 		void emptyModule();
 		
 		/**
-		 * Got to the default module, for exemple the module
+		 * Connect to the module handler, which is supposed to switch between modules
 		 */
-		void gotoDefaultMenu();
+		void connectModuleHandler();
+		
+		/**
+		 * Get the module handler for the view
+		 * @return the module handler
+		 */
+		ModuleHandlerView.Presenter getModuleHandler();
+		
+		/**
+		 * Set the module handler for the view
+		 * @param handler the module handler
+		 */
+		void setModuleHandler(ModuleHandlerView.Presenter handler);
+		
+		
+		/**
+		 * Methode in which the {@link AppModule} activities have to be defined to be pushed in the handler  
+		 * TODO This is juste a fast implementation, it really needs to be polishing 
+		 */
+		List<RegisterableModule> moduleReferences();
 		
 	}
 }

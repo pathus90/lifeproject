@@ -29,6 +29,7 @@ import com.unilorraine.projetdevie.client.shared.jdoentities.accountentities.LPA
 import com.unilorraine.projetdevie.client.shared.jdoentities.accountentities.LPInstitution;
 import com.unilorraine.projetdevie.client.shared.jdoentities.accountentities.LPUser;
 import com.unilorraine.projetdevie.client.shared.jdoentities.accountentities.LPUserGroup;
+import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivity;
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPProject;
 import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivity;
@@ -102,11 +103,13 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 		createActivityPot(institution.getId());
 				
 		//finally create an empty project for our user
-		createProject(user.getId());
+		TransitLPProject project  = createProject(user.getId());
 		
 		List<ITransitEntity> list = new ArrayList<ITransitEntity>();
 		list.add(institution);
 		list.add(actor);
+		list.add(user);
+		list.add(project);
 		return list;
 	}
 
@@ -213,20 +216,28 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 		
 		//The same process here as for the categories, the activities need to be created by the pot service because the pot will by their father in the tree hierarchy
 		
-		actFootball = potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Football", "apprend à jouer au foot!", "http://openclipart.org/image/128px/svg_to_png/32491/football.png", true, 0, catSport.getId(), ""));
+		actFootball = potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Football", "Apprends à jouer au foot!", "http://openclipart.org/image/128px/svg_to_png/32491/football.png", true, 0, catSport.getId(), ""));
 		//adding task schemas to the activity
 		implActivity.addTaskFromSchema(actFootball.getId(), taskRules.getId());
 		implActivity.addTaskFromSchema(actFootball.getId(), taskPlay.getId());
 		
-		actBasketball = potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Basketball", "apprend à jouer au basketball!", "http://openclipart.org/image/128px/svg_to_png/4667/Gioppino_Basketball.png", true, 0, catSport.getId(), ""));
+		actBasketball = potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Basketball", "Apprends à jouer au basketball!", "http://openclipart.org/image/128px/svg_to_png/4667/Gioppino_Basketball.png", true, 0, catSport.getId(), ""));
 		//adding task schemas to the activity
 		implActivity.addTaskFromSchema(actBasketball.getId(), taskRules.getId());
 		implActivity.addTaskFromSchema(actBasketball.getId(), taskPlay.getId());
 		
-		actBread = potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Aller à la boulangerie", "Apprend à acheter ton pain", "http://openclipart.org/image/128px/svg_to_png/16974/jean_victor_balin_bread.png", true, 0, catSocial.getId(), ""));
+		actBread = potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Aller à la boulangerie", "Apprends à acheter ton pain", "http://openclipart.org/image/128px/svg_to_png/16974/jean_victor_balin_bread.png", true, 0, catSocial.getId(), ""));
 		//adding task schemas to the activity
 		implActivity.addTaskFromSchema(actBread.getId(), taskGreet.getId());
 		implActivity.addTaskFromSchema(actFootball.getId(), taskMoney.getId());
+		
+		//We need more activities for testing
+		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Tennis", "apprend à jouer au tennis!", "http://openclipart.org/image/128px/svg_to_png/139615/tennisball.png", true, 0, catSport.getId(), ""));
+		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Rugby", "apprend à jouer au Rugby!", "http://openclipart.org/image/128px/svg_to_png/4456/molumen_Rugby_ball.png", true, 0, catSport.getId(), ""));
+		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Baseball", "apprend à jouer au baseball!", "http://openclipart.org/image/128px/svg_to_png/147793/1309441560.png", true, 0, catSport.getId(), ""));
+		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Boxe", "apprend à boxer!", "http://openclipart.org/image/128px/svg_to_png/171268/boxing_glove.png", true, 0, catSport.getId(), ""));
+		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Nager", "apprend à nager!", "http://openclipart.org/image/128px/svg_to_png/34663/sub_subacqueo_architetto_01.png", true, 0, catSport.getId(), ""));
+		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Courir", "apprend à jouer à courir!", "http://openclipart.org/image/128px/svg_to_png/77317/running_pictogram.png", true, 0, catSport.getId(), ""));
 		
 		//finally linking with the institution
 		potService.addLink(activityPot.getId(), institutionID);
@@ -250,12 +261,15 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 	/**
 	 * Create a test Project
 	 */
-	private void createProject(String userID) {
+	private TransitLPProject createProject(String userID) {
 		
 		//again no rpc so we need to do it by hand
 		PersistenceManager pm = PMF.get().getPersistenceManager(); 
 		LPUser lp = null;
 		System.out.println("User ID " + userID);
+		
+		ProjectServiceImpl projectService = new ProjectServiceImpl();
+		
 		try{
 			Key key = KeyFactory.stringToKey(userID);
 			lp = pm.getObjectById(LPUser.class, key);
@@ -265,12 +279,29 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 			
 			//And make the thing persistent
 			pm.makePersistent(lp);
+			
+			//We have to wait for the Project to have an Id so we can create an activity from a Schema
+			//There is no method yet to add from a schema directly in a LPProject
+			projectService.addActivityFromSchema(lp.getBuildingProject().getId(), actBasketball.getId());
+			
+			//Add an activity unit
+			List<String> choices = new ArrayList<String>();
+			choices.add(actFootball.getId());
+			TransitLPActivityUnit unit = new TransitLPActivityUnit("", choices, catSport.getId());
+			projectService.addActivityUnits(lp.getBuildingProject().getId(), unit);
+			
+			//Add an activity unit
+			List<String> choices2 = new ArrayList<String>();
+			choices2.add(actBasketball.getId());
+			TransitLPActivityUnit unit2 = new TransitLPActivityUnit("", choices2, catSport.getId());
+			projectService.addActivityUnits(lp.getBuildingProject().getId(), unit2);
 
 		}finally{
 			pm.close();
 			
 		}
 		
+		return lp.getBuildingProject().createTransit();
 	}
 
 	/**
