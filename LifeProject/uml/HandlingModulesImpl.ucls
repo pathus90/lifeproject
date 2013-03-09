@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.1" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="com.unilorraine.projetdevie.client.activity.ApplicationPanelActivity" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/activity/ApplicationPanelActivity.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="495" width="320" x="299" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.unilorraine.projetdevie.client.ui.viewmodules.AbstractAppMenuModule" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/AbstractAppMenuModule.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="279" width="214" x="41" y="572"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.unilorraine.projetdevie.client.ui.viewmodules.AbstractAppModule" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/AbstractAppModule.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="423" width="218" x="41" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerActivity" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/apphandlermodule/ModuleHandlerActivity.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="292" x="295" y="572"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerViewImpl" 
+    project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/apphandlermodule/ModuleHandlerViewImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="292" x="295" y="891"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.unilorraine.projetdevie.client.ui.ApplicationPanelViewImpl" 
+    project="LifeProject" file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/ApplicationPanelViewImpl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="333" width="293" x="659" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface id="7" language="java" name="com.unilorraine.projetdevie.client.ui.ApplicationPanelView" 
+    project="LifeProject" file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/ApplicationPanelView.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="53" width="293" x="627" y="572"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="8" language="java" name="com.unilorraine.projetdevie.client.ui.tilerecord.ModuleRecord" 
+    project="LifeProject" file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/tilerecord/ModuleRecord.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="814" y="773"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <generalization id="9">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="10">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="11" name="view"/>      
+      <multiplicity id="12" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="13">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <dependency id="14">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <generalization id="15">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <dependency id="16">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
