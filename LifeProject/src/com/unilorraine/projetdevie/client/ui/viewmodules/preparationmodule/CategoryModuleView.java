@@ -14,12 +14,9 @@
  *******************************************************************************/
 package com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule;
 
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.smartgwt.client.widgets.tile.events.RecordClickHandler;
-import com.unilorraine.projetdevie.client.ui.CategorySelectionView.Presenter;
 import com.unilorraine.projetdevie.client.ui.tilerecord.CategoryRecord;
-import com.unilorraine.projetdevie.client.ui.viewmodules.MenuModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
 
 /**
