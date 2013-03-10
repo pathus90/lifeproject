@@ -39,7 +39,7 @@ public class ModuleHandlerViewImpl extends FlowPanel implements ModuleHandlerVie
 		 VStack vStack = new VStack(20);  
 	     vStack.setWidth100(); 
 		
-		title = new Label("Module \u00E0 disposition");
+		title = new Label("Modules \u00E0 disposition");
 		title.setStyleName("title");
 		add(title);
 		

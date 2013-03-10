@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule;
+package com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule;
 
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -38,24 +38,25 @@ public class CategoryModuleViewImpl extends FlowPanel implements CategoryModuleV
 		
 		vStack = new VStack();
 		
-		Label title = new Label("Categories");
+		Label title = new Label("Choisissez une cat\u00E9gorie");
 		vStack.addMember(title);
+		title.setWidth("336px");
 		title.setStyleName("title");
 		
 		
 		tileGrid = new TileGrid();
-		tileGrid.setSize("457px", "294px");
+		tileGrid.setSize("450px", "450px");
 		tileGrid.setEdgeSize(0);
 		tileGrid.setShowEdges(false);
 		
-		tileGrid.setTileWidth(80);
-		tileGrid.setTileHeight(80);
+		tileGrid.setTileWidth(100);
+		tileGrid.setTileHeight(100);
 		tileGrid.setSelectionType(SelectionStyle.SINGLE);  
 		 
 		 categoryPicture = new DetailViewerField("picture");
 		 categoryPicture.setType("image");  
-		 categoryPicture.setImageWidth(50);  
-		 categoryPicture.setImageHeight(50); 
+		 categoryPicture.setImageWidth(80);  
+		 categoryPicture.setImageHeight(80); 
 		 
 		 categoryName = new DetailViewerField("name");
 		 tileGrid.setFields(categoryPicture,categoryName);

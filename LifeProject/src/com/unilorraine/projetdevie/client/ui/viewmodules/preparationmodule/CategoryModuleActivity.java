@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule;
+package com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule;
 
 
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
  */
 public class CategoryModuleActivity extends AbstractAppModule implements CategoryModuleView.Presenter {
 
-	public final static String MODULE_NAME = "Préparation Projet de Vie";
+	public final static String MODULE_NAME = "Preparateur";
 	
 	private CategoryModuleView view = null;
 	/**

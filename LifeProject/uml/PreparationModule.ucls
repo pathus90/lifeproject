@@ -2,9 +2,9 @@
 <class-diagram version="1.1.1" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity.FetchSchemaActivities" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.PreparationModuleActivity.FetchSchemaActivities" 
     project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/PreparationModuleActivity.java" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/PreparationModuleActivity.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="597" y="1576"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -14,9 +14,9 @@
     </display>  
   </class>  
   <class id="2" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity.SaveProjectActivities" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.PreparationModuleActivity.SaveProjectActivities" 
     project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/PreparationModuleActivity.java" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/PreparationModuleActivity.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="935" y="1576"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -26,9 +26,9 @@
     </display>  
   </class>  
   <class id="3" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.CategoryModuleActivity" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.CategoryModuleActivity" 
     project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/CategoryModuleActivity.java" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/CategoryModuleActivity.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="433" y="225"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -38,9 +38,9 @@
     </display>  
   </class>  
   <interface id="4" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.CategoryModuleView.Presenter" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.CategoryModuleView.Presenter" 
     project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/CategoryModuleView.java" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/CategoryModuleView.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="947" y="721"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -50,9 +50,9 @@
     </display>  
   </interface>  
   <interface id="5" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleView" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.PreparationModuleView" 
     project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/PreparationModuleView.java" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/PreparationModuleView.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="241" y="1482"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -62,9 +62,9 @@
     </display>  
   </interface>  
   <class id="6" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleViewImpl" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.PreparationModuleViewImpl" 
     project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/PreparationModuleViewImpl.java" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/PreparationModuleViewImpl.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="238" y="1077"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -74,9 +74,9 @@
     </display>  
   </class>  
   <class id="7" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity.FetchUnitTransits" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.PreparationModuleActivity.FetchUnitTransits" 
     project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/PreparationModuleActivity.java" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/PreparationModuleActivity.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1280" y="955"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -86,9 +86,9 @@
     </display>  
   </class>  
   <class id="8" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity.FetchProjectActivites" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.PreparationModuleActivity.FetchProjectActivites" 
     project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/PreparationModuleActivity.java" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/PreparationModuleActivity.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1281" y="1103"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -98,8 +98,8 @@
     </display>  
   </class>  
   <interface id="9" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.CategoryModuleView" project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/CategoryModuleView.java" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.CategoryModuleView" project="LifeProject" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/CategoryModuleView.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="888" y="450"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -109,9 +109,9 @@
     </display>  
   </interface>  
   <class id="10" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity.FetchProjectActivityUnits" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.PreparationModuleActivity.FetchProjectActivityUnits" 
     project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/PreparationModuleActivity.java" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/PreparationModuleActivity.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1281" y="1242"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -121,9 +121,9 @@
     </display>  
   </class>  
   <class id="11" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity.SaveProjectActivityUnits" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.PreparationModuleActivity.SaveProjectActivityUnits" 
     project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/PreparationModuleActivity.java" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/PreparationModuleActivity.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1280" y="1388"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -133,9 +133,9 @@
     </display>  
   </class>  
   <class id="12" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.PreparationModuleActivity" 
     project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/PreparationModuleActivity.java" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/PreparationModuleActivity.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="935" y="1185"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -145,9 +145,9 @@
     </display>  
   </class>  
   <class id="13" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.CategoryModuleViewImpl" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.CategoryModuleViewImpl" 
     project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/CategoryModuleViewImpl.java" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/CategoryModuleViewImpl.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="879" y="133"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -157,9 +157,9 @@
     </display>  
   </class>  
   <interface id="14" language="java" 
-    name="com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleView.Presenter" 
+    name="com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.PreparationModuleView.Presenter" 
     project="LifeProject" 
-    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/presentationmodule/PreparationModuleView.java" 
+    file="/LifeProject/src/com/unilorraine/projetdevie/client/ui/viewmodules/preparationmodule/PreparationModuleView.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="238" y="1841"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -179,14 +179,16 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <nesting id="16">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="1"/>  
-  </nesting>  
-  <nesting id="17">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="2"/>  
-  </nesting>  
+  <dependency id="16">    
+    <bendpoint x="687" y="263"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="17">    
+    <bendpoint x="660" y="709"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
   <association id="18">    
     <bendpoint x="1149" y="189"/>    
     <bendpoint x="1167" y="496"/>    
@@ -198,88 +200,86 @@
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="21">    
-    <bendpoint x="57" y="1362"/>    
-    <bendpoint x="56" y="1617"/>    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="22" name="listener"/>      
-      <multiplicity id="23" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <nesting id="24">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="8"/>  
-  </nesting>  
-  <association id="25">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="26" name="view"/>      
-      <multiplicity id="27" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="28">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <dependency id="29">    
-    <bendpoint x="687" y="263"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="13"/>  
-  </dependency>  
-  <nesting id="30">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="7"/>  
-  </nesting>  
-  <nesting id="31">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="14"/>  
-  </nesting>  
-  <realization id="32">    
-    <bendpoint x="714" y="538"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <dependency id="33">    
+  <dependency id="21">    
     <end type="SOURCE" refId="15"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <nesting id="34">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="11"/>  
-  </nesting>  
-  <nesting id="35">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="10"/>  
-  </nesting>  
-  <realization id="36">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="5"/>  
-  </realization>  
-  <dependency id="37">    
-    <bendpoint x="660" y="709"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <realization id="38">    
+  <realization id="22">    
     <bendpoint x="422" y="1580"/>    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="14"/>  
   </realization>  
-  <nesting id="39">    
+  <nesting id="23">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="1"/>  
+  </nesting>  
+  <nesting id="24">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="2"/>  
+  </nesting>  
+  <nesting id="25">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="8"/>  
+  </nesting>  
+  <nesting id="26">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="11"/>  
+  </nesting>  
+  <nesting id="27">    
     <end type="SOURCE" refId="9"/>    
     <end type="TARGET" refId="4"/>  
   </nesting>  
-  <association id="40">    
+  <realization id="28">    
+    <bendpoint x="714" y="538"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="29">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="41" name="view"/>      
-      <multiplicity id="42" minimum="0" maximum="1"/>    
+      <attribute id="30" name="view"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="33" name="view"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <bendpoint x="57" y="1362"/>    
+    <bendpoint x="56" y="1617"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="36" name="listener"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="38">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <nesting id="39">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="14"/>  
+  </nesting>  
+  <realization id="40">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <nesting id="41">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="10"/>  
+  </nesting>  
+  <nesting id="42">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="7"/>  
+  </nesting>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true"/>    

@@ -32,7 +32,7 @@ import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivi
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActivityUnit;
 import com.unilorraine.projetdevie.client.ui.tilerecord.ActivityRecord;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AbstractAppModule;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.CategoryModuleView;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.CategoryModuleView;
 
 /**
  * Activities are started and stopped by an ActivityManager associated with a container Widget.

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule;
+package com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule;
 
 import java.util.List;
 
@@ -51,6 +51,8 @@ public interface PreparationModuleView extends IsWidget {
 	void addNewUnitChoice();
 	
 	void removeGrid(UnitPanel unitPanel);
+	
+	void setCategory(String category);
 
 	public interface Presenter extends MenuModule, RegisterableModule, UnitTileGridListener {
 		void setCategory(TransitLPCategory transitCategory);

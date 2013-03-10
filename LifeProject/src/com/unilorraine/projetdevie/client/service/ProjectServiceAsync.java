@@ -62,4 +62,12 @@ public interface ProjectServiceAsync extends ICrudServiceAsync<TransitLPProject>
 
 	void setActivities(String id, List<TransitLPActivity> activities,
 			AsyncCallback<TransitLPProject> callback);
+
+	void setActivitiesFromCategory(String id, String category,
+			List<TransitLPActivity> activities,
+			AsyncCallback<TransitLPProject> callback);
+
+	void setActivityUnitsFromCategory(String id, String category,
+			List<TransitLPActivityUnit> activityUnits,
+			AsyncCallback<TransitLPProject> callback);
 }

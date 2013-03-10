@@ -283,14 +283,19 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 			activity = schemaActivity.createInstance();
 
 			//Adding the new activity to project
+			System.out.println("Activity about to be added name : " +activity.getName());
 			project.addActivity(activity);
 			
 			pm.makePersistent(project);
 			
 			
 		}catch(JDOObjectNotFoundException notFound) {
+			System.err.println("Not found");
 			return null;
-		}finally{
+		}catch(Exception e){
+			System.err.println("general error");
+		}
+		finally{
 			pm.close();
 		}
 		
@@ -414,6 +419,88 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 			System.out.println("To be added " + transitActivity.getName());
 			addActivityFromSchema(project.getId(), transitActivity.getId());
 			
+		}
+		
+		if(project != null)
+			return project.createTransit();
+		else
+			return null;
+	}
+
+	@Override
+	public TransitLPProject setActivitiesFromCategory(String id,
+			String category, List<TransitLPActivity> activities) {
+PersistenceManager pm = PMF.get().getPersistenceManager(); 
+		
+		HashMap<String, TransitLPActivity> hash = new HashMap<String, TransitLPActivity>();
+		for(TransitLPActivity transit : activities){
+			System.out.println("Name : " +transit.getName());
+			hash.put(transit.getId(), transit);
+		}
+
+		LPProject project = null;
+		
+		try{
+			Key key = KeyFactory.stringToKey(id);
+			project = pm.getObjectById(LPProject.class, key);
+			
+			for(LPActivity activity : project.getActivitiesForCategory(category)){
+				String idActivity = activity.getId();
+				if(!hash.containsKey(idActivity)){
+					project.removeActivity(activity);
+				}else
+					hash.remove(idActivity);
+			}
+			
+			pm.makePersistent(project);
+			
+			
+		}catch(JDOObjectNotFoundException notFound) {
+			System.err.println("Not found + " + notFound.getMessage());
+			return null;
+		}catch(Exception e){
+			System.err.println("Error : " + e.getMessage());
+			return null;
+		}
+		finally{
+			pm.close();
+		}
+		
+		for(TransitLPActivity transitActivity : hash.values()){
+			System.out.println("To be added " + transitActivity.getName());
+			addActivityFromSchema(project.getId(), transitActivity.getId());
+			
+		}
+		
+		if(project != null)
+			return project.createTransit();
+		else
+			return null;
+	}
+
+	@Override
+	public TransitLPProject setActivityUnitsFromCategory(String id,
+			String category, List<TransitLPActivityUnit> activityUnits) {
+PersistenceManager pm = PMF.get().getPersistenceManager(); 
+		
+		LPProject project = null;
+		try{
+			Key key = KeyFactory.stringToKey(id);
+			project = pm.getObjectById(LPProject.class, key);
+			
+			project.removeActivityUnitsForCategory(category);
+	
+			pm.makePersistent(project);
+			
+			
+		}catch(JDOObjectNotFoundException notFound) {
+			return null;
+		}finally{
+			pm.close();
+		}
+		
+		for(TransitLPActivityUnit transitActivity : activityUnits){
+			addActivityUnits(project.getId(), transitActivity);
 		}
 		
 		if(project != null)

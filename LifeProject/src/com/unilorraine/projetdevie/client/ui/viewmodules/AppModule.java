@@ -7,8 +7,8 @@ import com.unilorraine.projetdevie.client.ui.ApplicationPanelView;
 import com.unilorraine.projetdevie.client.ui.ModuleListener;
 import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerActivity;
 import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerView;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleView;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.PreparationModuleActivity;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.PreparationModuleView;
 
 /**
  * Interface that represents an module for the application. A app module is a self sufficient MVC based client side application<br/>

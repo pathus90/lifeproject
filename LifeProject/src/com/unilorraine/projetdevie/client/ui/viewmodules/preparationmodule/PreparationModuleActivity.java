@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule;
+package com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,7 @@ import com.google.gwt.dev.util.collect.HashMap;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Panel;
@@ -51,16 +52,10 @@ import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guio
 public class PreparationModuleActivity extends AbstractAppMenuModule implements PreparationModuleView.Presenter {
 
 	//TODO view information shouldn't be set here
-	private static final String MODULE_NAME = "Preparation du LP";
+	private static final String MODULE_NAME = "Pr\u00E9paration du LP";
 	private static final String MODULE_PIC_LINK = "";
 	
-	private static final String MENU_ONE = "Menu 1";
-	private static final String SUBMENU_ONE_ONE = "Submenu 1";
-	private static final String SUBMENU_ONE_TWO = "Submenu 2";
-	private static final String SUBMENU_ONE_TWO_ONE = "Subsubmenu 1";
-	private static final String MENU_TWO = "Menu 2";
-	private static final String SUBMENU_TWO = "Submenu 1";
-	private static final String MENU_THREE = "Menu 3";
+	private static final String CATEGORY_MENU = "Autre cat\u00E9gorie";
 	
 	
 	private PreparationModuleView view;
@@ -96,6 +91,7 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 		System.out.println("In start");
 		view = new PreparationModuleViewImpl();//(PreparationModuleView)GWT.create(PreparationModuleView.class);
 		view.setPresenter(this);
+		view.setCategory(transitCategory.getName());
 		institutionID = getAppContext().getActiveAccount().getInstitutions().get(0);
 		projectID = getAppContext().getContextLinks().get(2);
 		//The menu creation
@@ -117,51 +113,20 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 		//Item 1 sub-tree
 		TreeItem item1 = new TreeItem();
 		
-		item1.setText(MENU_ONE);
-		item1.setUserObject(MENU_ONE);
+		item1.setText(SafeHtmlUtils.htmlEscape(CATEGORY_MENU));
+		item1.setUserObject(CATEGORY_MENU);
 		
-		TreeItem subitem1 = new TreeItem(); 
-		subitem1.setText(SUBMENU_ONE_ONE);
-		subitem1.setUserObject(SUBMENU_ONE_ONE);
-		item1.addItem(subitem1);
-		
-		TreeItem subitem2 = new TreeItem(); 
-		subitem2.setText(SUBMENU_ONE_TWO);
-		subitem2.setUserObject(SUBMENU_ONE_TWO);
-		item1.addItem(subitem2);
-		
-		TreeItem subsubitem = new TreeItem(); 
-		subsubitem.setText(SUBMENU_ONE_TWO_ONE);
-		subsubitem.setUserObject(SUBMENU_ONE_TWO_ONE);
-		subitem2.addItem(subsubitem);
-		
-		
-
-		//Item 2 sub-tree
-		TreeItem item2 = new TreeItem();
-		item2.setText(MENU_TWO);
-		item2.setUserObject(MENU_TWO);
-		
-		TreeItem subitem3 = new TreeItem(); 
-		subitem3.setText(SUBMENU_TWO);
-		subitem3.setUserObject(SUBMENU_TWO);
-		item2.addItem(subitem3);
-		
-		TreeItem item3 = new TreeItem();
-		item3.setText(MENU_THREE);
-		item3.setUserObject(MENU_THREE);
-		
-		addItem(item1);
-		addItem(item2);
-		addItem(item3);
-		
+		addItem(item1);	
 		
 	}
 
 	//TODO to implement
 	@Override
 	public void handleMenuAction(SelectionEvent<TreeItem> event) {
-		System.out.println("Some event occured on " + event.getSelectedItem().getText());
+		TreeItem item = event.getSelectedItem();
+		if(item.getUserObject().equals(CATEGORY_MENU)){
+			getModuleListener().connectModule(new CategoryModuleActivity());
+		}
 	}
 
 	@Override
@@ -259,7 +224,7 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 	private class FetchProjectActivites implements  AsyncCallback<ArrayList<TransitLPActivity>>{
 		
 		public FetchProjectActivites() {
-			ProjectService.Util.getInstance().getAllActivities(projectID, this);
+			ProjectService.Util.getInstance().getActivitesForCategory(projectID, transitCategory.getId(), this);
 		}
 		
 		@Override
@@ -306,7 +271,7 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 	private class FetchProjectActivityUnits implements  AsyncCallback<ArrayList<TransitLPActivityUnit>>{
 			
 		public FetchProjectActivityUnits() {
-			ProjectService.Util.getInstance().getAllActivityUnits(projectID, this);
+			ProjectService.Util.getInstance().getActivityUnitsForCategory(projectID, transitCategory.getId(), this);
 			
 		}
 		
@@ -418,7 +383,7 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 	
 			
 			public SaveProjectActivities(List<TransitLPActivity>activitiesToSave) {
-				ProjectService.Util.getInstance().setActivities(projectID, activitiesToSave, this);
+				ProjectService.Util.getInstance().setActivitiesFromCategory(projectID, transitCategory.getId(), activitiesToSave, this);
 			}
 			@Override
 			public void onFailure(Throwable caught) {
@@ -444,7 +409,7 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 		
 		
 		public SaveProjectActivityUnits(List<TransitLPActivityUnit>activitiesToSave) {
-			ProjectService.Util.getInstance().setActivityUnits(projectID, activitiesToSave, this);
+			ProjectService.Util.getInstance().setActivityUnitsFromCategory(projectID, transitCategory.getId(), activitiesToSave, this);
 		}
 		@Override
 		public void onFailure(Throwable caught) {

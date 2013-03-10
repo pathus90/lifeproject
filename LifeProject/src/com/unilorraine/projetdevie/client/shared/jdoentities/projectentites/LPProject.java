@@ -134,6 +134,20 @@ public class LPProject extends AbstractLPProjectEntity<TransitLPProject>{
 	}
 	
 	/**
+	 * Removes all the units from the specified category.
+	 * @param category the id of the category for which the units shall be removed.
+	 */
+	public void removeActivityUnitsForCategory(String category){
+		int i = 0;
+		for(LPActivityUnit unit : choiceUnit){
+			if(unit.getCategory().equals(category))
+				choiceUnit.remove(i);
+			else
+				i++;
+		}
+	}
+	
+	/**
 	 * Get all the activities for one specific category. The ID is the DB ID.
 	 * @param categoryID category to get from
 	 * @return ArrayList of Activities, empty if none in that category
@@ -141,7 +155,7 @@ public class LPProject extends AbstractLPProjectEntity<TransitLPProject>{
 	public ArrayList<LPActivity> getActivitiesForCategory(String categoryID){
 		ArrayList<LPActivity> activityList = new ArrayList<LPActivity>();
 		for(LPActivity activity : activities){
-			if(activity.getCategory() == categoryID)
+			if(activity.getCategory().equals(categoryID))
 				activityList.add(activity);
 		}
 		return activityList;
@@ -155,7 +169,7 @@ public class LPProject extends AbstractLPProjectEntity<TransitLPProject>{
 	public ArrayList<LPActivityUnit> getActivityUnitsForCategory(String categoryID){
 		ArrayList<LPActivityUnit> activityList = new ArrayList<LPActivityUnit>();
 		for(LPActivityUnit activity : choiceUnit){
-			if(activity.getCategory() == categoryID)
+			if(activity.getCategory().equals(categoryID))
 				activityList.add(activity);
 		}
 		return activityList;

@@ -139,6 +139,26 @@ public interface ProjectService extends RemoteService , ICrudService<TransitLPPr
 	 * @return the transit project
 	 */
 	public TransitLPProject setActivities(String id, List<TransitLPActivity> activities);
+	
+	/**
+	 * TODO this method needs to be thought about some more. This is just a kick fix for fast UI
+	 * This method will replace the entire activity list by a new one based on the passed activity list for the specified category id.
+	 * @param id the LPProject where the activity-unit should be added 
+	 * @param category the id of the activities category to be set
+	 * @param activities the list of the new activities to be set for this project
+	 * @return the transit project
+	 */
+	public TransitLPProject setActivitiesFromCategory(String id, String category, List<TransitLPActivity> activities);
+	
+	/**
+	 * TODO this method needs to be thought about some more. This is just a kick fix for fast UI
+	 * This method will replace the entire unit list by a new one based on the passed unit list for the specified category id.
+	 * @param id the LPProject where the activity-unit should be added 
+	 * @param category the id of the activities category to be set
+	 * @param activityUnits the list of the new units to be set for this project
+	 * @return the transit project
+	 */
+	public TransitLPProject setActivityUnitsFromCategory(String id, String category, List<TransitLPActivityUnit> activityUnits);
 
 	
 	

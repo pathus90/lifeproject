@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule;
+package com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,7 @@ import java.util.List;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -74,31 +75,51 @@ public class PreparationModuleViewImpl extends FlowPanel implements PreparationM
 	private VerticalPanel unitPanel;
 	
 	private UnitPanel choicePanel;
+	private Label categoryLabel;
 	
 	public PreparationModuleViewImpl() {
-		
-		categoryPicture = new DetailViewerField("picture");
-		categoryPicture.setType("image");  
-		categoryPicture.setImageWidth(50);  
-		categoryPicture.setImageHeight(50); 
-		 
-		categoryName = new DetailViewerField("name");
-		//categoryChoice = new DetailViewerField("choice");
-		
-		Label preparationLabel = new Label("Editez les Activit\u00E9s");
-		preparationLabel.setStyleName("title");
-		add(preparationLabel);
 		
 		DockPanel dockPanel = new DockPanel();
 		add(dockPanel);
 		dockPanel.setSize("566px", "484px");
 		
+		VerticalPanel titlePanel = new VerticalPanel();
+		dockPanel.add(titlePanel, DockPanel.NORTH);
+		
+		Label title = new Label("Pr\u00E9paration du projet de vie");
+		title.setStyleName("title");
+		titlePanel.add(title);
+		title.setHeight("61px");
+		
+		VerticalPanel verticalPanelProject = new VerticalPanel();
+		dockPanel.add(verticalPanelProject, DockPanel.WEST);
+		
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		verticalPanelProject.add(horizontalPanel);
+		//categoryChoice = new DetailViewerField("choice");
+		
+		Label preparationLabel = new Label("Editez la cat\u00E9gorie : ");
+		horizontalPanel.add(preparationLabel);
+		preparationLabel.setWidth("177px");
+		preparationLabel.setStyleName("subtitle");
+		
+		categoryLabel = new Label("");
+		categoryLabel.setStyleName("subtitle");
+		horizontalPanel.add(categoryLabel);
+		
+		categoryPicture = new DetailViewerField("picture");
+		categoryPicture.setType("image");  
+		categoryPicture.setImageWidth(50);  
+		categoryPicture.setImageHeight(50); 
+		
+		categoryName = new DetailViewerField("name");
+		
 		DecoratedStackPanel decoratedStackPanel = new DecoratedStackPanel();
-		dockPanel.add(decoratedStackPanel, DockPanel.WEST);
+		verticalPanelProject.add(decoratedStackPanel);
 		decoratedStackPanel.setSize("303px", "381px");
 		
 		tileGridActivities = new TileGrid();
-		tileGridActivities.setSize("292px", "310px");
+		tileGridActivities.setSize("292px", "432px");
 		
 		tileGridActivities.setEdgeSize(0);
 		tileGridActivities.setShowEdges(false);
@@ -113,25 +134,25 @@ public class PreparationModuleViewImpl extends FlowPanel implements PreparationM
 		tileGridActivities.setData(new ActivityRecord[10]);
 		
 		
-		decoratedStackPanel.add(tileGridActivities, "Projet de Vie", false);
+		decoratedStackPanel.add(tileGridActivities, "Activit\u00E9s du Projet de Vie", false);
 		
 		ScrollPanel scrollPanel = new ScrollPanel();
 		decoratedStackPanel.add(scrollPanel, "Unit\u00E9s de Choix", false);
-		scrollPanel.setSize("300px", "600px");
+		scrollPanel.setSize("300px", "443px");
 		
 		unitPanel = new VerticalPanel();
 		scrollPanel.setWidget(unitPanel);
-		unitPanel.setSize("292px", "310px");
+		unitPanel.setSize("292px", "443px");
 		
 		VerticalPanel verticalPanel = new VerticalPanel();
 		dockPanel.add(verticalPanel, DockPanel.WEST);
 		
 		Label schemaLabel = new Label("Activit\u00E9s restantes");
-		schemaLabel.setStyleName("title");
+		schemaLabel.setStyleName("subtitle");
 		verticalPanel.add(schemaLabel);
 		
 		listGrid = new ListGrid();  
-        listGrid.setSize("240px", "368px");
+        listGrid.setSize("240px", "504px");
         listGrid.setCanDragRecordsOut(true);  
         listGrid.setCanAcceptDroppedRecords(true);  
         listGrid.setCanReorderRecords(true);  
@@ -231,5 +252,10 @@ public class PreparationModuleViewImpl extends FlowPanel implements PreparationM
 		}
 		
 		return units;
+	}
+
+	@Override
+	public void setCategory(String category) {
+		this.categoryLabel.setText(SafeHtmlUtils.fromString(category).asString());
 	}
 }

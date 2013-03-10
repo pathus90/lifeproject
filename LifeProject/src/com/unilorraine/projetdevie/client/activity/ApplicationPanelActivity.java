@@ -31,8 +31,8 @@ import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerActivity;
 import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerView;
 import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerView.Presenter;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.CategoryModuleActivity;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.PreparationModuleActivity;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.CategoryModuleActivity;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.PreparationModuleActivity;
 import com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserActivity;
 
 import com.google.gwt.activity.shared.AbstractActivity;
