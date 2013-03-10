@@ -62,7 +62,9 @@ public class UnitChooserActivity extends AbstractAppModule implements UnitChoose
 		if(view == null){
 			view = new UnitChooserViewImpl();
 			view.setPresenter(this);
-		}
+		}else
+			view.resest();
+		
 		projectID = getAppContext().getContextLinks().get(2);
 		
 		transitFetcherCounter = 2;

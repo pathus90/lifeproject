@@ -16,7 +16,7 @@ package com.unilorraine.projetdevie.server.service.init;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.jdo.Query;
 import javax.jdo.JDOObjectNotFoundException;
 import javax.jdo.PersistenceManager;
 
@@ -84,6 +84,77 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 
 	@Override
 	public List<ITransitEntity> initMethod() {
+		
+		List<ITransitEntity> list = getDBEntities();
+		
+		if(list != null){
+			return list;
+		}else{
+			return initDB();
+		}		
+	}
+	
+	private List<ITransitEntity>getDBEntities(){
+
+		List<ITransitEntity> list = new ArrayList<ITransitEntity>();
+		
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+
+		Query q = pm.newQuery(LPActor.class);
+		
+		q.setFilter("lastname == name");
+		q.declareParameters(String.class.getName() + " name");
+	
+		try{
+			List<LPActor>  results = (List<LPActor>) q.execute("Craig");
+			if(results.size() > 0){
+				LPActor actor = results.get(0);
+				LPInstitution institution = (LPInstitution)pm.getObjectById(LPInstitution.class, actor.getInstution(0));
+				
+				if(institution != null){
+					LPUser user = (LPUser)pm.getObjectById(LPUser.class, actor.getUser(0));
+				
+					if(user != null){
+						LPProject project = user.getBuildingProject();
+						
+						if(project != null){
+							
+							list.add(institution.createTransit());
+							list.add(actor.createTransit());
+							list.add(user.createTransit());
+							list.add(project.createTransit());
+							return list;
+							
+						}else{
+							System.err.println("Project is null");
+							return null;
+						}
+						
+					}else{
+						System.err.println("User is null");
+						return null;
+					}
+				}else{
+					System.err.println("Institution is null");
+					return null;
+				}
+			}else{
+				System.err.println("Actor is null");
+				return null;
+			}
+		}finally{
+			pm.close();
+		}
+		
+		/*
+		 }catch (Exception e) {
+			System.err.println("Some exeption : " + e.getMessage());
+			return null;
+		 */
+	}
+	
+	
+	private List<ITransitEntity>initDB(){
 		
 		TransitLPInstitution institution = createInstitution();
 		
@@ -232,12 +303,12 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 		implActivity.addTaskFromSchema(actFootball.getId(), taskMoney.getId());
 		
 		//We need more activities for testing
-		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Tennis", "apprend à jouer au tennis!", "http://openclipart.org/image/128px/svg_to_png/139615/tennisball.png", true, 0, catSport.getId(), ""));
-		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Rugby", "apprend à jouer au Rugby!", "http://openclipart.org/image/128px/svg_to_png/4456/molumen_Rugby_ball.png", true, 0, catSport.getId(), ""));
-		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Baseball", "apprend à jouer au baseball!", "http://openclipart.org/image/128px/svg_to_png/147793/1309441560.png", true, 0, catSport.getId(), ""));
-		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Boxe", "apprend à boxer!", "http://openclipart.org/image/128px/svg_to_png/171268/boxing_glove.png", true, 0, catSport.getId(), ""));
-		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Nager", "apprend à nager!", "http://openclipart.org/image/128px/svg_to_png/34663/sub_subacqueo_architetto_01.png", true, 0, catSport.getId(), ""));
-		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Courir", "apprend à jouer à courir!", "http://openclipart.org/image/128px/svg_to_png/77317/running_pictogram.png", true, 0, catSport.getId(), ""));
+		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Tennis", "Apprends à jouer au tennis!", "http://openclipart.org/image/128px/svg_to_png/139615/tennisball.png", true, 0, catSport.getId(), ""));
+		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Rugby", "Apprends à jouer au Rugby!", "http://openclipart.org/image/128px/svg_to_png/4456/molumen_Rugby_ball.png", true, 0, catSport.getId(), ""));
+		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Baseball", "Apprends à jouer au baseball!", "http://openclipart.org/image/128px/svg_to_png/147793/1309441560.png", true, 0, catSport.getId(), ""));
+		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Boxe", "Apprends à boxer!", "http://openclipart.org/image/128px/svg_to_png/171268/boxing_glove.png", true, 0, catSport.getId(), ""));
+		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Nager", "Apprends à nager!", "http://openclipart.org/image/128px/svg_to_png/34663/sub_subacqueo_architetto_01.png", true, 0, catSport.getId(), ""));
+		potService.addStoredEntitiy(activityPot.getId(), new TransitLPActivity("", "Courir", "Apprends à jouer à courir!", "http://openclipart.org/image/128px/svg_to_png/77317/running_pictogram.png", true, 0, catSport.getId(), ""));
 		
 		//finally linking with the institution
 		potService.addLink(activityPot.getId(), institutionID);
@@ -280,6 +351,7 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 			//And make the thing persistent
 			pm.makePersistent(lp);
 			
+			/*
 			//We have to wait for the Project to have an Id so we can create an activity from a Schema
 			//There is no method yet to add from a schema directly in a LPProject
 			projectService.addActivityFromSchema(lp.getBuildingProject().getId(), actBasketball.getId());
@@ -295,6 +367,7 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 			choices2.add(actBasketball.getId());
 			TransitLPActivityUnit unit2 = new TransitLPActivityUnit("", choices2, catSport.getId());
 			projectService.addActivityUnits(lp.getBuildingProject().getId(), unit2);
+			*/
 
 		}finally{
 			pm.close();

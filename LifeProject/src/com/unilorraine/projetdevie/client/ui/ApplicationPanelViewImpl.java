@@ -19,6 +19,7 @@ import java.util.List;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.unilorraine.projetdevie.client.ui.ApplicationPanelView.Presenter;
@@ -31,6 +32,7 @@ import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.HorizontalSplitPanel;
 import com.google.gwt.user.client.ui.Panel;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.DockPanel;
@@ -53,6 +55,8 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 	private Button btnMenu;
 	private ImgButton imgButton;
 	private Label menuTitle;
+	
+	private PopupLoadingView popup;
 
 	public ApplicationPanelViewImpl() {
 		setSize("800px", "800px");
@@ -97,6 +101,8 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 		pluginPanel = new FlowPanel();
 		mainPluginPanel.add(pluginPanel);
 		pluginPanel.setSize("", "100%");
+		
+		popup = new PopupLoadingView();
 
 	}
 
@@ -152,6 +158,34 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 	@Override
 	public void setSelectedItem(TreeItem item, boolean fireEvents) {
 		menutTree.setSelectedItem(item, fireEvents);
+	}
+
+	@Override
+	public void waitingPopup(boolean waiting) {
+		if(waiting)
+			popup.startProcessing();
+		else
+			popup.stopProcessing();
+		
+	}
+
+	@Override
+	public boolean isWaitingPopup() {
+		return popup.isShowing();
+	}
+
+	@Override
+	public void waitingMouse(boolean waiting) {
+		if(waiting){
+			DOM.setStyleAttribute(RootPanel.getBodyElement(), "cursor", "wait");
+		}else
+			DOM.setStyleAttribute(RootPanel.getBodyElement(), "cursor", "default");
+		
+	}
+
+	@Override
+	public boolean isWaitingMouse() {
+		return DOM.getStyleAttribute(RootPanel.getBodyElement(), "cursor").equals("wait");
 	}
 	
 }

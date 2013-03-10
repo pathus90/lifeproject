@@ -76,6 +76,32 @@ public interface ApplicationPanelView extends IsWidget {
 	void setSelectedItem(TreeItem item, boolean fireEvents);
 	
 	/**
+	 * Set the waiting popup to the passed argument
+	 * 
+	 * @param waiting true if has to be shown and hide if it has to be hidden
+	 */
+	void waitingPopup(boolean waiting);
+	
+	/**
+	 * Is the waiting popup visible?
+	 * @return true if is visible and false if not
+	 */
+	boolean isWaitingPopup();
+	
+	/**
+	 * Set the waiting mouse to the passed argument
+	 * 
+	 * @param waiting true if has to be shown and hide if it has to be hidden
+	 */
+	void waitingMouse(boolean waiting);
+	
+	/**
+	 * Is the waiting mouse visible?
+	 * @return true if is visible and false if not
+	 */
+	boolean isWaitingMouse();
+	
+	/**
 	 * Controller for ApplicationPanelView
 	 * @author Christophe
 	 *

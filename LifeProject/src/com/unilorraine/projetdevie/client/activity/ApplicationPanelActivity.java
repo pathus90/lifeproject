@@ -21,6 +21,12 @@ import org.apache.catalina.startup.SetDocBaseRule;
 
 import com.unilorraine.projetdevie.client.ClientFactory;
 import com.unilorraine.projetdevie.client.place.ApplicationPanelPlace;
+import com.unilorraine.projetdevie.client.service.init.DBInitService;
+import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActor;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPInstitution;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProject;
+import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPUser;
 import com.unilorraine.projetdevie.client.ui.AppContext;
 import com.unilorraine.projetdevie.client.ui.ApplicationPanelView;
 import com.unilorraine.projetdevie.client.ui.ModuleListener;
@@ -39,6 +45,7 @@ import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.TreeItem;
@@ -88,11 +95,8 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		this.name = place.getName();
 		this.clientFactory = clientFactory;
 		
-		appContext = place.getAppContext();
-		
 		moduleHandler = new ModuleHandlerActivity();
 		moduleHandler.setModules(moduleReferences());
-		
 	}
 
 
@@ -108,9 +112,10 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		
 		
 		this.view = view;
-		containerWidget.setWidget(view.asWidget());
 		
-		connectModuleHandler();
+		initDB();
+		
+		containerWidget.setWidget(view.asWidget());
 	}
 
 	@Override
@@ -144,6 +149,9 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		//We set the context
 		pendingModule.setAppContext(appContext);
 		
+		//let the user now it could take a while
+		view.waitingMouse(true);
+		
 		//we wait till the active module call the moduleDestroyReady, when destroy we start the pending one
 		//we bypass if there no active menu
 		if(activeModule != null)
@@ -171,6 +179,8 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 			view.setAppMenuItems(((MenuModule)activeModule).getMenuItems());
 		else
 			view.emptyMenu();
+		//let the user now it could take a while
+		view.waitingMouse(false);
 	}
 	
 	@Override
@@ -267,5 +277,45 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 	public void setModuleHandler(ModuleHandlerView.Presenter handler) {
 		moduleHandler = handler;
 		
+	}
+	
+	private void initDB() {
+		
+		view.waitingPopup(true);
+		
+		AsyncCallback<List<ITransitEntity>> callback = new AsyncCallback<List<ITransitEntity>>() {
+		      @Override
+			public void onFailure(Throwable caught) {
+		    	  System.out.println("Error in populating db");
+		      }
+
+			@Override
+			public void onSuccess(List<ITransitEntity> result) {
+				//TODO we are so cheating here...
+				if(result != null){
+					System.out.println("Should have been populated");
+					TransitLPInstitution institution = (TransitLPInstitution)result.get(0);
+					TransitLPActor actor = (TransitLPActor)result.get(1);
+					TransitLPUser user = (TransitLPUser)result.get(2);
+					TransitLPProject project = (TransitLPProject)result.get(3);
+					
+					List<String> links = new ArrayList<String>();
+					links.add(institution.getId());
+					links.add(user.getId());
+					links.add(project.getId());
+					setAppContext((new AppContext(actor, links)));
+					
+					connectModuleHandler();
+					
+					view.waitingPopup(false);
+					
+				}else
+					System.err.println("Some error happend while init DB");
+			}
+
+			
+	    };
+	    
+	    DBInitService.Util.getInstance().initMethod(callback);
 	}
 }

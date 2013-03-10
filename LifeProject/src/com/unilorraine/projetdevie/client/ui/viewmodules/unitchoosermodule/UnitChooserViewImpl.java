@@ -17,6 +17,7 @@ package com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -24,6 +25,7 @@ import com.google.gwt.user.client.ui.DeckPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RadioButton;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.data.Record;
 import com.smartgwt.client.data.RecordList;
 import com.smartgwt.client.types.Alignment;
@@ -268,13 +270,14 @@ public class UnitChooserViewImpl extends FlowPanel implements UnitChooserView {
 
 	@Override
 	public void showLoading() {
-		loading.show();
-		
+		//loading.startProcessing();
+		DOM.setStyleAttribute(RootPanel.getBodyElement(), "cursor", "wait");
 	}
 
 	@Override
 	public void hideLoading() {
-		loading.hide();
+		DOM.setStyleAttribute(RootPanel.getBodyElement(), "cursor", "default");
+		//loading.stopProcessing();
 		
 	}
 
