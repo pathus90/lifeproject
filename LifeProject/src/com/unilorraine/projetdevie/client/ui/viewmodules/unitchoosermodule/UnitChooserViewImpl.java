@@ -97,6 +97,12 @@ public class UnitChooserViewImpl extends FlowPanel implements UnitChooserView {
 		add(verticalPanel);
 		verticalPanel.setSize("602px", "602px");
 		
+		Label title = new Label("Cr\u00E9ateur commun du projet de vie");
+		title.setStyleName("title");
+
+		verticalPanel.add(title);
+		
+		
 		EdgedCanvas edgedCanvasChoice = new EdgedCanvas();
 		edgedCanvasChoice.setSize("602px", "150px");
 		
@@ -117,15 +123,18 @@ public class UnitChooserViewImpl extends FlowPanel implements UnitChooserView {
 		edgedCanvasChoice.addChild(unitChoiceGrid);
 		verticalPanel.add(edgedCanvasChoice);
 		
-		HorizontalPanel horizontalPanel = new HorizontalPanel();
-		horizontalPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
-		horizontalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		verticalPanel.add(horizontalPanel);
-		horizontalPanel.setSize("602px", "155px");
+		VerticalPanel middlePanel = new VerticalPanel();
+		middlePanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		middlePanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel.add(middlePanel);
+		middlePanel.setSize("602px", "155px");
 		
 		EdgedCanvas edgedCanvas = new EdgedCanvas();
 		edgedCanvas.setSize("150px", "150px");
 		edgedCanvas.setAlign(Alignment.CENTER);
+		
+		Label dropText = new Label("La cible");
+		
 		targetGrid = new TileGrid();
 		targetGrid.setSize("125px", "125px");
 		targetGrid.setSelectionType(SelectionStyle.SINGLE);
@@ -152,9 +161,9 @@ public class UnitChooserViewImpl extends FlowPanel implements UnitChooserView {
 				}
 			});
 		
-		
 		edgedCanvas.addChild(targetGrid);
-		horizontalPanel.add(edgedCanvas);
+		middlePanel.add(dropText);
+		middlePanel.add(edgedCanvas);
 		
 		DisclosurePanel disclosurePanel = new DisclosurePanel("Activites choisies");
 		verticalPanel.add(disclosurePanel);

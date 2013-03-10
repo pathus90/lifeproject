@@ -48,11 +48,11 @@ import com.smartgwt.client.widgets.ImgButton;
 public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPanelView {
 	
 	private Presenter listener;
-	private VerticalPanel pulginMenu;
 	private FlowPanel pluginPanel;
 	private Tree menutTree;
 	private Button btnMenu;
 	private ImgButton imgButton;
+	private Label menuTitle;
 
 	public ApplicationPanelViewImpl() {
 		setSize("800px", "800px");
@@ -81,13 +81,17 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 		verticalPanel.add(mainPluginPanel);
 		mainPluginPanel.setSize("100%", "800px");
 		
-		pulginMenu = new VerticalPanel();
-		mainPluginPanel.addWest(pulginMenu, 15.0);
-		pulginMenu.setSize("150px", "100%");
-		pulginMenu.setSpacing(15);
+		FlowPanel pluginFlowPanel = new FlowPanel();
+		mainPluginPanel.addWest(pluginFlowPanel, 14.2);
+		
+		menuTitle = new Label("Menu");
+		menuTitle.setStyleName("subtitle");
+		pluginFlowPanel.add(menuTitle);
+		menuTitle.setHeight("10px");
+		menuTitle.setVisible(false);
 		
 		menutTree = new Tree();
-		pulginMenu.add(menutTree);
+		pluginFlowPanel.add(menutTree);
 		menutTree.setWidth("127px");
 		
 		pluginPanel = new FlowPanel();
@@ -121,6 +125,8 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 			item.addStyleName("treeItem");
 			menutTree.addItem(item);
 		}
+		if(treeItems.size() > 0)
+			menuTitle.setVisible(true);
 		
 	}
 
@@ -139,6 +145,7 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 	@Override
 	public void emptyMenu() {
 		menutTree.removeItems();
+		menuTitle.setVisible(false);
 		
 	}
 
