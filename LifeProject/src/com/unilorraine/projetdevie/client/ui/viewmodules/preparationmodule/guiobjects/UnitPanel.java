@@ -1,4 +1,4 @@
-package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects;
+package com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.guiobjects;
 
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.smartgwt.client.data.Record;

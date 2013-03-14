@@ -1,4 +1,4 @@
-package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects;
+package com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.guiobjects;
 
 /**
  * To be passed to the {@link UnitTileGrid}

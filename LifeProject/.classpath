@@ -3,7 +3,6 @@
 	<classpathentry excluding="com/unilorraine/projetdevie/client/shared/jdoentities/pots/PotFactory.java" kind="src" path="src"/>
 	<classpathentry kind="con" path="com.google.gwt.eclipse.core.GWT_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/Christophe/Downloads/eclipse-jee-indigo-SR2-win32-x86_64/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.5/appengine-java-sdk-1.7.5/lib/shared/appengine-local-runtime-shared.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/C:/Users/Christophe/Downloads/eclipse-jee-indigo-SR2-win32-x86_64/eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.7.5/appengine-java-sdk-1.7.5/docs/javadoc/"/>
@@ -121,5 +120,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/smartgwt-skins.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/smartgwt.jar"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER/App Engine (1)/v2"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

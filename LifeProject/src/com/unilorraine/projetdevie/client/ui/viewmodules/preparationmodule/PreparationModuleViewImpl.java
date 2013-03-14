@@ -40,6 +40,7 @@ import com.smartgwt.client.widgets.viewer.DetailViewerField;
 import com.google.gwt.user.client.ui.VerticalSplitPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.smartgwt.client.widgets.Img;
+import com.smartgwt.client.widgets.Window;
 import com.google.gwt.user.client.ui.SimpleRadioButton;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
@@ -50,9 +51,9 @@ import com.google.gwt.user.client.ui.DecoratedStackPanel;
 import com.smartgwt.client.widgets.ViewLoader;
 import com.unilorraine.projetdevie.client.ui.tilerecord.ActivityRecord;
 import com.unilorraine.projetdevie.client.ui.tilerecord.CategoryRecord;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects.UnitPanel;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects.UnitTileGrid;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects.UnitTileGridListener;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.guiobjects.UnitPanel;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.guiobjects.UnitTileGrid;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.guiobjects.UnitTileGridListener;
 import com.smartgwt.client.widgets.tile.TileLayout;
 import com.google.gwt.user.client.ui.Grid;
 import com.smartgwt.client.widgets.EdgedCanvas;
@@ -76,6 +77,8 @@ public class PreparationModuleViewImpl extends FlowPanel implements PreparationM
 	
 	private UnitPanel choicePanel;
 	private Label categoryLabel;
+	
+	private Window savedWindow;
 	
 	public PreparationModuleViewImpl() {
 		
@@ -174,6 +177,19 @@ public class PreparationModuleViewImpl extends FlowPanel implements PreparationM
         verticalPanel.add(btnSauverLeProjet);
 
 
+        savedWindow = new Window();
+        
+        savedWindow.setAutoCenter(true);
+        savedWindow.setShowModalMask(true);
+        savedWindow.setSize("200px", "150px");
+        savedWindow.setShowTitle(true);
+        savedWindow.setShowMinimizeButton(false);
+        savedWindow.setTitle("Projet sauvegard\u00E9");
+        Label label =  new Label("Le projet a \u00E9t\u00E9 sauv\u00E9");
+        
+        label.setStyleName("bigText");
+        savedWindow.addItem(label);
+        
 	}
 
 	@Override
@@ -257,5 +273,10 @@ public class PreparationModuleViewImpl extends FlowPanel implements PreparationM
 	@Override
 	public void setCategory(String category) {
 		this.categoryLabel.setText(SafeHtmlUtils.fromString(category).asString());
+	}
+
+	@Override
+	public void showSaved() {
+		savedWindow.show();
 	}
 }

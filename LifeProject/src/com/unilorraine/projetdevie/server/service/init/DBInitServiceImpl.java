@@ -112,28 +112,11 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 				LPInstitution institution = (LPInstitution)pm.getObjectById(LPInstitution.class, actor.getInstution(0));
 				
 				if(institution != null){
-					LPUser user = (LPUser)pm.getObjectById(LPUser.class, actor.getUser(0));
-				
-					if(user != null){
-						LPProject project = user.getBuildingProject();
-						
-						if(project != null){
 							
-							list.add(institution.createTransit());
-							list.add(actor.createTransit());
-							list.add(user.createTransit());
-							list.add(project.createTransit());
-							return list;
-							
-						}else{
-							System.err.println("Project is null");
-							return null;
-						}
-						
-					}else{
-						System.err.println("User is null");
-						return null;
-					}
+					list.add(institution.createTransit());
+					list.add(actor.createTransit());
+					return list;
+
 				}else{
 					System.err.println("Institution is null");
 					return null;
@@ -160,9 +143,7 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 		
 		String groupID = createGroups(institution.getId());
 		
-		TransitLPUser user = createUser(institution.getId());
-		
-		TransitLPActor actor = createActor(groupID, institution.getId(), user.getId());
+		TransitLPActor actor = createActor(groupID, institution.getId());
 		
 		createCategories(institution.getId());
 		
@@ -173,14 +154,10 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 		//Create the pot of activities
 		createActivityPot(institution.getId());
 				
-		//finally create an empty project for our user
-		TransitLPProject project  = createProject(user.getId());
 		
 		List<ITransitEntity> list = new ArrayList<ITransitEntity>();
 		list.add(institution);
 		list.add(actor);
-		list.add(user);
-		list.add(project);
 		return list;
 	}
 
@@ -204,7 +181,7 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 		
 	}
 
-	private TransitLPActor createActor(String groupID, String institutionID, String userID) {
+	private TransitLPActor createActor(String groupID, String institutionID) {
 		PersistenceManager pm = PMF.get().getPersistenceManager(); 
 		LPActor lp = null;
 		
@@ -214,34 +191,10 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 			//Adding the institution 
 			lp.addInstution(institutionID);
 			
-			//Adding the user
-			lp.addUser(userID);
-			
 			//adding the group
 			lp.addGroup(groupID);
 			
 			//finally save it
-			pm.makePersistent(lp);
-
-		}finally{
-			pm.close();
-			
-		}
-		if(lp != null)
-			return lp.createTransit();
-		else
-			return null;
-		
-	}
-
-	private TransitLPUser createUser(String institutionID) {
-		PersistenceManager pm = PMF.get().getPersistenceManager(); 
-		LPUser lp = null;
-		
-		try{
-			 lp = new LPUser("Guetta", "David", "davidguetta@googlemail.com", "I'm David Guetta, a way to gloryfied <musiscian> for my talent", "http://www.magixl.com/cliparts/jpg/music_pop/david_guetta.jpg");
-			lp.addInstution(institutionID);
-			
 			pm.makePersistent(lp);
 
 		}finally{
@@ -327,54 +280,6 @@ public class DBInitServiceImpl extends RemoteServiceServlet implements DBInitSer
 		taskMoney = impl.createEntity(new TransitLPTask("", "Gérer son argent", "Donner le bon montant pour acheter son pain", "http://openclipart.org/image/128px/svg_to_png/73795/1279537209.png", true, 0, ""));
 		
 		
-	}
-
-	/**
-	 * Create a test Project
-	 */
-	private TransitLPProject createProject(String userID) {
-		
-		//again no rpc so we need to do it by hand
-		PersistenceManager pm = PMF.get().getPersistenceManager(); 
-		LPUser lp = null;
-		System.out.println("User ID " + userID);
-		
-		ProjectServiceImpl projectService = new ProjectServiceImpl();
-		
-		try{
-			Key key = KeyFactory.stringToKey(userID);
-			lp = pm.getObjectById(LPUser.class, key);
-			
-			//We create a new empty project as project that needs to be build
-			lp.setBuildingProject(new LPProject("David's Project", "I will learn how to use more then 3 fingers to make music this year!", "", true));
-			
-			//And make the thing persistent
-			pm.makePersistent(lp);
-			
-			/*
-			//We have to wait for the Project to have an Id so we can create an activity from a Schema
-			//There is no method yet to add from a schema directly in a LPProject
-			projectService.addActivityFromSchema(lp.getBuildingProject().getId(), actBasketball.getId());
-			
-			//Add an activity unit
-			List<String> choices = new ArrayList<String>();
-			choices.add(actFootball.getId());
-			TransitLPActivityUnit unit = new TransitLPActivityUnit("", choices, catSport.getId());
-			projectService.addActivityUnits(lp.getBuildingProject().getId(), unit);
-			
-			//Add an activity unit
-			List<String> choices2 = new ArrayList<String>();
-			choices2.add(actBasketball.getId());
-			TransitLPActivityUnit unit2 = new TransitLPActivityUnit("", choices2, catSport.getId());
-			projectService.addActivityUnits(lp.getBuildingProject().getId(), unit2);
-			*/
-
-		}finally{
-			pm.close();
-			
-		}
-		
-		return lp.getBuildingProject().createTransit();
 	}
 
 	/**

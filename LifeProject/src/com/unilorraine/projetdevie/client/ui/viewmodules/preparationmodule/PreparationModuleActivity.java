@@ -43,8 +43,8 @@ import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProjec
 import com.unilorraine.projetdevie.client.ui.tilerecord.ActivityRecord;
 import com.unilorraine.projetdevie.client.ui.tilerecord.CategoryRecord;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AbstractAppMenuModule;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects.UnitPanel;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects.UnitTileGrid;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.guiobjects.UnitPanel;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.guiobjects.UnitTileGrid;
 
 /**
  * Activities are started and stopped by an ActivityManager associated with a container Widget.
@@ -71,6 +71,8 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 	
 	private int transitFetcherCounter = 0;
 	
+	private int saverCount = 0;
+	
 	//Note that we don't actually create anything in the constructor. 
 	//By doing so we embrace the possibiliy of using async fetching without white screen delay for the user.
 	public PreparationModuleActivity() {
@@ -84,6 +86,14 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 		if(transitFetcherCounter <= 0){
 			new FetchSchemaActivities();
 		}
+	}
+	
+	private void saved() {
+		saverCount--;
+		if(saverCount <= 0){
+			view.showSaved();
+		}
+		
 	}
 	
 	@Override
@@ -178,6 +188,8 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 	
 	@Override
 	public void saveProject() {
+		saverCount = 2;
+		
 		new SaveProjectActivities(getActivities());
 		new SaveProjectActivityUnits(getActivityUnits());
 		
@@ -388,7 +400,6 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 			@Override
 			public void onFailure(Throwable caught) {
 				System.err.println("Error while saving the project activities");
-				fetcherReady();
 				//TODO HANDLE ERROR
 				
 			}
@@ -397,6 +408,7 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 			public void onSuccess(TransitLPProject result) {
 				if(result != null){
 					System.out.println("savig activities went great!");
+					saved();
 				}else
 					System.err.println("Error while saving the project Activities");
 					
@@ -414,7 +426,6 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 		@Override
 		public void onFailure(Throwable caught) {
 			System.err.println("Error while saving the project activities");
-			fetcherReady();
 			//TODO HANDLE ERROR
 			
 		}
@@ -422,7 +433,8 @@ public class PreparationModuleActivity extends AbstractAppMenuModule implements 
 		@Override
 		public void onSuccess(TransitLPProject result) {
 			if(result != null){
-				System.out.println("savig activities went great!");
+				System.out.println("saving activities went great!");
+				saved();
 			}else
 				System.err.println("Error while saving the project Activities");
 				

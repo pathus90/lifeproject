@@ -21,8 +21,12 @@ import org.apache.catalina.startup.SetDocBaseRule;
 
 import com.unilorraine.projetdevie.client.ClientFactory;
 import com.unilorraine.projetdevie.client.place.ApplicationPanelPlace;
+import com.unilorraine.projetdevie.client.service.LoginService;
+import com.unilorraine.projetdevie.client.service.ProjectService;
+import com.unilorraine.projetdevie.client.service.UserService;
 import com.unilorraine.projetdevie.client.service.init.DBInitService;
 import com.unilorraine.projetdevie.client.shared.transitentities.ITransitEntity;
+import com.unilorraine.projetdevie.client.shared.transitentities.LoginInfo;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPActor;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPInstitution;
 import com.unilorraine.projetdevie.client.shared.transitentities.TransitLPProject;
@@ -42,9 +46,11 @@ import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.Prepa
 import com.unilorraine.projetdevie.client.ui.viewmodules.unitchoosermodule.UnitChooserActivity;
 
 import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Panel;
@@ -87,6 +93,18 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 	private AppContext appContext;
 	
 	/**
+	 * TODO this is just for presentation, should be removed
+	 * The user connecting
+	 */
+	private TransitLPUser user;
+	
+	/**
+	 * TODO this is just for presentation, should be removed
+	 * The buidling project
+	 */
+	private TransitLPProject project;
+	
+	/**
 	 * The module handler which switches between modules
 	 */
 	private ModuleHandlerView.Presenter moduleHandler;
@@ -112,11 +130,17 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 		
 		
 		this.view = view;
-		
-		initDB();
-		
+		System.out.println("Login should be schown");
+		//view.showLogin();
+		//try to get the login information
+		loginAttempt();
 		containerWidget.setWidget(view.asWidget());
 	}
+
+	private void loginAttempt() {
+		new Login();
+	}
+
 
 	@Override
 	public String mayStop() {
@@ -296,8 +320,8 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 					System.out.println("Should have been populated");
 					TransitLPInstitution institution = (TransitLPInstitution)result.get(0);
 					TransitLPActor actor = (TransitLPActor)result.get(1);
-					TransitLPUser user = (TransitLPUser)result.get(2);
-					TransitLPProject project = (TransitLPProject)result.get(3);
+					//TransitLPUser user = (TransitLPUser)result.get(2);
+					//TransitLPProject project = (TransitLPProject)result.get(3);
 					
 					List<String> links = new ArrayList<String>();
 					links.add(institution.getId());
@@ -308,6 +332,7 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 					connectModuleHandler();
 					
 					view.waitingPopup(false);
+					System.out.println("Test");
 					
 				}else
 					System.err.println("Some error happend while init DB");
@@ -317,5 +342,163 @@ public class ApplicationPanelActivity extends AbstractActivity implements Applic
 	    };
 	    
 	    DBInitService.Util.getInstance().initMethod(callback);
+	}
+
+	
+	private void readyToLaunch(){
+		//view.hideLogin();
+		view.createView();
+		initDB();
+	}
+
+	@Override
+	public void login(String email) {
+		new UserLogin(email);
+	}
+	
+	
+	private class UserLogin implements AsyncCallback<TransitLPUser>{
+
+		String email;
+		public UserLogin(String email){
+			
+			this.email = email;
+			
+			UserService.Util.getInstance().getUserForEmail(email, this);		
+		}
+		
+		@Override
+		public void onFailure(Throwable caught) {
+			System.err.println("Error in User fetching" + caught.getMessage());
+		}
+	
+	
+		@Override
+		public void onSuccess(TransitLPUser result) {
+			if(result != null){
+				user = result;
+				//TODO fetch project
+				new FetchProject(result.getBuildingProject());
+			}else{
+				System.out.println("New User needed");
+				new CreateNewUser(this.email);
+			}
+			
+		}
+	}
+	
+	private class CreateNewUser implements AsyncCallback<TransitLPUser>{
+
+		public CreateNewUser(String email){
+			UserService.Util.getInstance().createEntity(
+					new TransitLPUser("", 
+							email, 
+							email, 
+							email, 
+							"", 
+							"", 
+							"", 
+							""), this);
+		}
+		
+		@Override
+		public void onFailure(Throwable caught) {
+			System.err.println("Error on user creation");	
+		}
+
+		@Override
+		public void onSuccess(TransitLPUser result) {
+			if(result != null){
+				user = result;
+				if(result.getBuildingProject() != null ){
+					if(!result.getBuildingProject().equals("")){
+						new FetchProject(result.getBuildingProject());
+					}else
+						new CreateProject(result.getId());
+				}else
+					new CreateProject(result.getId());
+			}
+			
+		}
+		
+	}
+	
+	private class FetchProject implements AsyncCallback<TransitLPProject>{
+		
+		public FetchProject(String id){
+			ProjectService.Util.getInstance().readEntity(id, this);
+		}
+		
+		@Override
+		public void onFailure(Throwable caught) {
+			System.out.println("Error fetching the building project");
+		}
+
+		@Override
+		public void onSuccess(TransitLPProject result) {
+			if(result != null){
+				project = result;
+				readyToLaunch();
+				System.out.println("Project Found");
+			}else{
+				System.out.println("New Project needed");
+				new CreateProject(user.getId());
+			}
+			
+		}
+		
+	}
+	
+	private class CreateProject implements AsyncCallback<TransitLPProject>{
+		
+		public CreateProject(String id){
+			UserService.Util.getInstance().createBuildingProjectFromTransit(id,
+					new TransitLPProject(), this);
+		}
+
+		@Override
+		public void onFailure(Throwable caught) {
+			System.err.println("Error while creating the building project");			
+		}
+
+		@Override
+		public void onSuccess(TransitLPProject result) {
+			if(result != null){
+				project = result;
+				System.out.println("New Project Created");
+				readyToLaunch();
+				
+			}else{
+				System.out.println("Error creating the building project (null)");
+			}
+			
+		}
+		
+	}
+	
+	private class Login implements AsyncCallback<LoginInfo>{
+
+		public Login(){
+			LoginService.Util.getInstance().login(Window.Location.getHref(), this);
+		}
+		
+		@Override
+		public void onFailure(Throwable caught) {
+			System.err.println("Failure in the login service " + caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(LoginInfo result) {
+			if(result.isLoggedIn()) {
+				  view.waitingPopup(true);
+				  view.setLogOut(result);
+		          new UserLogin(result.getEmailAddress());
+		        } else {
+		          view.showLogin(result.getLoginUrl());
+		        }
+			
+		}
+		
 	}
 }

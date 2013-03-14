@@ -24,9 +24,9 @@ import com.unilorraine.projetdevie.client.ui.tilerecord.ActivityRecord;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.MenuModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects.UnitPanel;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects.UnitTileGrid;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects.UnitTileGridListener;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.guiobjects.UnitPanel;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.guiobjects.UnitTileGrid;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.guiobjects.UnitTileGridListener;
 
 /**
  * View base interface.
@@ -53,6 +53,8 @@ public interface PreparationModuleView extends IsWidget {
 	void removeGrid(UnitPanel unitPanel);
 	
 	void setCategory(String category);
+	
+	void showSaved();
 
 	public interface Presenter extends MenuModule, RegisterableModule, UnitTileGridListener {
 		void setCategory(TransitLPCategory transitCategory);

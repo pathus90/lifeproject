@@ -60,7 +60,7 @@ import com.smartgwt.client.widgets.layout.SectionStack;
 import com.unilorraine.projetdevie.client.shared.jdoentities.projectentites.LPActivityUnit;
 import com.unilorraine.projetdevie.client.ui.PopupLoadingView;
 import com.unilorraine.projetdevie.client.ui.tilerecord.ActivityRecord;
-import com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects.UnitTileGrid;
+import com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.guiobjects.UnitTileGrid;
 import com.google.gwt.user.client.ui.DisclosurePanel;
 
 /**
@@ -106,10 +106,10 @@ public class UnitChooserViewImpl extends FlowPanel implements UnitChooserView {
 		
 		
 		EdgedCanvas edgedCanvasChoice = new EdgedCanvas();
-		edgedCanvasChoice.setSize("602px", "150px");
+		edgedCanvasChoice.setSize("590px", "150px");
 		
 		unitChoiceGrid = new TileGrid();
-		unitChoiceGrid.setSize("602px", "135px");
+		unitChoiceGrid.setSize("590px", "135px");
 		unitChoiceGrid.setSelectionType(SelectionStyle.SINGLE);
 		unitChoiceGrid.setFields(viewerPicture,viewerName);
 		
@@ -212,7 +212,7 @@ public class UnitChooserViewImpl extends FlowPanel implements UnitChooserView {
            }
         });
 
-        Label label = new Label("Il n'y a plus de choix possible...");
+        Label label = new Label("Il n'y a plus d'unit\u00E9 de choix");
 
         VerticalPanel panel = new VerticalPanel();
         panel.setHeight("100");

@@ -22,11 +22,13 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.unilorraine.projetdevie.client.shared.transitentities.LoginInfo;
 import com.unilorraine.projetdevie.client.ui.ApplicationPanelView.Presenter;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.i18n.client.HasDirection.Direction;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.HorizontalPanel;
@@ -49,6 +51,8 @@ import com.smartgwt.client.widgets.ImgButton;
  */
 public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPanelView {
 	
+	private static final String DISCONNECT_MES = ",  deconnectez-vous";
+
 	private Presenter listener;
 	private FlowPanel pluginPanel;
 	private Tree menutTree;
@@ -56,19 +60,41 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 	private ImgButton imgButton;
 	private Label menuTitle;
 	
+	private LoginDialog login;
+	
 	private PopupLoadingView popup;
+	
+	private VerticalPanel verticalPanel;
+	private VerticalPanel logPanel;
+	
+	private Label nameLabel;
+	private Anchor logoutAnchor = new Anchor();
 
 	public ApplicationPanelViewImpl() {
 		setSize("800px", "800px");
 		
-		VerticalPanel verticalPanel = new VerticalPanel();
-		add(verticalPanel);
+		verticalPanel = new VerticalPanel();
+		
 		verticalPanel.setSize("800px", "800px");
 		
-		Label loginInfo = new Label("Christophe logout");
-		loginInfo.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
-		verticalPanel.add(loginInfo);
-		loginInfo.setWidth("776px");
+		HorizontalPanel logoutPanel = new HorizontalPanel();
+		logoutPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		nameLabel = new Label();
+		//nameLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		logoutPanel.add(nameLabel);
+		//logoutPanel.setVisible(false);
+		logoutPanel.add(logoutAnchor);
+		logoutAnchor.setWidth("118px");
+		
+		
+		logPanel = new VerticalPanel();
+		logPanel.setSize("750px", "25px");
+		logPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		
+		logPanel.add(logoutPanel);
+		
+		verticalPanel.add(logPanel);
+		verticalPanel.setWidth("776px");
 		
 		btnMenu = new Button("Dashboard");
 		btnMenu.setWidth("75px");
@@ -103,7 +129,11 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 		pluginPanel.setSize("", "100%");
 		
 		popup = new PopupLoadingView();
-
+	}
+	
+	@Override
+	public void createView(){
+		add(verticalPanel);
 	}
 
 	@Override
@@ -114,6 +144,8 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 	@Override
 	public void setPresenter(Presenter listener) {
 		this.listener = listener;
+		//login.setPresenter(this.listener);
+
 	}
 
 	@Override
@@ -186,6 +218,25 @@ public class ApplicationPanelViewImpl extends FlowPanel implements ApplicationPa
 	@Override
 	public boolean isWaitingMouse() {
 		return DOM.getStyleAttribute(RootPanel.getBodyElement(), "cursor").equals("wait");
+	}
+
+	@Override
+	public void showLogin(String loginUrl) {
+		login = new LoginDialog(loginUrl);
+		System.out.println("Show dialog");
+		login.show();
+	}
+
+	@Override
+	public void hideLogin() {
+		login.hide();
+	}
+
+	@Override
+	public void setLogOut(LoginInfo info) {
+		nameLabel.setText(info.getEmailAddress());
+		logoutAnchor.setText(DISCONNECT_MES);
+		logoutAnchor.setHref(info.getLogoutUrl());
 	}
 	
 }

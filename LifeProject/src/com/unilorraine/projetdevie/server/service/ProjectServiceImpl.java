@@ -330,6 +330,8 @@ public class ProjectServiceImpl extends CRUDRemoteService<TransitLPProject> impl
 			
 		}catch(JDOObjectNotFoundException notFound) {
 			return null;
+		}catch(Exception e){
+			System.err.println("general error");
 		}finally{
 			pm.close();
 		}

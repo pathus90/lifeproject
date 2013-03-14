@@ -1,4 +1,4 @@
-package com.unilorraine.projetdevie.client.ui.viewmodules.presentationmodule.guiobjects;
+package com.unilorraine.projetdevie.client.ui.viewmodules.preparationmodule.guiobjects;
 
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.events.DragStopEvent;

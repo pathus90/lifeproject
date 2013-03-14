@@ -25,6 +25,7 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.widgets.tree.Tree;
+import com.unilorraine.projetdevie.client.shared.transitentities.LoginInfo;
 import com.unilorraine.projetdevie.client.ui.viewmodules.AppModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.RegisterableModule;
 import com.unilorraine.projetdevie.client.ui.viewmodules.apphandlermodule.ModuleHandlerView;
@@ -102,6 +103,28 @@ public interface ApplicationPanelView extends IsWidget {
 	boolean isWaitingMouse();
 	
 	/**
+	 * Show the login window
+	 * @param loginUrl the url to log in from google
+	 */
+	void showLogin(String loginUrl);
+	
+	/**
+	 * Hides the login window
+	 */
+	void hideLogin();
+	
+	/**
+	 * Create the view for the AppPanel once the login has been done.
+	 */
+	void createView();
+	
+	/**
+	 * Set the log out label and the user name
+	 * @param info the LoginInfo for the connected account
+	 */
+	void setLogOut(LoginInfo info);
+	
+	/**
 	 * Controller for ApplicationPanelView
 	 * @author Christophe
 	 *
@@ -151,6 +174,12 @@ public interface ApplicationPanelView extends IsWidget {
 		 * TODO This is juste a fast implementation, it really needs to be polishing 
 		 */
 		List<RegisterableModule> moduleReferences();
+		
+		/**
+		 * login or create a new user from his email addresse.
+		 * @param email
+		 */
+		void login(String email);
 		
 	}
 }
